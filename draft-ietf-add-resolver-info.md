@@ -159,8 +159,8 @@ informative:
       The server MUST support the content-type 'text/html'.  The DNS
       client MUST reject the URL if the scheme is not "https".  The URL
       SHOULD be treated only as diagnostic information for IT staff.  It
-      is not intended for end user consumption as URL can possibily
-      provide misleading information.  A client MAY choose to display
+      is not intended for end user consumption as the URL can possibily
+      provide misleading information.  A DNS client MAY choose to display
       the URL to the end user, if and only if the encrypted resolver has
       sufficient reputation, according to some local policy (e.g., user
       configuration, administrative configuration, or a built-in list of
@@ -174,8 +174,8 @@ informative:
    {{ex-1}} shows an example of a published resolver information record:
 
 ~~~~
-     resolver.example.net. 7200 IN RESINFO qnamemin exterr=15,16,17
-                        resinfourl=https://resolver.example.com/guide
+resolver.example.net. 7200 IN RESINFO qnamemin exterr=15,16,17
+                      resinfourl=https://resolver.example.com/guide
 ~~~~
 {: #ex-1 title='An Example of Resolver Information Record' artwork-align="center"}
 
@@ -190,8 +190,7 @@ informative:
 
 #  IANA Considerations
 
-Note to the RFC Editor:
-         : Please update "[RFCXXXX]" occurences with the RFC number to be assigned to this document.
+> Note to the RFC Editor: Please update "[RFCXXXX]" occurences with the RFC number to be assigned to this document.
 
 ##  RESINFO RR Type
 
