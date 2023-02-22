@@ -12,8 +12,9 @@ v: 3
 area: "Internet"
 workgroup: "Adaptive DNS Discovery"
 keyword:
- - xxx
- - xxx
+ - Transparency
+ - User Experience
+ - DNS server selection
 
 author:
  -
