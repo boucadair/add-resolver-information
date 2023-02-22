@@ -38,14 +38,14 @@ informative:
     author:
       org: IANA
     target: https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml
-     date: false
+    date: false
 
   IANA-DNS:
     title: Domain Name System (DNS) Parameters
     author:
       org: IANA
     target: http://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4
-     date: false
+    date: false
 
 --- abstract
 
