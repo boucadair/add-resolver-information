@@ -37,6 +37,12 @@ informative:
     title: Resource Record (RR) TYPEs
     author:
       org: IANA
+    target: https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml
+
+  IANA-DNS:
+    title: Domain Name System (DNS) Parameters
+    author:
+      org: IANA
     target: http://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4
 
 --- abstract
@@ -95,7 +101,7 @@ informative:
    DNS server (referred to as ADN in {{?I-D.ietf-add-dnr}}).
 
    If the special use domain name "resolver.arpa" defined in
-   {{?I-D.ietf-add-ddr}} is used to discover the Encrypted DNS server, the
+   {{?I-D.ietf-add-ddr}} is used to discover the encrypted DNS server, the
    client can retrieve the resolver information using the RESINFO RR
    type and QNAME of the designated resolver.
 
@@ -177,17 +183,15 @@ informative:
 #  Security Considerations
 
    Unless a DNS request to retrieve the resolver information is
-   encrypted (e.g., sent over DNS-over-TLS (DoT) {{?RFC7858}} or DNS-over-
-   HTTPS (DoH)) {{?RFC8484}}), the response is susceptible to forgery.  The
-   DNS resolver information can be retrieved after the encrypted
-   connection is established to the DNS server or retrieved before the
-   encrypted connection is established to the DNS server by using local
+   encrypted (e.g., sent over DoT or DoH), the response is susceptible to forgery.  The
+   DNS resolver information can be retrieved before or after the encrypted
+   connection is established to the DNS server by using local
    DNSSEC validation.
 
 #  IANA Considerations
 
-      > Note to the RFC Editor: Please update "[RFCXXXX]" occurences with the RFC
-      number to be assigned to this document.
+Note to the RFC Editor:
+         : Please update "[RFCXXXX]" occurences with the RFC number to be assigned to this document.
 
 ##  RESINFO RR Type
 
@@ -196,16 +200,16 @@ informative:
    (DNS) Parameters" registry available at {{RRTYPE}}:
 
 ~~~~
-   Type: RESINFO
-   Value: TBD
-   Meaning: Resolver Information as Key/Value Pairs
-   Reference: [RFCXXXX]
+Type: RESINFO
+Value: TBD
+Meaning: Resolver Information as Key/Value Pairs
+Reference: [RFCXXXX]
 ~~~~
 
 ## DNS Resolver Information Key Registration {#key-reg}
 
-   This document requests IANA to create a new registry entitled "DNS
-   Resolver Information Keys".  This registry contains definitions of
+   This document requests IANA to create a new sub-registry entitled "DNS
+   Resolver Information Keys" under the "Domain Name System (DNS) Parameters" registry ({{IANA-DNS}}).  This new registry contains definitions of
    the keys that can be used to provide the resolver information.
 
    The registration procedure is Specification Required (Section 4.6 of
@@ -232,11 +236,11 @@ informative:
    The initial content of this registry is provided in {{initial}}.
 
 
-   | Name   | Value Type | Description | Specification |
-   |:------:|:----------:|:------------|:-------------:|
-   | qnamemin | boolean | Indicates whether 'qnameminimization' is enabled or not | [RFCXXXX] |
-   | exterr   | number  | Lists the set of extended DNS errors   | [RFCXXXX]   |
-   | infourl  | string  | Provides an unstructured resolver information that  is used for troubleshooting  | [RFCXXXX]     |
+| Name   | Value Type | Description | Specification |
+|:------:|:----------:|:------------|:-------------:|
+| qnamemin | boolean | Indicates whether 'qnameminimization' is enabled or not | [RFCXXXX] |
+| exterr   | number  | Lists the set of extended DNS errors   | [RFCXXXX]   |
+| infourl  | string  | Provides an unstructured resolver information that is used for troubleshooting  | [RFCXXXX]     |
 {: #initial title='Initial RESINFO Registry'}
 
 --- back
@@ -250,6 +254,8 @@ informative:
    Thanks to Tommy Jensen, Vittorio Bertola, Vinny Parla, Chris Box, Ben
    Schwartz, Tony Finch, Daniel Kahn Gillmor, Eric Rescorla, Shashank
    Jain, Florian Obser, and Richard Baldry for the discussion and
-   comments.  Thanks to Mark Andrews, Joe Abley, Paul Wouters, Tim
+   comments.
+
+   Thanks to Mark Andrews, Joe Abley, Paul Wouters, Tim
    Wicinski, and Steffen Nurpmeso for the discussion on the RR
    formatting rules.
