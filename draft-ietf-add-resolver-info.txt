@@ -335,7 +335,7 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-pp-add-
               resinfo-02>.
 
-   [IANA-DNS] IANA, "Domain Name System (DNS) Parameters", n.d.,
+   [IANA-DNS] IANA, "Domain Name System (DNS) Parameters",
               <http://www.iana.org/assignments/dns-parameters/dns-
               parameters.xhtml#dns-parameters-4>.
 
@@ -357,7 +357,7 @@ Table of Contents
               DOI 10.17487/RFC9250, May 2022,
               <https://www.rfc-editor.org/rfc/rfc9250>.
 
-   [RRTYPE]   IANA, "Resource Record (RR) TYPEs", n.d.,
+   [RRTYPE]   IANA, "Resource Record (RR) TYPEs",
               <https://www.iana.org/assignments/dns-parameters/dns-
               parameters.xhtml>.
 
