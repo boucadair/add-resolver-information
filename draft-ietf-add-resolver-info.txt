@@ -131,7 +131,7 @@ Table of Contents
    DNS server (referred to as ADN in [I-D.ietf-add-dnr]).
 
    If the special use domain name "resolver.arpa" defined in
-   [I-D.ietf-add-ddr] is used to discover the Encrypted DNS server, the
+   [I-D.ietf-add-ddr] is used to discover the encrypted DNS server, the
    client can retrieve the resolver information using the RESINFO RR
    type and QNAME of the designated resolver.
 
@@ -209,17 +209,15 @@ Table of Contents
 6.  Security Considerations
 
    Unless a DNS request to retrieve the resolver information is
-   encrypted (e.g., sent over DNS-over-TLS (DoT) [RFC7858] or DNS-over-
-   HTTPS (DoH)) [RFC8484]), the response is susceptible to forgery.  The
-   DNS resolver information can be retrieved after the encrypted
-   connection is established to the DNS server or retrieved before the
-   encrypted connection is established to the DNS server by using local
-   DNSSEC validation.
+   encrypted (e.g., sent over DoT or DoH), the response is susceptible
+   to forgery.  The DNS resolver information can be retrieved before or
+   after the encrypted connection is established to the DNS server by
+   using local DNSSEC validation.
 
 7.  IANA Considerations
 
-  > Note to the RFC Editor: Please update "[RFCXXXX]" occurences with the RFC
-  number to be assigned to this document.
+   Note to the RFC Editor: : Please update "[RFCXXXX]" occurences with
+   the RFC number to be assigned to this document.
 
 7.1.  RESINFO RR Type
 
@@ -227,16 +225,18 @@ Table of Contents
    "Resource Record (RR) TYPEs" subregistry of the "Domain Name System
    (DNS) Parameters" registry available at [RRTYPE]:
 
-      Type: RESINFO
-      Value: TBD
-      Meaning: Resolver Information as Key/Value Pairs
-      Reference: [RFCXXXX]
+   Type: RESINFO
+   Value: TBD
+   Meaning: Resolver Information as Key/Value Pairs
+   Reference: [RFCXXXX]
 
 7.2.  DNS Resolver Information Key Registration
 
-   This document requests IANA to create a new registry entitled "DNS
-   Resolver Information Keys".  This registry contains definitions of
-   the keys that can be used to provide the resolver information.
+   This document requests IANA to create a new sub-registry entitled
+   "DNS Resolver Information Keys" under the "Domain Name System (DNS)
+   Parameters" registry ([IANA-DNS]).  This new registry contains
+   definitions of the keys that can be used to provide the resolver
+   information.
 
    The registration procedure is Specification Required (Section 4.6 of
    [RFC8126]).
@@ -335,6 +335,10 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-pp-add-
               resinfo-02>.
 
+   [IANA-DNS] IANA, "Domain Name System (DNS) Parameters", n.d.,
+              <http://www.iana.org/assignments/dns-parameters/dns-
+              parameters.xhtml#dns-parameters-4>.
+
    [RFC7858]  Hu, Z., Zhu, L., Heidemann, J., Mankin, A., Wessels, D.,
               and P. Hoffman, "Specification for DNS over Transport
               Layer Security (TLS)", RFC 7858, DOI 10.17487/RFC7858, May
@@ -354,8 +358,8 @@ Table of Contents
               <https://www.rfc-editor.org/rfc/rfc9250>.
 
    [RRTYPE]   IANA, "Resource Record (RR) TYPEs", n.d.,
-              <http://www.iana.org/assignments/dns-parameters/dns-
-              parameters.xhtml#dns-parameters-4>.
+              <https://www.iana.org/assignments/dns-parameters/dns-
+              parameters.xhtml>.
 
 Acknowledgments
 
@@ -365,9 +369,10 @@ Acknowledgments
    Thanks to Tommy Jensen, Vittorio Bertola, Vinny Parla, Chris Box, Ben
    Schwartz, Tony Finch, Daniel Kahn Gillmor, Eric Rescorla, Shashank
    Jain, Florian Obser, and Richard Baldry for the discussion and
-   comments.  Thanks to Mark Andrews, Joe Abley, Paul Wouters, Tim
-   Wicinski, and Steffen Nurpmeso for the discussion on the RR
-   formatting rules.
+   comments.
+
+   Thanks to Mark Andrews, Joe Abley, Paul Wouters, Tim Wicinski, and
+   Steffen Nurpmeso for the discussion on the RR formatting rules.
 
 Authors' Addresses
 

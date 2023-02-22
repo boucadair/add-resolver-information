@@ -1259,7 +1259,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
    RR type and QNAME of the domain name that is used to authenticate the
    DNS server (referred to as ADN in <span>[<a href="#I-D.ietf-add-dnr" class="cite xref">I-D.ietf-add-dnr</a>]</span>).<a href="#section-3-3" class="pilcrow">¶</a></p>
 <p id="section-3-4">If the special use domain name "resolver.arpa" defined in
-   <span>[<a href="#I-D.ietf-add-ddr" class="cite xref">I-D.ietf-add-ddr</a>]</span> is used to discover the Encrypted DNS server, the
+   <span>[<a href="#I-D.ietf-add-ddr" class="cite xref">I-D.ietf-add-ddr</a>]</span> is used to discover the encrypted DNS server, the
    client can retrieve the resolver information using the RESINFO RR
    type and QNAME of the designated resolver.<a href="#section-3-4" class="pilcrow">¶</a></p>
 </section>
@@ -1358,11 +1358,9 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
 <p id="section-6-1">Unless a DNS request to retrieve the resolver information is
-   encrypted (e.g., sent over DNS-over-TLS (DoT) <span>[<a href="#RFC7858" class="cite xref">RFC7858</a>]</span> or DNS-over-
-   HTTPS (DoH)) <span>[<a href="#RFC8484" class="cite xref">RFC8484</a>]</span>), the response is susceptible to forgery.  The
-   DNS resolver information can be retrieved after the encrypted
-   connection is established to the DNS server or retrieved before the
-   encrypted connection is established to the DNS server by using local
+   encrypted (e.g., sent over DoT or DoH), the response is susceptible to forgery.  The
+   DNS resolver information can be retrieved before or after the encrypted
+   connection is established to the DNS server by using local
    DNSSEC validation.<a href="#section-6-1" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1371,12 +1369,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
       <h2 id="name-iana-considerations">
 <a href="#section-7" class="section-number selfRef">7. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<div class="alignLeft art-text artwork" id="section-7-1">
-<pre>
-  &gt; Note to the RFC Editor: Please update "[RFCXXXX]" occurences with the RFC
-  number to be assigned to this document.
-</pre><a href="#section-7-1" class="pilcrow">¶</a>
-</div>
+<p id="section-7-1">Note to the RFC Editor:
+         : Please update "[RFCXXXX]" occurences with the RFC number to be assigned to this document.<a href="#section-7-1" class="pilcrow">¶</a></p>
 <div id="resinfo-rr-type">
 <section id="section-7.1">
         <h3 id="name-resinfo-rr-type">
@@ -1387,10 +1381,10 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
    (DNS) Parameters" registry available at <span>[<a href="#RRTYPE" class="cite xref">RRTYPE</a>]</span>:<a href="#section-7.1-1" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-7.1-2">
 <pre>
-   Type: RESINFO
-   Value: TBD
-   Meaning: Resolver Information as Key/Value Pairs
-   Reference: [RFCXXXX]
+Type: RESINFO
+Value: TBD
+Meaning: Resolver Information as Key/Value Pairs
+Reference: [RFCXXXX]
 </pre><a href="#section-7.1-2" class="pilcrow">¶</a>
 </div>
 </section>
@@ -1400,8 +1394,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         <h3 id="name-dns-resolver-information-ke">
 <a href="#section-7.2" class="section-number selfRef">7.2. </a><a href="#name-dns-resolver-information-ke" class="section-name selfRef">DNS Resolver Information Key Registration</a>
         </h3>
-<p id="section-7.2-1">This document requests IANA to create a new registry entitled "DNS
-   Resolver Information Keys".  This registry contains definitions of
+<p id="section-7.2-1">This document requests IANA to create a new sub-registry entitled "DNS
+   Resolver Information Keys" under the "Domain Name System (DNS) Parameters" registry (<span>[<a href="#IANA-DNS" class="cite xref">IANA-DNS</a>]</span>).  This new registry contains definitions of
    the keys that can be used to provide the resolver information.<a href="#section-7.2-1" class="pilcrow">¶</a></p>
 <p id="section-7.2-2">The registration procedure is Specification Required (Section 4.6 of
    <span>[<a href="#RFC8126" class="cite xref">RFC8126</a>]</span>).<a href="#section-7.2-2" class="pilcrow">¶</a></p>
@@ -1463,7 +1457,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
             <tr>
               <td class="text-center" rowspan="1" colspan="1">infourl</td>
               <td class="text-center" rowspan="1" colspan="1">string</td>
-              <td class="text-left" rowspan="1" colspan="1">Provides an unstructured resolver information that  is used for troubleshooting</td>
+              <td class="text-left" rowspan="1" colspan="1">Provides an unstructured resolver information that is used for troubleshooting</td>
               <td class="text-center" rowspan="1" colspan="1">[RFCXXXX]</td>
             </tr>
           </tbody>
@@ -1529,6 +1523,10 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         <dd>
 <span class="refAuthor">Sood, P.</span> and <span class="refAuthor">P. E. Hoffman</span>, <span class="refTitle">"DNS Resolver Information Self-publication"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-pp-add-resinfo-02</span>, <time datetime="2020-06-30" class="refDate">30 June 2020</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-pp-add-resinfo-02">https://datatracker.ietf.org/doc/html/draft-pp-add-resinfo-02</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="IANA-DNS">[IANA-DNS]</dt>
+        <dd>
+<span class="refAuthor">IANA</span>, <span class="refTitle">"Domain Name System (DNS) Parameters"</span>, <span>n.d.</span>, <span>&lt;<a href="http://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4">http://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC7858">[RFC7858]</dt>
         <dd>
 <span class="refAuthor">Hu, Z.</span>, <span class="refAuthor">Zhu, L.</span>, <span class="refAuthor">Heidemann, J.</span>, <span class="refAuthor">Mankin, A.</span>, <span class="refAuthor">Wessels, D.</span>, and <span class="refAuthor">P. Hoffman</span>, <span class="refTitle">"Specification for DNS over Transport Layer Security (TLS)"</span>, <span class="seriesInfo">RFC 7858</span>, <span class="seriesInfo">DOI 10.17487/RFC7858</span>, <time datetime="2016-05" class="refDate">May 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7858">https://www.rfc-editor.org/rfc/rfc7858</a>&gt;</span>. </dd>
@@ -1547,7 +1545,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <dd class="break"></dd>
 <dt id="RRTYPE">[RRTYPE]</dt>
       <dd>
-<span class="refAuthor">IANA</span>, <span class="refTitle">"Resource Record (RR) TYPEs"</span>, <span>n.d.</span>, <span>&lt;<a href="http://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4">http://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4</a>&gt;</span>. </dd>
+<span class="refAuthor">IANA</span>, <span class="refTitle">"Resource Record (RR) TYPEs"</span>, <span>n.d.</span>, <span>&lt;<a href="https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml">https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -1562,9 +1560,10 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <p id="appendix-A-2">Thanks to Tommy Jensen, Vittorio Bertola, Vinny Parla, Chris Box, Ben
    Schwartz, Tony Finch, Daniel Kahn Gillmor, Eric Rescorla, Shashank
    Jain, Florian Obser, and Richard Baldry for the discussion and
-   comments.  Thanks to Mark Andrews, Joe Abley, Paul Wouters, Tim
+   comments.<a href="#appendix-A-2" class="pilcrow">¶</a></p>
+<p id="appendix-A-3">Thanks to Mark Andrews, Joe Abley, Paul Wouters, Tim
    Wicinski, and Steffen Nurpmeso for the discussion on the RR
-   formatting rules.<a href="#appendix-A-2" class="pilcrow">¶</a></p>
+   formatting rules.<a href="#appendix-A-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="authors-addresses">
