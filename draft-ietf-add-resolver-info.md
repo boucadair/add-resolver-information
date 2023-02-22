@@ -10,7 +10,7 @@ date:
 consensus: true
 v: 3
 area: "Internet"
-workgroup: "ADD"
+workgroup: "Adaptive DNS Discovery"
 keyword:
  - xxx
  - xxx
