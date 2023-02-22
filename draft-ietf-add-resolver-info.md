@@ -64,7 +64,7 @@ informative:
    resolvers to retrieve such information.  To that aim, a new RR type
    is defined for stub resolvers to query the recursive resolvers.  The
    information that a resolver might want to give is defined in
-   {{key-value}}.
+   {{key-val}}.
 
    Retrieved information can be used to feed the server selection
    procedure.
