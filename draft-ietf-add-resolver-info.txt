@@ -2,7 +2,7 @@
 
 
 
-Adaptive DNS Discovery                                          T. Reddy
+ADD                                                             T. Reddy
 Internet-Draft                                                     Nokia
 Intended status: Standards Track                            M. Boucadair
 Expires: 26 August 2023                                           Orange
@@ -16,7 +16,9 @@ Abstract
 
    This document specifies a method for DNS resolvers to publish
    information about themselves.  DNS clients can use the resolver
-   information to identify the capabilities of DNS resolvers.
+   information to identify the capabilities of DNS resolvers.  How such
+   an information is then used by DNS clients is out of the scope of the
+   document.
 
 Discussion Venues
 
@@ -82,23 +84,23 @@ Table of Contents
    Historically, DNS stub resolvers communicated with recursive
    resolvers without needing to know anything about the features
    supported by these recursive resolvers.  As more and more recursive
-   resolvers expose different features that may impact the delivered DNS
-   service, means to help stub resolvers to identify the capabilities of
-   the resolver are valuable.  Typically, stub resolvers can discover
+   resolvers expose different features that may impact delivered DNS
+   services, means to help stub resolvers to identify the capabilities
+   of resolvers are valuable.  Typically, stub resolvers can discover
    and authenticate encrypted DNS servers provided by a local network,
    for example, using the techniques specified in [I-D.ietf-add-dnr] and
-   [I-D.ietf-add-ddr].  However, these stub resolvers need a means to
-   retrieve information from the discovered recursive resolvers about
+   [I-D.ietf-add-ddr].  However, these stub resolvers need a mechanism
+   to retrieve information from the discovered recursive resolvers about
    their capabilities.
 
    This document fills that void by specifying a method for stub
-   resolvers to retrieve such information.  To that aim, a new RR type
-   is defined for stub resolvers to query the recursive resolvers.  The
-   information that a resolver might want to give is defined in
-   Section 5.
+   resolvers to retrieve such information.  To that aim, a new resource
+   record (RR) type is defined for stub resolvers to query the recursive
+   resolvers.  The information that a resolver might want to expose is
+   defined in Section 5.
 
    Retrieved information can be used to feed the server selection
-   procedure.
+   procedure.  However, that selection procedure is out of scope.
 
 2.  Terminology
 
@@ -110,13 +112,15 @@ Table of Contents
 
    This document makes use of the terms defined in [RFC8499].
 
-   'Encrypted DNS' refers to a DNS protocol that provides an encrypted
-   channel between a DNS client and server (e.g., DoT, DoH, or DoQ).
+   'Encrypted DNS' refers to a DNS scheme where DNS exchanges are
+   transported over an encrypted channel between a DNS client and server
+   (e.g., DNS- over-HTTPS (DoH) [RFC8484], DNS-over-TLS (DoT) [RFC7858],
+   or DNS- over-QUIC (DoQ) [RFC9250]).
 
 3.  Retrieving Resolver Information
 
    A stub resolver that wants to retrieve the resolver information may
-   use the RR type "RESINFO" defined in this document (see Section 7.2).
+   use the RR type "RESINFO" defined in this document.
 
    The content of the RDATA in a response to RR type query is defined in
    Section 5.  If the resolver understands the RESINFO RR type, the
@@ -343,6 +347,11 @@ Table of Contents
    [RFC8499]  Hoffman, P., Sullivan, A., and K. Fujiwara, "DNS
               Terminology", BCP 219, RFC 8499, DOI 10.17487/RFC8499,
               January 2019, <https://www.rfc-editor.org/rfc/rfc8499>.
+
+   [RFC9250]  Huitema, C., Dickinson, S., and A. Mankin, "DNS over
+              Dedicated QUIC Connections", RFC 9250,
+              DOI 10.17487/RFC9250, May 2022,
+              <https://www.rfc-editor.org/rfc/rfc9250>.
 
    [RRTYPE]   IANA, "Resource Record (RR) TYPEs", n.d.,
               <http://www.iana.org/assignments/dns-parameters/dns-

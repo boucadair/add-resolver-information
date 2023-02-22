@@ -10,7 +10,7 @@
 <meta content="
        This document specifies a method for DNS resolvers to publish
    information about themselves.  DNS clients can use the resolver
-   information to identify the capabilities of DNS resolvers. 
+   information to identify the capabilities of DNS resolvers. How such an information is then used by DNS clients is out of the scope of the document. 
     " name="description">
 <meta content="xml2rfc 3.16.0" name="generator">
 <meta content="Transparency" name="keyword">
@@ -1064,7 +1064,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <div id="internal-metadata" class="document-information">
 <dl id="identifiers">
 <dt class="label-workgroup">Workgroup:</dt>
-<dd class="workgroup">Adaptive DNS Discovery</dd>
+<dd class="workgroup">ADD</dd>
 <dt class="label-internet-draft">Internet-Draft:</dt>
 <dd class="internet-draft">draft-ietf-add-resolver-info-latest</dd>
 <dt class="label-published">Published:</dt>
@@ -1093,7 +1093,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
 <p id="section-abstract-1">This document specifies a method for DNS resolvers to publish
    information about themselves.  DNS clients can use the resolver
-   information to identify the capabilities of DNS resolvers.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+   information to identify the capabilities of DNS resolvers. How such an information is then used by DNS clients is out of the scope of the document.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-discussion-venues">
@@ -1212,21 +1212,21 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="section-1-1">Historically, DNS stub resolvers communicated with recursive
    resolvers without needing to know anything about the features
    supported by these recursive resolvers.  As more and more recursive
-   resolvers expose different features that may impact the delivered DNS
-   service, means to help stub resolvers to identify the capabilities of
-   the resolver are valuable.  Typically, stub resolvers can discover
+   resolvers expose different features that may impact delivered DNS
+   services, means to help stub resolvers to identify the capabilities of
+   resolvers are valuable.  Typically, stub resolvers can discover
    and authenticate encrypted DNS servers provided by a local network,
    for example, using the techniques specified in <span>[<a href="#I-D.ietf-add-dnr" class="cite xref">I-D.ietf-add-dnr</a>]</span> and
-   <span>[<a href="#I-D.ietf-add-ddr" class="cite xref">I-D.ietf-add-ddr</a>]</span>.  However, these stub resolvers need a means to
+   <span>[<a href="#I-D.ietf-add-ddr" class="cite xref">I-D.ietf-add-ddr</a>]</span>.  However, these stub resolvers need a mechanism to
    retrieve information from the discovered recursive resolvers about
    their capabilities.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">This document fills that void by specifying a method for stub
-   resolvers to retrieve such information.  To that aim, a new RR type
+   resolvers to retrieve such information.  To that aim, a new resource record (RR) type
    is defined for stub resolvers to query the recursive resolvers.  The
-   information that a resolver might want to give is defined in
+   information that a resolver might want to expose is defined in
    <a href="#key-val" class="auto internal xref">Section 5</a>.<a href="#section-1-2" class="pilcrow">¶</a></p>
 <p id="section-1-3">Retrieved information can be used to feed the server selection
-   procedure.<a href="#section-1-3" class="pilcrow">¶</a></p>
+   procedure. However, that selection procedure is out of scope.<a href="#section-1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="terminology">
@@ -1239,8 +1239,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
 described in BCP 14 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="cite xref">RFC8174</a>]</span> when, and only when, they
 appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶</a></p>
 <p id="section-2-2">This document makes use of the terms defined in <span>[<a href="#RFC8499" class="cite xref">RFC8499</a>]</span>.<a href="#section-2-2" class="pilcrow">¶</a></p>
-<p id="section-2-3">'Encrypted DNS' refers to a DNS protocol that provides an encrypted
-   channel between a DNS client and server (e.g., DoT, DoH, or DoQ).<a href="#section-2-3" class="pilcrow">¶</a></p>
+<p id="section-2-3">'Encrypted DNS' refers to a DNS scheme where DNS exchanges are
+   transported over an encrypted channel between a DNS client and server (e.g., DNS-
+   over-HTTPS (DoH) <span>[<a href="#RFC8484" class="cite xref">RFC8484</a>]</span>, DNS-over-TLS (DoT) <span>[<a href="#RFC7858" class="cite xref">RFC7858</a>]</span>, or DNS-
+   over-QUIC (DoQ) <span>[<a href="#RFC9250" class="cite xref">RFC9250</a>]</span>).<a href="#section-2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="retrieving-resolver-information">
@@ -1249,7 +1251,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-retrieving-resolver-informa" class="section-name selfRef">Retrieving Resolver Information</a>
       </h2>
 <p id="section-3-1">A stub resolver that wants to retrieve the resolver information may
-   use the RR type "RESINFO" defined in this document (see <a href="#key-reg" class="auto internal xref">Section 7.2</a>).<a href="#section-3-1" class="pilcrow">¶</a></p>
+   use the RR type "RESINFO" defined in this document.<a href="#section-3-1" class="pilcrow">¶</a></p>
 <p id="section-3-2">The content of the RDATA in a response to RR type query is defined in
    <a href="#key-val" class="auto internal xref">Section 5</a>.  If the resolver understands the RESINFO RR type, the
    RRSet in the Answer section <span class="bcp14">MUST</span> have exactly one record.<a href="#section-3-2" class="pilcrow">¶</a></p>
@@ -1538,6 +1540,10 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <dt id="RFC8499">[RFC8499]</dt>
         <dd>
 <span class="refAuthor">Hoffman, P.</span>, <span class="refAuthor">Sullivan, A.</span>, and <span class="refAuthor">K. Fujiwara</span>, <span class="refTitle">"DNS Terminology"</span>, <span class="seriesInfo">BCP 219</span>, <span class="seriesInfo">RFC 8499</span>, <span class="seriesInfo">DOI 10.17487/RFC8499</span>, <time datetime="2019-01" class="refDate">January 2019</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8499">https://www.rfc-editor.org/rfc/rfc8499</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9250">[RFC9250]</dt>
+        <dd>
+<span class="refAuthor">Huitema, C.</span>, <span class="refAuthor">Dickinson, S.</span>, and <span class="refAuthor">A. Mankin</span>, <span class="refTitle">"DNS over Dedicated QUIC Connections"</span>, <span class="seriesInfo">RFC 9250</span>, <span class="seriesInfo">DOI 10.17487/RFC9250</span>, <time datetime="2022-05" class="refDate">May 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9250">https://www.rfc-editor.org/rfc/rfc9250</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RRTYPE">[RRTYPE]</dt>
       <dd>
