@@ -10,7 +10,7 @@ date:
 consensus: true
 v: 3
 area: "Internet"
-workgroup: "Adaptive DNS Discovery"
+workgroup: "ADD"
 keyword:
  - Transparency
  - User Experience
@@ -43,7 +43,7 @@ informative:
 
    This document specifies a method for DNS resolvers to publish
    information about themselves.  DNS clients can use the resolver
-   information to identify the capabilities of DNS resolvers.
+   information to identify the capabilities of DNS resolvers. How such an information is then used by DNS clients is out of the scope of the document.
 
 --- middle
 
@@ -52,23 +52,23 @@ informative:
    Historically, DNS stub resolvers communicated with recursive
    resolvers without needing to know anything about the features
    supported by these recursive resolvers.  As more and more recursive
-   resolvers expose different features that may impact the delivered DNS
-   service, means to help stub resolvers to identify the capabilities of
-   the resolver are valuable.  Typically, stub resolvers can discover
+   resolvers expose different features that may impact delivered DNS
+   services, means to help stub resolvers to identify the capabilities of
+   resolvers are valuable.  Typically, stub resolvers can discover
    and authenticate encrypted DNS servers provided by a local network,
    for example, using the techniques specified in {{?I-D.ietf-add-dnr}} and
-   {{?I-D.ietf-add-ddr}}.  However, these stub resolvers need a means to
+   {{?I-D.ietf-add-ddr}}.  However, these stub resolvers need a mechanism to
    retrieve information from the discovered recursive resolvers about
    their capabilities.
 
    This document fills that void by specifying a method for stub
-   resolvers to retrieve such information.  To that aim, a new RR type
+   resolvers to retrieve such information.  To that aim, a new resource record (RR) type
    is defined for stub resolvers to query the recursive resolvers.  The
-   information that a resolver might want to give is defined in
+   information that a resolver might want to expose is defined in
    {{key-val}}.
 
    Retrieved information can be used to feed the server selection
-   procedure.
+   procedure. However, that selection procedure is out of scope.
 
 #  Terminology
 
@@ -76,13 +76,15 @@ informative:
 
    This document makes use of the terms defined in {{?RFC8499}}.
 
-   'Encrypted DNS' refers to a DNS protocol that provides an encrypted
-   channel between a DNS client and server (e.g., DoT, DoH, or DoQ).
+   'Encrypted DNS' refers to a DNS scheme where DNS exchanges are
+   transported over an encrypted channel between a DNS client and server (e.g., DNS-
+   over-HTTPS (DoH) {{?RFC8484}}, DNS-over-TLS (DoT) {{?RFC7858}}, or DNS-
+   over-QUIC (DoQ) {{?RFC9250}}).
 
 # Retrieving Resolver Information
 
    A stub resolver that wants to retrieve the resolver information may
-   use the RR type "RESINFO" defined in this document (see {{key-reg}}).
+   use the RR type "RESINFO" defined in this document.
 
    The content of the RDATA in a response to RR type query is defined in
    {{key-val}}.  If the resolver understands the RESINFO RR type, the
