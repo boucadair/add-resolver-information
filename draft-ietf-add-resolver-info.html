@@ -1325,8 +1325,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <p id="section-5-2.6.2">The server <span class="bcp14">MUST</span> support the content-type 'text/html'.  The DNS
  client <span class="bcp14">MUST</span> reject the URL if the scheme is not "https".  The URL
  <span class="bcp14">SHOULD</span> be treated only as diagnostic information for IT staff.  It
- is not intended for end user consumption as URL can possibily
- provide misleading information.  A client <span class="bcp14">MAY</span> choose to display
+ is not intended for end user consumption as the URL can possibily
+ provide misleading information.  A DNS client <span class="bcp14">MAY</span> choose to display
  the URL to the end user, if and only if the encrypted resolver has
  sufficient reputation, according to some local policy (e.g., user
  configuration, administrative configuration, or a built-in list of
@@ -1342,8 +1342,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <figure id="figure-1">
         <div class="alignCenter art-text artwork" id="section-5-5.1">
 <pre>
-     resolver.example.net. 7200 IN RESINFO qnamemin exterr=15,16,17
-                        resinfourl=https://resolver.example.com/guide
+resolver.example.net. 7200 IN RESINFO qnamemin exterr=15,16,17
+                      resinfourl=https://resolver.example.com/guide
 </pre>
 </div>
 <figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
@@ -1369,8 +1369,11 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
       <h2 id="name-iana-considerations">
 <a href="#section-7" class="section-number selfRef">7. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<p id="section-7-1">Note to the RFC Editor:
-         : Please update "[RFCXXXX]" occurences with the RFC number to be assigned to this document.<a href="#section-7-1" class="pilcrow">¶</a></p>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-7-1.1">
+          <p id="section-7-1.1.1">Note to the RFC Editor: Please update "[RFCXXXX]" occurences with the RFC number to be assigned to this document.<a href="#section-7-1.1.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
 <div id="resinfo-rr-type">
 <section id="section-7.1">
         <h3 id="name-resinfo-rr-type">
