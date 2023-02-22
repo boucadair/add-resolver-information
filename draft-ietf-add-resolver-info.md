@@ -123,7 +123,7 @@ informative:
 
    The following resolver information keys are defined:
 
-   qnamemin:  
+   qnamemin:
    : If the DNS resolver supports QNAME minimisation {{!RFC9156}}
       to improve DNS privacy, the key is present.  Note that, as per the
       rules for the keys defined in Section 6.4 of {{!RFC6763}}, if there
@@ -132,7 +132,7 @@ informative:
 
       This is an optional attribute.
 
-   exterr:  
+   exterr:
    : If the DNS resolver supports extended DNS errors (EDE)
       {{!RFC8914}} to return additional information about the cause of DNS
       errors, the value of this key lists the possible extended DNS
@@ -141,7 +141,7 @@ informative:
 
       This is an optional attribute.
 
-   infourl: 
+   infourl:
    : An URL that points to the generic unstructured resolver
       information (e.g., DoH APIs supported, possible HTTP status codes
       returned by the DoH server, how to report a problem) for
