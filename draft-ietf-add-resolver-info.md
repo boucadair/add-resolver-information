@@ -184,7 +184,7 @@ resolver.example.net. 7200 IN RESINFO qnamemin exterr=15,16,17
 
 #  Security Considerations
 
-   In order to prevent a DNS response forgery attack, DNS clients MUST either use an authenticated secure
+   In order to prevent DNS response forgery attacks, DNS clients MUST either use an authenticated secure
    connection to the DNS server or use local DNSSEC validation to retrieve the resolver information.
 
 
