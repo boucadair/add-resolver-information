@@ -184,11 +184,9 @@ resolver.example.net. 7200 IN RESINFO qnamemin exterr=15,16,17
 
 #  Security Considerations
 
-   Unless a DNS request to retrieve the resolver information is
-   encrypted (e.g., sent over DoT or DoH), the response is susceptible to forgery.  The
-   DNS resolver information can be retrieved before or after the encrypted
-   connection is established to the DNS server by using local
-   DNSSEC validation.
+   In order to prevent DNS response forgery attacks, DNS clients MUST either use an authenticated secure
+   connection to the DNS server or use local DNSSEC validation to retrieve the resolver information.
+
 
 #  IANA Considerations
 
