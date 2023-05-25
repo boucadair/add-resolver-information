@@ -184,9 +184,7 @@ resolver.example.net. 7200 IN RESINFO qnamemin exterr=15,16,17
 
 #  Security Considerations
 
-   Unless a DNS request to retrieve the resolver information is
-   encrypted (e.g., sent over DoT or DoH), the response is susceptible to forgery.
-   To prevent such attacks, DNS clients MUST either use an authenticated secure
+   In order to prevent a DNS response forgery attack, DNS clients MUST either use an authenticated secure
    connection to the DNS server or use local DNSSEC validation to retrieve the resolver information.
 
 
