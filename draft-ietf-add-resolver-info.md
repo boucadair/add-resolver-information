@@ -99,32 +99,32 @@ informative:
    RRSet in the Answer section MUST have exactly one record.
 
    A DNS client can retrieve the resolver information using the RESINFO
-   RR type and QNAME of the domain name that is used to authenticate the
-   DNS server (referred to as ADN in {{?I-D.ietf-add-dnr}}).
+   RR type and the QNAME of the domain name that is used to authenticate the
+   DNS server (referred to as the Authentication Domain Name (ADN) in {{?I-D.ietf-add-dnr}}).
 
-   If the special use domain name "resolver.arpa" defined in
-   {{?I-D.ietf-add-ddr}} is used to discover the encrypted DNS server, the
+   If the Special-Use Domain Name "resolver.arpa", defined in
+   {{?I-D.ietf-add-ddr}}, is used to discover an encrypted DNS server, the
    client can retrieve the resolver information using the RESINFO RR
-   type and QNAME of the designated resolver.
+   type and the QNAME of the designated resolver.
 
 #  Format of the Resolver Information {#format}
 
    The resolver information uses the same format as DNS TXT records.
-   The intention of using the same format as TXT records is to convey a
+   The motivation for using the same format as TXT records is to convey a
    small amount of useful information about a DNS resolver.  As a
    reminder, the format rules for TXT records are defined in
-   Section 3.3.14 of the DNS specification {{!RFC1035}} and further
-   elaborated in Section 6.1 of the DNS-based Service Discovery (DNS-SD)
-   {{!RFC6763}}.  The recommendations to limit the TXT record size are
-   discussed in Section 6.2 of {{!RFC6763}}.
+   the base DNS specification ({{Section 3.3.14 of !RFC1035}}) and further
+   elaborated in the DNS-based Service Discovery (DNS-SD) specification (
+   {{Section 6.1 of !RFC6763}}). The recommendations to limit the TXT record size are
+   discussed in {{Section 6.1 of !RFC6763}}.
 
    Similar to DNS-SD, the RESINFO RR type uses "key/value" pairs to
    convey the resolver information.  Each "key/value" pair is encoded
-   using the format rules defined in Section 6.3 of {{!RFC6763}}.  Using
+   using the format rules defined in {{Section 6.3 of !RFC6763}}.  Using
    standardized "key/value" syntax within the RESINFO RR type makes it
    easier for future keys to be defined.  If a DNS client sees unknown
    keys in a RESINFO RR type, it MUST silently ignore them.  The same
-   rules for the keys as those defined in Section 6.4 of {{!RFC6763}} MUST
+   rules for the keys as those defined in {{Section 6.4 of !RFC6763}} MUST
    be followed for RESINFO.
 
    Keys MUST either be defined in the IANA registry ({{key-reg}}) or begin
@@ -137,14 +137,14 @@ informative:
    qnamemin:
    : If the DNS resolver supports QNAME minimisation {{!RFC9156}}
       to improve DNS privacy, the key is present.  Note that, as per the
-      rules for the keys defined in Section 6.4 of {{!RFC6763}}, if there
+      rules for the keys defined in {{Section 6.4 of !RFC6763}}, if there
       is no '=' in a key, then it is a boolean attribute, simply
       identified as being present, with no value.
 
       This is an optional attribute.
 
    exterr:
-   : If the DNS resolver supports extended DNS errors (EDE)
+   : If the DNS resolver supports extended DNS errors (EDE) option
       {{!RFC8914}} to return additional information about the cause of DNS
       errors, the value of this key lists the possible extended DNS
       error codes that can be returned by this DNS resolver.  When
@@ -156,7 +156,7 @@ informative:
    : An URL that points to the generic unstructured resolver
       information (e.g., DoH APIs supported, possible HTTP status codes
       returned by the DoH server, how to report a problem) for
-      troubleshooting purpose.
+      troubleshooting purposes.
 
       The server MUST support the content-type 'text/html'.  The DNS
       client MUST reject the URL if the scheme is not "https".  The URL
@@ -208,7 +208,7 @@ Reference: [RFCXXXX]
 ## DNS Resolver Information Key Registration {#key-reg}
 
    This document requests IANA to create a new sub-registry entitled "DNS
-   Resolver Information Keys" under the "Domain Name System (DNS) Parameters" registry ({{IANA-DNS}}).  This new registry contains definitions of
+   Resolver Information Keys" under the "Domain Name System (DNS) Parameters" registry ({{IANA-DNS}}).  This new sub-registry contains definitions of
    the keys that can be used to provide the resolver information.
 
    The registration procedure is Specification Required (Section 4.6 of
