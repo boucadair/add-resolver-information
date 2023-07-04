@@ -57,13 +57,13 @@ informative:
 
 #  Introduction
 
-   Historically, DNS stub resolvers communicated with recursive
+   Historically, DNS stub resolvers communicated with upstream
    resolvers without needing to know anything about the features
    supported by these recursive resolvers.  As more and more recursive
    resolvers expose different features that may impact delivered DNS
    services, means to help stub resolvers to identify the capabilities of
    resolvers are valuable.  Typically, stub resolvers can discover
-   and authenticate encrypted DNS servers provided by a local network,
+   and authenticate encrypted DNS resolvers provided by a local network,
    for example, using the techniques specified in {{?I-D.ietf-add-dnr}} and
    {{?I-D.ietf-add-ddr}}.  However, these stub resolvers need a mechanism to
    retrieve information from the discovered recursive resolvers about
@@ -76,7 +76,7 @@ informative:
    {{key-val}}.
 
    Retrieved information can be used to feed the server selection
-   procedure. However, that selection procedure is out of scope.
+   procedure. However, that selection procedure is out of the scope of this document.
 
 #  Terminology
 
@@ -85,25 +85,25 @@ informative:
    This document makes use of the terms defined in {{?RFC8499}}.
 
    'Encrypted DNS' refers to a DNS scheme where DNS exchanges are
-   transported over an encrypted channel between a DNS client and server (e.g., DNS-
-   over-HTTPS (DoH) {{?RFC8484}}, DNS-over-TLS (DoT) {{?RFC7858}}, or DNS-
-   over-QUIC (DoQ) {{?RFC9250}}).
+   transported over an encrypted channel between a DNS client and server (e.g.,
+   DNS-over-HTTPS (DoH) {{?RFC8484}}, DNS-over-TLS (DoT) {{?RFC7858}}, or
+   DNS-over-QUIC (DoQ) {{?RFC9250}}).
 
 # Retrieving Resolver Information
 
    A stub resolver that wants to retrieve the resolver information may
    use the RR type "RESINFO" defined in this document.
 
-   The content of the RDATA in a response to RR type query is defined in
+   The content of the RDATA in a response to a RESINFO RR type query is defined in
    {{key-val}}.  If the resolver understands the RESINFO RR type, the
    RRSet in the Answer section MUST have exactly one record.
 
    A DNS client can retrieve the resolver information using the RESINFO
    RR type and the QNAME of the domain name that is used to authenticate the
-   DNS server (referred to as the Authentication Domain Name (ADN) in {{?I-D.ietf-add-dnr}}).
+   DNS resolver (referred to as the Authentication Domain Name (ADN) in {{?I-D.ietf-add-dnr}}).
 
    If the Special-Use Domain Name "resolver.arpa", defined in
-   {{?I-D.ietf-add-ddr}}, is used to discover an encrypted DNS server, the
+   {{?I-D.ietf-add-ddr}}, is used to discover an encrypted DNS resolver, the
    client can retrieve the resolver information using the RESINFO RR
    type and the QNAME of the designated resolver.
 
@@ -114,8 +114,8 @@ informative:
    small amount of useful information about a DNS resolver.  As a
    reminder, the format rules for TXT records are defined in
    the base DNS specification ({{Section 3.3.14 of !RFC1035}}) and further
-   elaborated in the DNS-based Service Discovery (DNS-SD) specification (
-   {{Section 6.1 of !RFC6763}}). The recommendations to limit the TXT record size are
+   elaborated in the DNS-based Service Discovery (DNS-SD) specification
+   ({{Section 6.1 of !RFC6763}}). The recommendations to limit the TXT record size are
    discussed in {{Section 6.1 of !RFC6763}}.
 
    Similar to DNS-SD, the RESINFO RR type uses "key/value" pairs to
@@ -177,7 +177,7 @@ informative:
 
 ~~~~
 resolver.example.net. 7200 IN RESINFO qnamemin exterr=15,16,17
-                      resinfourl=https://resolver.example.com/guide
+                      infourl=https://resolver.example.com/guide
 ~~~~
 {: #ex-1 title='An Example of Resolver Information Record' artwork-align="center"}
 
@@ -185,7 +185,7 @@ resolver.example.net. 7200 IN RESINFO qnamemin exterr=15,16,17
 #  Security Considerations
 
    In order to prevent DNS response forgery attacks, DNS clients MUST either use an authenticated secure
-   connection to the DNS server or use local DNSSEC validation to retrieve the resolver information.
+   connection to the DNS resolver or use local DNSSEC validation to retrieve the resolver information.
 
 
 #  IANA Considerations
@@ -207,12 +207,11 @@ Reference: [RFCXXXX]
 
 ## DNS Resolver Information Key Registration {#key-reg}
 
-   This document requests IANA to create a new sub-registry entitled "DNS
-   Resolver Information Keys" under the "Domain Name System (DNS) Parameters" registry ({{IANA-DNS}}).  This new sub-registry contains definitions of
+   This document requests IANA to create a new registry entitled "DNS
+   Resolver Information Keys" under the "Domain Name System (DNS) Parameters" registry group ({{IANA-DNS}}).  This new registry contains definitions of
    the keys that can be used to provide the resolver information.
 
-   The registration procedure is Specification Required (Section 4.6 of
-   {{!RFC8126}}).
+   The registration procedure is Specification Required ({{Section 4.6 of !RFC8126}}).
 
    The structure of the registry is as follows:
 
@@ -238,8 +237,8 @@ Reference: [RFCXXXX]
 | Name   | Value Type | Description | Specification |
 |:------:|:----------:|:------------|:-------------:|
 | qnamemin | boolean | Indicates whether 'qnameminimization' is enabled or not | [RFCXXXX] |
-| exterr   | number  | Lists the set of extended DNS errors   | [RFCXXXX]   |
-| infourl  | string  | Provides an unstructured resolver information that is used for troubleshooting  | [RFCXXXX]     |
+| exterr   | 16-bit unsigned integer  | Lists the set of supported extended DNS errors   | [RFCXXXX]   |
+| infourl  | string  | Provides a pointer to an unstructured resolver information that is used for troubleshooting  | [RFCXXXX]     |
 {: #initial title='Initial RESINFO Registry'}
 
 --- back
@@ -258,3 +257,5 @@ Reference: [RFCXXXX]
    Thanks to Mark Andrews, Joe Abley, Paul Wouters, Tim
    Wicinski, and Steffen Nurpmeso for the discussion on the RR
    formatting rules.
+
+   Thanks to Johan Stenstam for the dns-dir review.
