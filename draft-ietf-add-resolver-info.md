@@ -185,12 +185,12 @@ resolver.example.net. 7200 IN RESINFO qnamemin exterr=15,16,17
 #  Security Considerations
 
    In order to prevent DNS response forgery attacks, DNS clients MUST either use an authenticated secure
-   connection to the DNS resolver or use local DNSSEC validation to retrieve the resolver information.
+   connection to the DNS resolver or use local DNSSEC validation ({{Section 10 of ?RFC8499}}) to retrieve the resolver information.
 
 
 #  IANA Considerations
 
-> Note to the RFC Editor: Please update "[RFCXXXX]" occurences with the RFC number to be assigned to this document.
+> Note to the RFC Editor: Please update "RFCXXXX" occurences with the RFC number to be assigned to this document.
 
 ##  RESINFO RR Type
 
@@ -202,7 +202,7 @@ resolver.example.net. 7200 IN RESINFO qnamemin exterr=15,16,17
 Type: RESINFO
 Value: TBD
 Meaning: Resolver Information as Key/Value Pairs
-Reference: [RFCXXXX]
+Reference: RFCXXXX
 ~~~~
 
 ## DNS Resolver Information Key Registration {#key-reg}
@@ -236,9 +236,9 @@ Reference: [RFCXXXX]
 
 | Name   | Value Type | Description | Specification |
 |:------:|:----------:|:------------|:-------------:|
-| qnamemin | boolean | Indicates whether 'qnameminimization' is enabled or not | [RFCXXXX] |
-| exterr   | 16-bit unsigned integer  | Lists the set of supported extended DNS errors   | [RFCXXXX]   |
-| infourl  | string  | Provides a pointer to an unstructured resolver information that is used for troubleshooting  | [RFCXXXX]     |
+| qnamemin | boolean | Indicates whether 'qnameminimization' is enabled or not | RFCXXXX |
+| exterr   | 16-bit unsigned integer  | Lists the set of supported extended DNS errors   | RFCXXXX   |
+| infourl  | string  | Provides a pointer to an unstructured resolver information that is used for troubleshooting  | RFCXXXX     |
 {: #initial title='Initial RESINFO Registry'}
 
 --- back
