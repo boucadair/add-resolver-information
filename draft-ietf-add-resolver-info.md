@@ -195,8 +195,8 @@ resolver.example.net. 7200 IN RESINFO qnamemin exterr=15,16,17
 ##  RESINFO RR Type
 
    This document requests IANA to register a new value from the
-   "Resource Record (RR) TYPEs" subregistry of the "Domain Name System
-   (DNS) Parameters" registry available at {{RRTYPE}}:
+   "Resource Record (RR) TYPEs" registry of the "Domain Name System
+   (DNS) Parameters" registry group available at {{RRTYPE}}:
 
 ~~~~
 Type: RESINFO
