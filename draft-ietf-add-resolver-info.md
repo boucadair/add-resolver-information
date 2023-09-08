@@ -108,8 +108,7 @@ informative:
    type and QNAME of "resolver.arpa".  For DDR, the client has to
    validate a designated resolver using a secure connection (Section 4.2
    of {{?I-D.ietf-add-ddr}}) and then issue a DNS request to retrieve the
-   resolver information.  
-   
+   resolver information.
 
 #  Format of the Resolver Information {#format}
 
@@ -186,7 +185,7 @@ informative:
 		client's "signature_algorithms" TLS extension (Section 4.4.2.2 of
       {{!RFC8446}}).
 
-      This is a an optional attribute.  
+      This is a an optional attribute.
 
    New keys can be defined as per the procedure defined in {{key-reg}}.
 
