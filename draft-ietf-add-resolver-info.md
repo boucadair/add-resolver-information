@@ -207,7 +207,7 @@ resolver.example.net. 7200 IN RESINFO qnamemin exterr=15,16,17
 	can receive a positive RESINFO response from an upstream DNS server	
 	or an attacker.  To prevent such an attack, resolvers supporting DDR	
 	MUST convey the "sig" attribute.  DNS clients using DDR for encrypted	
-	resolver discovery quering for an RESINFO RR MUST validate the	
+	resolver discovery querying for a RESINFO RR MUST validate the	
 	signature in the "sig" attribute for data origin authentication.  If	
 	the signature validation fails, the DNS client MUST reject the	
 	RESINFO RR.
