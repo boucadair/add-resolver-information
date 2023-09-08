@@ -284,4 +284,6 @@ Reference: RFCXXXX
    Wicinski, and Steffen Nurpmeso for the discussion on the RR
    formatting rules.
 
+   Thanks to Tommy Jensen for the Shepherd review.
+
    Thanks to Johan Stenstam for the dns-dir review.
