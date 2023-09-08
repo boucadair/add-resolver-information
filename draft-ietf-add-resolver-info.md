@@ -264,7 +264,7 @@ Reference: RFCXXXX
 | qnamemin | None | The presence of the key name indicates that 'qnameminimization' is enabled | RFCXXXX |
 | exterr   | 16-bit unsigned integer  | Lists the set of supported extended DNS errors. It must be a value in the "Extended DNS Error Codes" registry.  | RFCXXXX   |
 | infourl  | string  | Provides an URL that points to an unstructured resolver information that is used for troubleshooting | RFCXXXX     |
-| sig      | binary  | Provides signature of RESINFO RR for data origin authentication | RFCXXXX     |
+| sig      | binary  | Includes a signature of RESINFO RR for data origin authentication | RFCXXXX     |
 {: #initial title='Initial RESINFO Registry'}
 
 --- back
