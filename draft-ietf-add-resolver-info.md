@@ -86,8 +86,8 @@ informative:
 
    'Encrypted DNS' refers to a DNS scheme where DNS exchanges are
    transported over an encrypted channel between a DNS client and server (e.g.,
-   DNS-over-HTTPS (DoH) {{?RFC8484}}, DNS-over-TLS (DoT) {{?RFC7858}}, or
-   DNS-over-QUIC (DoQ) {{?RFC9250}}).
+   DNS over HTTPS (DoH) {{?RFC8484}}, DNS over TLS (DoT) {{?RFC7858}}, or
+   DNS over QUIC (DoQ) {{?RFC9250}}).
 
 # Retrieving Resolver Information
 
