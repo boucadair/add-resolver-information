@@ -171,7 +171,7 @@ informative:
       configuration, administrative configuration, or a built-in list of
       respectable resolvers).
 
-      This is a an optional attribute.  For example, a DoT server may
+      This is an optional attribute.  For example, a DoT server may
       not want to host an HTTPS server.
 
    sig:
@@ -185,7 +185,7 @@ informative:
 		client's "signature_algorithms" TLS extension (Section 4.4.2.2 of
       {{!RFC8446}}).
 
-      This is a an optional attribute.
+      This is an optional attribute.
 
    New keys can be defined as per the procedure defined in {{key-reg}}.
 
