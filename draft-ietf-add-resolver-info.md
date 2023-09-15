@@ -82,16 +82,16 @@ informative:
 
 {::boilerplate bcp14-tagged}
 
-   This document makes use of the terms defined in {{?RFC8499}}.
+   This document makes use of the terms defined in {{?RFC8499}}. The following additional terms are used:
 
-   Encrypted DNS:
-   : Refers to a DNS scheme where DNS exchanges are
+Encrypted DNS:
+: Refers to a DNS scheme where DNS exchanges are
    transported over an encrypted channel between a DNS client and server (e.g.,
    DNS over HTTPS (DoH) {{?RFC8484}}, DNS over TLS (DoT) {{?RFC7858}}, or
    DNS over QUIC (DoQ) {{?RFC9250}}).
 
-    Encrypted DNS resolver:
-    : Refers to a DNS resolver that supports any encrypted DNS scheme.
+Encrypted DNS resolver:
+: Refers to a DNS resolver that supports any encrypted DNS scheme.
 
 # Retrieving Resolver Information
 
