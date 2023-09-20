@@ -208,13 +208,14 @@ resolver.example.net. 7200 IN RESINFO qnamemin exterr=15,16,17
    connection to the DNS resolver or use local DNSSEC validation ({{Section 10 of ?RFC8499}}) to retrieve the resolver information.
 
    If a resolver supports DDR but does not support RESINFO, the client	
-	can receive a positive RESINFO response from an upstream DNS resolver	
-	or an attacker.  To prevent such an attack, resolvers supporting DDR	
-	MUST convey the "sig" attribute. DNS clients using DDR for encrypted	
-	resolver discovery querying for a RESINFO RR MUST validate the	
-	signature in the "sig" attribute for data origin authentication, including ensuring that the certificate that is used for the signature also contains the IP address that DDR uses for validation as per {{Section 4.2 of I-D.ietf-add-ddr}}.  If	
-	the signature validation fails, the DNS client MUST reject the	
-	RESINFO RR.
+   can receive a positive RESINFO response from an upstream DNS resolver	
+   or an attacker.  To prevent such an attack, resolvers supporting DDR	
+   MUST convey the "sig" attribute. DNS clients using DDR for encrypted
+   resolver discovery querying for a RESINFO RR MUST validate the signature
+   in the "sig" attribute for data origin authentication using the public key
+   in the certificate, including ensuring that the certificate contains
+   the IP address that DDR uses for validation as per {{Section 4.2 of I-D.ietf-add-ddr}}.
+   If the signature validation fails, the DNS client MUST reject the RESINFO RR.
 
 
 #  IANA Considerations
