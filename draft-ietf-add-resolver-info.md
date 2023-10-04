@@ -106,7 +106,7 @@ Encrypted DNS resolver:
    RR type and the QNAME of the domain name that is used to authenticate the
    DNS resolver (referred to as the Authentication Domain Name (ADN) in {{?I-D.ietf-add-dnr}}).
 
-   If the Special-Use Domain Name "resolver.arpa", as defined in
+   If the Special-Use Domain Name "resolver.arpa", defined in
    {{?I-D.ietf-add-ddr}}, is used to discover an encrypted DNS resolver, the
    client can retrieve the resolver information using the RESINFO RR
    type and QNAME of "resolver.arpa".  If a resolver supports DDR
