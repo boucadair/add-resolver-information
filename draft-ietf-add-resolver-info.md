@@ -64,8 +64,8 @@ informative:
    services, means to help stub resolvers to identify the capabilities of
    resolvers are valuable.  Typically, stub resolvers can discover
    and authenticate encrypted DNS resolvers provided by a local network,
-   for example, using the techniques specified in {{?I-D.ietf-add-dnr}} and
-   {{?I-D.ietf-add-ddr}}.  However, these stub resolvers need a mechanism to
+   for example, using the techniques specified in {{!I-D.ietf-add-dnr}} and
+   {{!I-D.ietf-add-ddr}}.  However, these stub resolvers need a mechanism to
    retrieve information from the discovered recursive resolvers about
    their capabilities.
 
@@ -104,13 +104,13 @@ Encrypted DNS resolver:
 
    A DNS client can retrieve the resolver information using the RESINFO
    RR type and the QNAME of the domain name that is used to authenticate the
-   DNS resolver (referred to as the Authentication Domain Name (ADN) in {{?I-D.ietf-add-dnr}}).
+   DNS resolver (referred to as the Authentication Domain Name (ADN) in {{!I-D.ietf-add-dnr}}).
 
    If the Special-Use Domain Name "resolver.arpa", defined in
-   {{?I-D.ietf-add-ddr}}, is used to discover an encrypted DNS resolver, the
+   {{!I-D.ietf-add-ddr}}, is used to discover an encrypted DNS resolver, the
    client can retrieve the resolver information using the RESINFO RR
    type and QNAME of "resolver.arpa".  For DDR, the client has to
-   validate a designated resolver using a secure connection ({{Section 4.2 of ?I-D.ietf-add-ddr}})
+   validate a designated resolver using a secure connection ({{Section 4.2 of !I-D.ietf-add-ddr}})
    and then issue a DNS request to retrieve the resolver information.
 
 #  Format of the Resolver Information {#format}
