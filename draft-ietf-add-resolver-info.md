@@ -64,8 +64,8 @@ informative:
    services, means to help stub resolvers to identify the capabilities of
    resolvers are valuable.  Typically, stub resolvers can discover
    and authenticate encrypted DNS resolvers provided by a local network,
-   for example, using the techniques specified in {{!I-D.ietf-add-dnr}} and
-   {{!I-D.ietf-add-ddr}}.  However, these stub resolvers need a mechanism to
+   for example, using the Discovery of Network-designated Resolvers (DNR) {{!I-D.ietf-add-dnr}} and
+  Discovery of Designated Resolvers (DDR) {{!I-D.ietf-add-ddr}}.  However, these stub resolvers need a mechanism to
    retrieve information from the discovered recursive resolvers about
    their capabilities.
 
