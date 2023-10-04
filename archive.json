@@ -1,0 +1,246 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2023-07-06T01:07:33.795530+00:00",
+  "repo": "boucadair/add-resolver-information",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    }
+  ],
+  "issues": [
+    {
+      "number": 3,
+      "id": "I_kwDOJA--hM5m3Atu",
+      "title": "generalize to include any secure url scheme",
+      "url": "https://github.com/boucadair/add-resolver-information/issues/3",
+      "state": "CLOSED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "https://github.com/boucadair/add-resolver-information/blob/631a2a3b939d0f8e18bb8405ecc3fb65ac6d6e79/draft-ietf-add-resolver-info.md?plain=1#L162\r\n\r\nThen, list \"https\" as recommended. \r\n\r\nI'm thinking about future uses such as DNS-over-CoAP and the like. ",
+      "createdAt": "2023-05-25T12:08:53Z",
+      "updatedAt": "2023-07-04T06:48:32Z",
+      "closedAt": "2023-07-04T06:48:32Z",
+      "comments": []
+    }
+  ],
+  "pulls": [
+    {
+      "number": 1,
+      "id": "PR_kwDOJA--hM5RVVQW",
+      "title": "Security recommendation",
+      "url": "https://github.com/boucadair/add-resolver-information/pull/1",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-05-25T11:06:59Z",
+      "updatedAt": "2023-05-25T12:42:50Z",
+      "baseRepository": "boucadair/add-resolver-information",
+      "baseRefName": "main",
+      "baseRefOid": "631a2a3b939d0f8e18bb8405ecc3fb65ac6d6e79",
+      "headRepository": "boucadair/add-resolver-information",
+      "headRefName": "boucadair-patch-1",
+      "headRefOid": "c0c01b2b3c58e9d08a29fe441204b761d04d1dae",
+      "closedAt": "2023-05-25T12:42:49Z",
+      "mergedAt": "2023-05-25T12:42:49Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "1fd97e04aab984004b8527d41535efbc5e9e2d5a"
+      },
+      "comments": [
+        {
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "body": "> The first line is implying encryption is mandatory, if DNSSEC is used, encryption is not required. I would remove the first line and modify the next line as \"In order to prevent a DNS response forgery attack,....\".\r\n\r\nOK",
+          "createdAt": "2023-05-25T12:42:40Z",
+          "updatedAt": "2023-05-25T12:42:40Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOJA--hM5WDp07",
+          "commit": {
+            "abbreviatedOid": "b4accaa"
+          },
+          "author": "tireddy2",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "The first line is implying encryption is mandatory, if DNSSEC is used, encryption is not required.\r\nI would remove the first line and modify the next line as \"In order to prevent a DNS response forgery attack,....\".",
+          "createdAt": "2023-05-25T12:39:20Z",
+          "updatedAt": "2023-05-25T12:39:20Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOJA--hM5WDqzN",
+          "commit": {
+            "abbreviatedOid": "6af5246"
+          },
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-05-25T12:41:30Z",
+          "updatedAt": "2023-05-25T12:41:31Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "```suggestion\r\n   In order to prevent DNS response forgery attacks, DNS clients MUST either use an authenticated secure\r\n```",
+              "createdAt": "2023-05-25T12:41:31Z",
+              "updatedAt": "2023-05-25T12:41:31Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "id": "PR_kwDOJA--hM5RVo5s",
+      "title": "Some edits",
+      "url": "https://github.com/boucadair/add-resolver-information/pull/2",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-05-25T12:06:29Z",
+      "updatedAt": "2023-05-26T14:55:32Z",
+      "baseRepository": "boucadair/add-resolver-information",
+      "baseRefName": "main",
+      "baseRefOid": "631a2a3b939d0f8e18bb8405ecc3fb65ac6d6e79",
+      "headRepository": "boucadair/add-resolver-information",
+      "headRefName": "boucadair-patch-2",
+      "headRefOid": "556659825f0468c530bec159e2b24ecd980a3ba5",
+      "closedAt": "2023-05-26T12:46:00Z",
+      "mergedAt": "2023-05-26T12:46:00Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "1462d34692569ea25e2f13e554245c547dfcb6d7"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOJA--hM5WNn1n",
+          "commit": {
+            "abbreviatedOid": "5566598"
+          },
+          "author": "tireddy2",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "Update looks good.",
+          "createdAt": "2023-05-26T14:55:32Z",
+          "updatedAt": "2023-05-26T14:55:32Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "id": "PR_kwDOJA--hM5UghaK",
+      "title": "dns-dir review",
+      "url": "https://github.com/boucadair/add-resolver-information/pull/4",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-07-03T10:13:16Z",
+      "updatedAt": "2023-07-04T06:48:45Z",
+      "baseRepository": "boucadair/add-resolver-information",
+      "baseRefName": "main",
+      "baseRefOid": "1462d34692569ea25e2f13e554245c547dfcb6d7",
+      "headRepository": "boucadair/add-resolver-information",
+      "headRefName": "boucadair-dns-dir",
+      "headRefOid": "6969da081148f7303eedb6d60ae49a2fb1975bb2",
+      "closedAt": "2023-07-04T06:48:44Z",
+      "mergedAt": "2023-07-04T06:48:44Z",
+      "mergedBy": "boucadair",
+      "mergeCommit": {
+        "oid": "86505bacde35acf33fb76f366630648e6c065011"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOJA--hM5aEi4J",
+          "commit": {
+            "abbreviatedOid": "14c3ef0"
+          },
+          "author": "tireddy2",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Update looks good to me.",
+          "createdAt": "2023-07-03T12:55:46Z",
+          "updatedAt": "2023-07-03T12:55:46Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOJA--hM5aE4Rk",
+          "commit": {
+            "abbreviatedOid": "14c3ef0"
+          },
+          "author": "boucadair",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-07-03T13:43:07Z",
+          "updatedAt": "2023-07-03T13:43:07Z",
+          "comments": [
+            {
+              "originalPosition": 118,
+              "body": "```suggestion\r\n   Thanks to Johan Stenstam for the dns-dir review.\r\n```",
+              "createdAt": "2023-07-03T13:43:07Z",
+              "updatedAt": "2023-07-03T13:43:07Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
