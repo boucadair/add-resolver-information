@@ -112,7 +112,7 @@ Encrypted DNS resolver:
    type and QNAME of "resolver.arpa".  If a resolver supports DDR
    but does not support RESINFO, the client can receive a positive RESINFO
    response from an upstream DNS resolver	or an attacker. While DNSSEC can be used as a mechanism
-   to protect against the attack, it's important to note that DNSSEC protection is not possible with
+   to protect against the attack, it is important to note that DNSSEC protection is not possible with
    'resolver.arpa' due to the lack of uniqueness. To prevent such an attack,
    resolvers supporting DDR MUST convey the "sig" attribute as defined in {{key-val}}. DNS clients
    using DDR for encrypted resolver discovery querying for a RESINFO RR MUST validate the signature
