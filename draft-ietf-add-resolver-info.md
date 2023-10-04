@@ -212,7 +212,7 @@ resolver.example.net. 7200 IN RESINFO qnamemin exterr=15,16,17
 To prevent DNS response forgery attacks, DNS clients using DNR MUST employ one of the following measures:
 
 1. Establish an authenticated secure connection to the DNS resolver.
-2. Implement local DNSSEC validation ({{Section 10 of ?RFC8499}}), to verify the authenticity of resolver information.
+2. Implement local DNSSEC validation ({{Section 10 of ?RFC8499}}) to verify the authenticity of the resolver information.
 
 In order to prevent DNS response forgery attacks, DNS clients using DDR MUST perform the validation explained in {{retreive}} for data origin authentication of RESINFO RR.
 
