@@ -222,13 +222,13 @@ In order to prevent DNS response forgery attacks, DNS clients using DDR MUST per
 
 ##  RESINFO RR Type
 
-   This document requests IANA to register a new value from the
+   This document requests IANA to update this entry from the
    "Resource Record (RR) TYPEs" registry of the "Domain Name System
    (DNS) Parameters" registry group available at {{RRTYPE}}:
 
 ~~~~
 Type: RESINFO
-Value: TBD
+Value: 261
 Meaning: Resolver Information as Key/Value Pairs
 Reference: RFCXXXX
 ~~~~
