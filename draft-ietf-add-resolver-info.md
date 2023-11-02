@@ -264,8 +264,8 @@ Reference: RFCXXXX
 
 | Name   | Value Type | Description | Specification |
 |:------:|:----------:|:------------|:-------------:|
-| qnamemin | None | The presence of the key name indicates that 'qnameminimization' is enabled | RFCXXXX |
-| exterr   | 16-bit unsigned integer  | Lists the set of supported extended DNS errors. It must be a value in the "Extended DNS Error Codes" registry.  | RFCXXXX   |
+| qnamemin | None | The presence of the key name indicates that QNAME minimization is enabled | RFCXXXX |
+| exterr   | 16-bit unsigned integer  | Lists the set of supported extended DNS errors. It must be an INFO-CODE decimal value in the "Extended DNS Error Codes" registry.  | RFCXXXX   |
 | infourl  | string  | Provides an URL that points to an unstructured resolver information that is used for troubleshooting | RFCXXXX     |
 | sig      | binary  | Includes a signature of RESINFO RR for data origin authentication | RFCXXXX     |
 {: #initial title='Initial RESINFO Registry'}
@@ -289,4 +289,4 @@ Reference: RFCXXXX
 
    Thanks to Tommy Jensen for the Shepherd review.
 
-   Thanks to Johan Stenstam for the dns-dir review.
+   Thanks to Johan Stenstam for the dns-dir review and Ray Bellis for the RRTYPE allocation review.
