@@ -5,8 +5,8 @@
 ADD                                                             T. Reddy
 Internet-Draft                                                     Nokia
 Intended status: Standards Track                            M. Boucadair
-Expires: 6 April 2024                                             Orange
-                                                          4 October 2023
+Expires: 8 May 2024                                               Orange
+                                                         5 November 2023
 
 
                         DNS Resolver Information
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 April 2024.
+   This Internet-Draft will expire on 8 May 2024.
 
 Copyright Notice
 
@@ -89,7 +89,7 @@ Table of Contents
    resolvers are valuable.  Typically, stub resolvers can discover and
    authenticate encrypted DNS resolvers provided by a local network, for
    example, using the Discovery of Network-designated Resolvers (DNR)
-   [I-D.ietf-add-dnr] and Discovery of Designated Resolvers (DDR)
+   [I-D.ietf-add-dnr] and the Discovery of Designated Resolvers (DDR)
    [I-D.ietf-add-ddr].  However, these stub resolvers need a mechanism
    to retrieve information from the discovered recursive resolvers about
    their capabilities.
@@ -259,12 +259,12 @@ Table of Contents
 
 7.1.  RESINFO RR Type
 
-   This document requests IANA to register a new value from the
-   "Resource Record (RR) TYPEs" registry of the "Domain Name System
-   (DNS) Parameters" registry group available at [RRTYPE]:
+   This document requests IANA to update this entry from the "Resource
+   Record (RR) TYPEs" registry of the "Domain Name System (DNS)
+   Parameters" registry group available at [RRTYPE]:
 
    Type: RESINFO
-   Value: TBD
+   Value: 261
    Meaning: Resolver Information as Key/Value Pairs
    Reference: RFCXXXX
 
@@ -295,33 +295,35 @@ Table of Contents
 
    The initial content of this registry is provided in Table 1.
 
-   +==========+==========+============================+===============+
-   |   Name   |  Value   | Description                | Specification |
-   |          |   Type   |                            |               |
-   +==========+==========+============================+===============+
-   | qnamemin |   None   | The presence of the key    |    RFCXXXX    |
-   |          |          | name indicates that        |               |
-   |          |          | 'qnameminimization' is     |               |
-   |          |          | enabled                    |               |
-   +----------+----------+----------------------------+---------------+
-   |  exterr  |  16-bit  | Lists the set of supported |    RFCXXXX    |
-   |          | unsigned | extended DNS errors.  It   |               |
-   |          | integer  | must be a value in the     |               |
-   |          |          | "Extended DNS Error Codes" |               |
-   |          |          | registry.                  |               |
-   +----------+----------+----------------------------+---------------+
-   | infourl  |  string  | Provides an URL that       |    RFCXXXX    |
-   |          |          | points to an unstructured  |               |
-   |          |          | resolver information that  |               |
-   |          |          | is used for                |               |
-   |          |          | troubleshooting            |               |
-   +----------+----------+----------------------------+---------------+
-   |   sig    |  binary  | Includes a signature of    |    RFCXXXX    |
-   |          |          | RESINFO RR for data origin |               |
-   |          |          | authentication             |               |
-   +----------+----------+----------------------------+---------------+
+     +==========+==========+=========================+===============+
+     |   Name   |  Value   | Description             | Specification |
+     |          |   Type   |                         |               |
+     +==========+==========+=========================+===============+
+     | qnamemin |   None   | The presence of the key |    RFCXXXX    |
+     |          |          | name indicates that     |               |
+     |          |          | QNAME minimization is   |               |
+     |          |          | enabled                 |               |
+     +----------+----------+-------------------------+---------------+
+     |  exterr  |  16-bit  | Lists the set of        |    RFCXXXX    |
+     |          | unsigned | supported extended DNS  |               |
+     |          | integer  | errors.  It must be an  |               |
+     |          |          | INFO-CODE decimal value |               |
+     |          |          | in the "Extended DNS    |               |
+     |          |          | Error Codes" registry.  |               |
+     +----------+----------+-------------------------+---------------+
+     | infourl  |  string  | Provides an URL that    |    RFCXXXX    |
+     |          |          | points to an            |               |
+     |          |          | unstructured resolver   |               |
+     |          |          | information that is     |               |
+     |          |          | used for                |               |
+     |          |          | troubleshooting         |               |
+     +----------+----------+-------------------------+---------------+
+     |   sig    |  binary  | Includes a signature of |    RFCXXXX    |
+     |          |          | RESINFO RR for data     |               |
+     |          |          | origin authentication   |               |
+     +----------+----------+-------------------------+---------------+
 
-                    Table 1: Initial RESINFO Registry
+                     Table 1: Initial RESINFO Registry
 
 8.  References
 
@@ -428,7 +430,8 @@ Acknowledgments
 
    Thanks to Tommy Jensen for the Shepherd review.
 
-   Thanks to Johan Stenstam for the dns-dir review.
+   Thanks to Johan Stenstam for the dns-dir review and Ray Bellis for
+   the RRTYPE allocation review.
 
 Authors' Addresses
 
