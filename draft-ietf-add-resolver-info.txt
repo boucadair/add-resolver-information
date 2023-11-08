@@ -5,8 +5,8 @@
 ADD                                                             T. Reddy
 Internet-Draft                                                     Nokia
 Intended status: Standards Track                            M. Boucadair
-Expires: 5 May 2024                                               Orange
-                                                         2 November 2023
+Expires: 11 May 2024                                              Orange
+                                                         8 November 2023
 
 
                         DNS Resolver Information
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 5 May 2024.
+   This Internet-Draft will expire on 11 May 2024.
 
 Copyright Notice
 
@@ -89,10 +89,10 @@ Table of Contents
    resolvers are valuable.  Typically, stub resolvers can discover and
    authenticate encrypted DNS resolvers provided by a local network, for
    example, using the Discovery of Network-designated Resolvers (DNR)
-   [I-D.ietf-add-dnr] and the Discovery of Designated Resolvers (DDR)
-   [I-D.ietf-add-ddr].  However, these stub resolvers need a mechanism
-   to retrieve information from the discovered recursive resolvers about
-   their capabilities.
+   [RFC9463] and the Discovery of Designated Resolvers (DDR) [RFC9462].
+   However, these stub resolvers need a mechanism to retrieve
+   information from the discovered recursive resolvers about their
+   capabilities.
 
    This document fills that void by specifying a method for stub
    resolvers to retrieve such information.  To that aim, a new resource
@@ -135,25 +135,25 @@ Table of Contents
    A DNS client can retrieve the resolver information using the RESINFO
    RR type and the QNAME of the domain name that is used to authenticate
    the DNS resolver (referred to as the Authentication Domain Name (ADN)
-   in [I-D.ietf-add-dnr]).
+   in [RFC9463]).
 
-   If the Special-Use Domain Name "resolver.arpa", defined in
-   [I-D.ietf-add-ddr], is used to discover an encrypted DNS resolver,
-   the client can retrieve the resolver information using the RESINFO RR
-   type and QNAME of "resolver.arpa".  If a resolver supports DDR but
-   does not support RESINFO, the client can receive a positive RESINFO
-   response from a legitimate upstream DNS resolver or an attacker.
-   While DNSSEC can be considered as a candidate mechanism to protect
-   against the attack, it is important to note that DNSSEC protection is
-   not possible with "resolver.arpa" due to the lack of uniqueness.  To
-   prevent such an attack, resolvers supporting DDR MUST convey the
-   "sig" attribute as defined in Section 5.  DNS clients using DDR for
-   encrypted resolver discovery querying for a RESINFO RR MUST validate
-   the signature in the "sig" attribute for data origin authentication
-   using the public key in the certificate, including ensuring that the
-   certificate contains the IP address that DDR uses for validation as
-   per Section 4.2 of [I-D.ietf-add-ddr].  If the signature validation
-   fails, the DNS client MUST reject the RESINFO RR.
+   If the Special-Use Domain Name "resolver.arpa", defined in [RFC9462],
+   is used to discover an encrypted DNS resolver, the client can
+   retrieve the resolver information using the RESINFO RR type and QNAME
+   of "resolver.arpa".  If a resolver supports DDR but does not support
+   RESINFO, the client can receive a positive RESINFO response from a
+   legitimate upstream DNS resolver or an attacker.  While DNSSEC can be
+   considered as a candidate mechanism to protect against the attack, it
+   is important to note that DNSSEC protection is not possible with
+   "resolver.arpa" due to the lack of uniqueness.  To prevent such an
+   attack, resolvers supporting DDR MUST convey the "sig" attribute as
+   defined in Section 5.  DNS clients using DDR for encrypted resolver
+   discovery querying for a RESINFO RR MUST validate the signature in
+   the "sig" attribute for data origin authentication using the public
+   key in the certificate, including ensuring that the certificate
+   contains the IP address that DDR uses for validation as per
+   Section 4.2 of [RFC9462].  If the signature validation fails, the DNS
+   client MUST reject the RESINFO RR.
 
 4.  Format of the Resolver Information
 
@@ -329,21 +329,6 @@ Table of Contents
 
 8.1.  Normative References
 
-   [I-D.ietf-add-ddr]
-              Pauly, T., Kinnear, E., Wood, C. A., McManus, P., and T.
-              Jensen, "Discovery of Designated Resolvers", Work in
-              Progress, Internet-Draft, draft-ietf-add-ddr-10, 5 August
-              2022, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              add-ddr-10>.
-
-   [I-D.ietf-add-dnr]
-              Boucadair, M., Reddy.K, T., Wing, D., Cook, N., and T.
-              Jensen, "DHCP and Router Advertisement Options for the
-              Discovery of Network-designated Resolvers (DNR)", Work in
-              Progress, Internet-Draft, draft-ietf-add-dnr-16, 27 April
-              2023, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              add-dnr-16>.
-
    [RFC1035]  Mockapetris, P., "Domain names - implementation and
               specification", STD 13, RFC 1035, DOI 10.17487/RFC1035,
               November 1987, <https://www.rfc-editor.org/rfc/rfc1035>.
@@ -379,6 +364,17 @@ Table of Contents
               Name Minimisation to Improve Privacy", RFC 9156,
               DOI 10.17487/RFC9156, November 2021,
               <https://www.rfc-editor.org/rfc/rfc9156>.
+
+   [RFC9462]  Pauly, T., Kinnear, E., Wood, C. A., McManus, P., and T.
+              Jensen, "Discovery of Designated Resolvers", RFC 9462,
+              DOI 10.17487/RFC9462, November 2023,
+              <https://www.rfc-editor.org/rfc/rfc9462>.
+
+   [RFC9463]  Boucadair, M., Ed., Reddy.K, T., Ed., Wing, D., Cook, N.,
+              and T. Jensen, "DHCP and Router Advertisement Options for
+              the Discovery of Network-designated Resolvers (DNR)",
+              RFC 9463, DOI 10.17487/RFC9463, November 2023,
+              <https://www.rfc-editor.org/rfc/rfc9463>.
 
 8.2.  Informative References
 

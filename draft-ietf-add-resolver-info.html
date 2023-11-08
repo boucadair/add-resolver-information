@@ -1034,7 +1034,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Reddy &amp; Boucadair</td>
-<td class="center">Expires 5 May 2024</td>
+<td class="center">Expires 11 May 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1047,12 +1047,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-add-resolver-info-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-11-02" class="published">2 November 2023</time>
+<time datetime="2023-11-08" class="published">8 November 2023</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-05-05">5 May 2024</time></dd>
+<dd class="expires"><time datetime="2024-05-11">11 May 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1103,7 +1103,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 5 May 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 11 May 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1194,8 +1194,8 @@ svg :is([fill="white"], [fill^="#fff"]) {
    services, means to help stub resolvers to identify the capabilities of
    resolvers are valuable.  Typically, stub resolvers can discover
    and authenticate encrypted DNS resolvers provided by a local network,
-   for example, using the Discovery of Network-designated Resolvers (DNR) <span>[<a href="#I-D.ietf-add-dnr" class="cite xref">I-D.ietf-add-dnr</a>]</span> and the Discovery of Designated Resolvers (DDR)
-   <span>[<a href="#I-D.ietf-add-ddr" class="cite xref">I-D.ietf-add-ddr</a>]</span>.  However, these stub resolvers need a mechanism to
+   for example, using the Discovery of Network-designated Resolvers (DNR) <span>[<a href="#RFC9463" class="cite xref">RFC9463</a>]</span> and the Discovery of Designated Resolvers (DDR)
+   <span>[<a href="#RFC9462" class="cite xref">RFC9462</a>]</span>.  However, these stub resolvers need a mechanism to
    retrieve information from the discovered recursive resolvers about
    their capabilities.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">This document fills that void by specifying a method for stub
@@ -1246,9 +1246,9 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
    RRSet in the Answer section <span class="bcp14">MUST</span> have exactly one record.<a href="#section-3-2" class="pilcrow">¶</a></p>
 <p id="section-3-3">A DNS client can retrieve the resolver information using the RESINFO
    RR type and the QNAME of the domain name that is used to authenticate the
-   DNS resolver (referred to as the Authentication Domain Name (ADN) in <span>[<a href="#I-D.ietf-add-dnr" class="cite xref">I-D.ietf-add-dnr</a>]</span>).<a href="#section-3-3" class="pilcrow">¶</a></p>
+   DNS resolver (referred to as the Authentication Domain Name (ADN) in <span>[<a href="#RFC9463" class="cite xref">RFC9463</a>]</span>).<a href="#section-3-3" class="pilcrow">¶</a></p>
 <p id="section-3-4">If the Special-Use Domain Name "resolver.arpa", defined in
-   <span>[<a href="#I-D.ietf-add-ddr" class="cite xref">I-D.ietf-add-ddr</a>]</span>, is used to discover an encrypted DNS resolver, the
+   <span>[<a href="#RFC9462" class="cite xref">RFC9462</a>]</span>, is used to discover an encrypted DNS resolver, the
    client can retrieve the resolver information using the RESINFO RR
    type and QNAME of "resolver.arpa".  If a resolver supports DDR
    but does not support RESINFO, the client can receive a positive RESINFO
@@ -1259,7 +1259,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
    using DDR for encrypted resolver discovery querying for a RESINFO RR <span class="bcp14">MUST</span> validate the signature
    in the "sig" attribute for data origin authentication using the public key
    in the certificate, including ensuring that the certificate contains
-   the IP address that DDR uses for validation as per <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-add-ddr-10#section-4.2" class="relref">Section 4.2</a> of [<a href="#I-D.ietf-add-ddr" class="cite xref">I-D.ietf-add-ddr</a>]</span>.
+   the IP address that DDR uses for validation as per <span><a href="https://rfc-editor.org/rfc/rfc9462#section-4.2" class="relref">Section 4.2</a> of [<a href="#RFC9462" class="cite xref">RFC9462</a>]</span>.
    If the signature validation fails, the DNS client <span class="bcp14">MUST</span> reject the RESINFO RR.<a href="#section-3-4" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1501,14 +1501,6 @@ Reference: RFCXXXX
 <a href="#section-8.1" class="section-number selfRef">8.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
         </h3>
 <dl class="references">
-<dt id="I-D.ietf-add-ddr">[I-D.ietf-add-ddr]</dt>
-        <dd>
-<span class="refAuthor">Pauly, T.</span>, <span class="refAuthor">Kinnear, E.</span>, <span class="refAuthor">Wood, C. A.</span>, <span class="refAuthor">McManus, P.</span>, and <span class="refAuthor">T. Jensen</span>, <span class="refTitle">"Discovery of Designated Resolvers"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-add-ddr-10</span>, <time datetime="2022-08-05" class="refDate">5 August 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-add-ddr-10">https://datatracker.ietf.org/doc/html/draft-ietf-add-ddr-10</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="I-D.ietf-add-dnr">[I-D.ietf-add-dnr]</dt>
-        <dd>
-<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Reddy.K, T.</span>, <span class="refAuthor">Wing, D.</span>, <span class="refAuthor">Cook, N.</span>, and <span class="refAuthor">T. Jensen</span>, <span class="refTitle">"DHCP and Router Advertisement Options for the Discovery of Network-designated Resolvers (DNR)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-add-dnr-16</span>, <time datetime="2023-04-27" class="refDate">27 April 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-add-dnr-16">https://datatracker.ietf.org/doc/html/draft-ietf-add-dnr-16</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="RFC1035">[RFC1035]</dt>
         <dd>
 <span class="refAuthor">Mockapetris, P.</span>, <span class="refTitle">"Domain names - implementation and specification"</span>, <span class="seriesInfo">STD 13</span>, <span class="seriesInfo">RFC 1035</span>, <span class="seriesInfo">DOI 10.17487/RFC1035</span>, <time datetime="1987-11" class="refDate">November 1987</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc1035">https://www.rfc-editor.org/rfc/rfc1035</a>&gt;</span>. </dd>
@@ -1538,8 +1530,16 @@ Reference: RFCXXXX
 <span class="refAuthor">Kumari, W.</span>, <span class="refAuthor">Hunt, E.</span>, <span class="refAuthor">Arends, R.</span>, <span class="refAuthor">Hardaker, W.</span>, and <span class="refAuthor">D. Lawrence</span>, <span class="refTitle">"Extended DNS Errors"</span>, <span class="seriesInfo">RFC 8914</span>, <span class="seriesInfo">DOI 10.17487/RFC8914</span>, <time datetime="2020-10" class="refDate">October 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8914">https://www.rfc-editor.org/rfc/rfc8914</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9156">[RFC9156]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Bortzmeyer, S.</span>, <span class="refAuthor">Dolmans, R.</span>, and <span class="refAuthor">P. Hoffman</span>, <span class="refTitle">"DNS Query Name Minimisation to Improve Privacy"</span>, <span class="seriesInfo">RFC 9156</span>, <span class="seriesInfo">DOI 10.17487/RFC9156</span>, <time datetime="2021-11" class="refDate">November 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9156">https://www.rfc-editor.org/rfc/rfc9156</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9462">[RFC9462]</dt>
+        <dd>
+<span class="refAuthor">Pauly, T.</span>, <span class="refAuthor">Kinnear, E.</span>, <span class="refAuthor">Wood, C. A.</span>, <span class="refAuthor">McManus, P.</span>, and <span class="refAuthor">T. Jensen</span>, <span class="refTitle">"Discovery of Designated Resolvers"</span>, <span class="seriesInfo">RFC 9462</span>, <span class="seriesInfo">DOI 10.17487/RFC9462</span>, <time datetime="2023-11" class="refDate">November 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9462">https://www.rfc-editor.org/rfc/rfc9462</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9463">[RFC9463]</dt>
+      <dd>
+<span class="refAuthor">Boucadair, M., Ed.</span>, <span class="refAuthor">Reddy.K, T., Ed.</span>, <span class="refAuthor">Wing, D.</span>, <span class="refAuthor">Cook, N.</span>, and <span class="refAuthor">T. Jensen</span>, <span class="refTitle">"DHCP and Router Advertisement Options for the Discovery of Network-designated Resolvers (DNR)"</span>, <span class="seriesInfo">RFC 9463</span>, <span class="seriesInfo">DOI 10.17487/RFC9463</span>, <time datetime="2023-11" class="refDate">November 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9463">https://www.rfc-editor.org/rfc/rfc9463</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
