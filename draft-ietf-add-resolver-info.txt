@@ -5,8 +5,8 @@
 ADD                                                             T. Reddy
 Internet-Draft                                                     Nokia
 Intended status: Standards Track                            M. Boucadair
-Expires: 11 May 2024                                              Orange
-                                                         8 November 2023
+Expires: 12 May 2024                                              Orange
+                                                         9 November 2023
 
 
                         DNS Resolver Information
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 May 2024.
+   This Internet-Draft will expire on 12 May 2024.
 
 Copyright Notice
 
@@ -286,8 +286,6 @@ Table of Contents
       names that begin with "temp-", so these names can be used freely
       by any implementer.
 
-   Value Type:  The type of the value to be used in the key.
-
    Description:  A description of the registered key.
 
    Specification:  The reference specification for the registered
@@ -295,35 +293,27 @@ Table of Contents
 
    The initial content of this registry is provided in Table 1.
 
-     +==========+==========+=========================+===============+
-     |   Name   |  Value   | Description             | Specification |
-     |          |   Type   |                         |               |
-     +==========+==========+=========================+===============+
-     | qnamemin |   None   | The presence of the key |    RFCXXXX    |
-     |          |          | name indicates that     |               |
-     |          |          | QNAME minimization is   |               |
-     |          |          | enabled                 |               |
-     +----------+----------+-------------------------+---------------+
-     |  exterr  |  16-bit  | Lists the set of        |    RFCXXXX    |
-     |          | unsigned | supported extended DNS  |               |
-     |          | integer  | errors.  It must be an  |               |
-     |          |          | INFO-CODE decimal value |               |
-     |          |          | in the "Extended DNS    |               |
-     |          |          | Error Codes" registry.  |               |
-     +----------+----------+-------------------------+---------------+
-     | infourl  |  string  | Provides an URL that    |    RFCXXXX    |
-     |          |          | points to an            |               |
-     |          |          | unstructured resolver   |               |
-     |          |          | information that is     |               |
-     |          |          | used for                |               |
-     |          |          | troubleshooting         |               |
-     +----------+----------+-------------------------+---------------+
-     |   sig    |  binary  | Includes a signature of |    RFCXXXX    |
-     |          |          | RESINFO RR for data     |               |
-     |          |          | origin authentication   |               |
-     +----------+----------+-------------------------+---------------+
+    +==========+=====================================+===============+
+    |   Name   | Description                         | Specification |
+    +==========+=====================================+===============+
+    | qnamemin | The presence of the key name        |    RFCXXXX    |
+    |          | indicates that QNAME minimization   |               |
+    |          | is enabled                          |               |
+    +----------+-------------------------------------+---------------+
+    |  exterr  | Lists the set of supported extended |    RFCXXXX    |
+    |          | DNS errors.  It must be an INFO-    |               |
+    |          | CODE decimal value in the "Extended |               |
+    |          | DNS Error Codes" registry.          |               |
+    +----------+-------------------------------------+---------------+
+    | infourl  | Provides an URL that points to an   |    RFCXXXX    |
+    |          | unstructured resolver information   |               |
+    |          | that is used for troubleshooting    |               |
+    +----------+-------------------------------------+---------------+
+    |   sig    | Includes a signature of RESINFO RR  |    RFCXXXX    |
+    |          | for data origin authentication      |               |
+    +----------+-------------------------------------+---------------+
 
-                     Table 1: Initial RESINFO Registry
+                    Table 1: Initial RESINFO Registry
 
 8.  References
 
