@@ -249,9 +249,6 @@ Reference: RFCXXXX
       with "temp-", so these names can be used freely by any
       implementer.
 
-   Value Type:
-   : The type of the value to be used in the key.
-
    Description:
    : A description of the registered key.
 
@@ -262,12 +259,12 @@ Reference: RFCXXXX
    The initial content of this registry is provided in {{initial}}.
 
 
-| Name   | Value Type | Description | Specification |
-|:------:|:----------:|:------------|:-------------:|
-| qnamemin | None | The presence of the key name indicates that QNAME minimization is enabled | RFCXXXX |
-| exterr   | 16-bit unsigned integer  | Lists the set of supported extended DNS errors. It must be an INFO-CODE decimal value in the "Extended DNS Error Codes" registry.  | RFCXXXX   |
-| infourl  | string  | Provides an URL that points to an unstructured resolver information that is used for troubleshooting | RFCXXXX     |
-| sig      | binary  | Includes a signature of RESINFO RR for data origin authentication | RFCXXXX     |
+| Name   |  Description | Specification |
+|:------:|:------------|:-------------:|
+| qnamemin | The presence of the key name indicates that QNAME minimization is enabled | RFCXXXX |
+| exterr   | Lists the set of supported extended DNS errors. It must be an INFO-CODE decimal value in the "Extended DNS Error Codes" registry.  | RFCXXXX   |
+| infourl  | Provides an URL that points to an unstructured resolver information that is used for troubleshooting | RFCXXXX     |
+| sig      | Includes a signature of RESINFO RR for data origin authentication | RFCXXXX     |
 {: #initial title='Initial RESINFO Registry'}
 
 --- back
