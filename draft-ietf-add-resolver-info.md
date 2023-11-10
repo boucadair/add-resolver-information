@@ -201,7 +201,7 @@ to prevent DNS response forgery attacks:
 1. Establish an authenticated secure connection to the DNS resolver.
 2. Implement local DNSSEC validation ({{Section 10 of ?RFC8499}}) to verify the authenticity of the resolver information.
 
-DNS clients communicating with DNS servers discovered through DDR's Discovery Using Resolver IP Addresses mechanism defined
+DNS clients communicating with DNS resolvers discovered using DDR's discovery using resolver IP addresses (```
 in {{Section 4 of !RFC9462}} MUST perform the validation explained in {{retreive}} to limit the effectiveness of upstream
 attacks (because then the attacker can only redirect the client to another server with a valid TLS certificate for the original
 IP address but possibly with a different domain name).
