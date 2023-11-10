@@ -112,7 +112,7 @@ Encrypted DNS resolver:
    a client accepts the risk that a resolver supports DDR
    but does not support RESINFO. In this scenario, the resolver might pass the query upstream, and then the client can receive a positive RESINFO
    response either from a legitimate upstream DNS resolver or an attacker. While DNSSEC can be considered as a candidate mechanism
-   to protect against the attack, it is important to note that the name was received over plain-text
+   to protect against the attack, it is important to note that the name was received over unencrypted
    DNS and that the RESINFO response can be both validly DNSSEC-signed and not signed by the name the original DDR redirection intended.
    To reduce the scope of such an attack, clients wishing to retrieve resolver information from resolvers discuvered using DDR's
    Discovery Using Resolver IP Address mechanism MUST ensure during the DDR handshake that the TLS certificate presented by
