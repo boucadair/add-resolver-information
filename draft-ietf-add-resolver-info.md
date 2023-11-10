@@ -116,7 +116,7 @@ Encrypted DNS resolver:
    DNS and that the RESINFO response can be both validly DNSSEC-signed and not signed by the name the original DDR redirection intended.
    To reduce the scope of such an attack, clients wishing to retrieve resolver information from resolvers discuvered using DDR's
    discovery using resolver IP address ({{Section 4 of !RFC9462}}) MUST ensure during the DDR handshake that the TLS certificate presented by
-   the server is valid for the domain name in the TargetName in the DDR SVCB response, and if that succeeds, MAY choose to retrieve the resolver information using the RESINFO RR type and the QNAME set to the TargetName in the DDR SVCB response.
+   the resolver is valid for the domain name in the TargetName in the DDR SVCB response, and if that succeeds, MAY choose to retrieve the resolver information using the RESINFO RR type and the QNAME set to the TargetName in the DDR SVCB response.
 
 #  Format of the Resolver Information {#format}
 
