@@ -107,7 +107,7 @@ Encrypted DNS resolver:
    DNS resolver (referred to as the Authentication Domain Name (ADN) in {{!RFC9463}}).
 
    Clients face a special circumstance when the Special-Use Domain Name "resolver.arpa" is used to discover the encrypted
-   DNS server using the Discovery Using Resolver IP Address mechanism defined in {{Section 4 of !RFC9462}}.
+   DNS resolver when performing DDR discovery using resolver IP address defined in {{Section 4 of !RFC9462}}.
    By using the DNS server's domain name from the DDR SVCB response to issue the RESINFO query,
    a client accepts the risk that a resolver supports DDR
    but does not support RESINFO. In this scenario, the server might pass the query upstream, and then the client can receive a positive RESINFO
