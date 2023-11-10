@@ -115,8 +115,8 @@ Encrypted DNS resolver:
    
    While DNSSEC can be considered as a candidate mechanism
    to protect against the attack, it is important to note that the name was received over unencrypted
-   DNS and that the RESINFO response can be both validly DNSSEC-signed and not signed by the name the original DDR redirection intended.
-   To reduce the scope of such an attack, clients wishing to retrieve resolver information from resolvers discuvered using DDR's
+   DNS and that the RESINFO response can be both validly DNSSEC-signed and not signed by the name that the original DDR resolution intended.
+   To reduce the scope of such an attack, clients wishing to retrieve resolver information from resolvers discovered when performing DDR
    discovery using resolver IP address ({{Section 4 of !RFC9462}}) MUST ensure during the DDR handshake that the TLS certificate presented by
    the resolver is valid for the domain name in the TargetName in the DDR SVCB response, and if that succeeds, MAY choose to retrieve the resolver information using the RESINFO RR type and the QNAME set to the TargetName in the DDR SVCB response.
 
