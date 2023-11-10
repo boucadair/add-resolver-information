@@ -195,7 +195,7 @@ resolver.example.net. 7200 IN RESINFO qnamemin exterr=15,16,17
 
 #  Security Considerations
 
-DNS clients communicating with DNS servers discovered using DNR MUST employ one of the following measures
+DNS clients communicating with DNS resolvers discovered using DNR MUST employ one of the following measures
 to prevent DNS response forgery attacks:
 
 1. Establish an authenticated secure connection to the DNS resolver.
