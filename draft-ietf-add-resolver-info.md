@@ -113,8 +113,8 @@ Encrypted DNS resolver:
    but does not support RESINFO. In this scenario, the server might pass the query upstream, and then the client can receive a positive RESINFO
    response either from a legitimate upstream DNS resolver or an attacker. While DNSSEC can be considered as a candidate mechanism
    to protect against the attack, it is important to note that the name was received over plain-text
-   DNS and that the RESINFO response can be both validly DNSSEC-signed and not signed by the name the original DDR redirection intended. 
-   To reduce the scope of such an attack, clients wishing to retrieve resolver information from resolvers discuvered using DDR's 
+   DNS and that the RESINFO response can be both validly DNSSEC-signed and not signed by the name the original DDR redirection intended.
+   To reduce the scope of such an attack, clients wishing to retrieve resolver information from resolvers discuvered using DDR's
    Discovery Using Resolver IP Address mechanism MUST ensure during the DDR handshake that the TLS certificate presented by
    the server is valid for the domain name in the TargetName in the DDR SVCB response, and if that succeeds, MAY choose to retrieve the resolver information using the RESINFO RR type and the QNAME set to the TargetName in the DDR SVCB response.
 
@@ -273,6 +273,6 @@ Reference: RFCXXXX
    Wicinski, and Steffen Nurpmeso for the discussion on the RR
    formatting rules.
 
-   Thanks to Tommy Jensen for the Shepherd review.
+   Special thanks to Tommy Jensen for the careful and thoughtful Shepherd review.
 
    Thanks to Johan Stenstam for the dns-dir review and Ray Bellis for the RRTYPE allocation review.
