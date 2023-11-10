@@ -202,7 +202,7 @@ to prevent DNS response forgery attacks:
 2. Implement local DNSSEC validation ({{Section 10 of ?RFC8499}}) to verify the authenticity of the resolver information.
 
 DNS clients communicating with DNS resolvers discovered using DDR's discovery using resolver IP addresses (```
-in {{Section 4 of !RFC9462}} MUST perform the validation explained in {{retreive}} to limit the effectiveness of upstream
+{{Section 4 of !RFC9462}}) MUST perform the validation described in {{retreive}} to limit the effectiveness of upstream
 attacks (because then the attacker can only redirect the client to another server with a valid TLS certificate for the original
 IP address but possibly with a different domain name).
 
