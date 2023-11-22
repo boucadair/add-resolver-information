@@ -156,10 +156,10 @@ Table of Contents
    resolvers discovered when performing DDR discovery using resolver IP
    address (Section 4 of [RFC9462]) MUST ensure during the TLS handshake
    that the TLS certificate presented by the resolver contains in its
-   SAN the domain name in the TargetName of the DDR SVCB response.  If
-   that succeeds, clients MAY choose to retrieve the resolver
-   information using the RESINFO RR type and the QNAME set to the
-   TargetName in the DDR SVCB response.
+   SubjectAltName (SAN) the domain name in the TargetName of the DDR
+   SVCB response.  If that succeeds, clients MAY choose to retrieve the
+   resolver information using the RESINFO RR type and the QNAME set to
+   the TargetName in the DDR SVCB response.
 
 4.  Format of the Resolver Information
 

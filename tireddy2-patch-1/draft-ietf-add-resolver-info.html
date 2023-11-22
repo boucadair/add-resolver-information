@@ -1258,7 +1258,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
    DNS and that the RESINFO response can be both validly DNSSEC-signed and not signed by the name that the original DDR resolution intended.
    To reduce the scope of such an attack, clients wishing to retrieve resolver information from resolvers discovered when performing DDR
    discovery using resolver IP address (<span><a href="https://rfc-editor.org/rfc/rfc9462#section-4" class="relref">Section 4</a> of [<a href="#RFC9462" class="cite xref">RFC9462</a>]</span>) <span class="bcp14">MUST</span> ensure during the TLS handshake that the TLS certificate presented by
-   the resolver contains in its SAN the domain name in the TargetName of the DDR SVCB response. If that succeeds, clients <span class="bcp14">MAY</span> choose to retrieve the resolver information using the RESINFO RR type and the QNAME set to the TargetName in the DDR SVCB response.<a href="#section-3-5" class="pilcrow">¶</a></p>
+   the resolver contains in its SubjectAltName (SAN) the domain name in the TargetName of the DDR SVCB response. If that succeeds, clients <span class="bcp14">MAY</span> choose to retrieve the resolver information using the RESINFO RR type and the QNAME set to the TargetName in the DDR SVCB response.<a href="#section-3-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="format">
