@@ -208,7 +208,7 @@ DNS clients communicating with DNS resolvers discovered using DDR's discovery us
 attacks (because then the attacker can only redirect the client to another server with a valid TLS certificate for the original
 IP address but possibly with a different domain name).
 
-The encrypted resolver may provide incorrect information in RESINFO. If the client cannot validate the attributes received from the server, which will be used for resolver selection or display to the end-user, the client should process those attributes only if the encrypted resolver has sufficient reputation according to local policy (e.g., user configuration, administrative configuration, or a built-in list of respectable resolvers). This approach limits the ability of a malicious encrypted resolver to cause harm.
+An encrypted resolver may return incorrect information in RESINFO. If the client cannot validate the attributes received from the resolver, which will be used for resolver selection or display to the end-user, the client should process those attributes only if the encrypted resolver has sufficient reputation according to local policy (e.g., user configuration, administrative configuration, or a built-in list of respectable resolvers). This approach limits the ability of a malicious encrypted resolver to cause harm.
 
 #  IANA Considerations
 
