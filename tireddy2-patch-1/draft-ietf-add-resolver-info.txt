@@ -251,9 +251,9 @@ Table of Contents
    for the original IP address but possibly with a different domain
    name).
 
-   The encrypted resolver may provide incorrect information in RESINFO.
+   An encrypted resolver may return incorrect information in RESINFO.
    If the client cannot validate the attributes received from the
-   server, which will be used for resolver selection or display to the
+   resolver, which will be used for resolver selection or display to the
    end-user, the client should process those attributes only if the
    encrypted resolver has sufficient reputation according to local
    policy (e.g., user configuration, administrative configuration, or a
