@@ -5,8 +5,8 @@
 ADD                                                             T. Reddy
 Internet-Draft                                                     Nokia
 Intended status: Standards Track                            M. Boucadair
-Expires: 25 May 2024                                              Orange
-                                                        22 November 2023
+Expires: 26 May 2024                                              Orange
+                                                        23 November 2023
 
 
                         DNS Resolver Information
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 May 2024.
+   This Internet-Draft will expire on 26 May 2024.
 
 Copyright Notice
 
@@ -154,12 +154,12 @@ Table of Contents
    original DDR resolution intended.  To reduce the scope of such an
    attack, clients wishing to retrieve resolver information from
    resolvers discovered when performing DDR discovery using resolver IP
-   address (Section 4 of [RFC9462]) MUST ensure during the DDR handshake
+   address (Section 4 of [RFC9462]) MUST ensure during the TLS handshake
    that the TLS certificate presented by the resolver contains in its
-   SAN the domain name in the TargetName of the DDR SVCB response, and
-   if that succeeds, MAY choose to retrieve the resolver information
-   using the RESINFO RR type and the QNAME set to the TargetName in the
-   DDR SVCB response.
+   SubjectAltName (SAN) the domain name in the TargetName of the DDR
+   SVCB response.  If that succeeds, clients MAY choose to retrieve the
+   resolver information using the RESINFO RR type and the QNAME set to
+   the TargetName in the DDR SVCB response.
 
 4.  Format of the Resolver Information
 
@@ -250,6 +250,15 @@ Table of Contents
    redirect the client to another server with a valid TLS certificate
    for the original IP address but possibly with a different domain
    name).
+
+   An encrypted resolver may return incorrect information in RESINFO.
+   If the client cannot validate the attributes received from the
+   resolver, which will be used for resolver selection or display to the
+   end-user, the client should process those attributes only if the
+   encrypted resolver has sufficient reputation according to local
+   policy (e.g., user configuration, administrative configuration, or a
+   built-in list of respectable resolvers).  This approach limits the
+   ability of a malicious encrypted resolver to cause harm.
 
 7.  IANA Considerations
 
