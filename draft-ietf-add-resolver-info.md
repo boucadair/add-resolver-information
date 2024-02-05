@@ -100,26 +100,23 @@ Encrypted DNS resolver:
 
    The content of the RDATA in a response to a RESINFO RR type query is defined in
    {{key-val}}.  If the resolver understands the RESINFO RR type, the
-   RRSet in the Answer section MUST have exactly one record.
+   RRSet in the Authority section MUST have exactly one record. The RESINFO 
+   in the Authority section reflects that the RESINFO is a property of the resolver 
+   and is not subject to recursive resolution.
 
    A DNS client can retrieve the resolver information using the RESINFO
    RR type and the QNAME of the domain name that is used to authenticate the
-   DNS resolver (referred to as the Authentication Domain Name (ADN) in {{!RFC9463}}).
-
-   When clients use the Special-Use Domain Name "resolver.arpa" with DDR to discover a designated
-   encrypted resolver based on an IP address ({{Section 4 of !RFC9462}}), they need to handle RESINFO responses specially.
-   By using the DNS server's domain name from the DDR SVCB response to issue the RESINFO query,
-   a client accepts the risk that a resolver supports DDR
-   but does not support RESINFO. In this scenario, the resolver might pass the query upstream, and then the client can receive a positive RESINFO
-   response either from a legitimate upstream DNS resolver or an attacker.
-
-   While DNSSEC can be considered as a candidate mechanism
-   to protect against the attack, it is important to note that the name was received over unencrypted
-   DNS and that the RESINFO response can be both validly DNSSEC-signed and not signed by the name that the original DDR resolution intended.
-   To reduce the scope of such an attack, clients wishing to retrieve resolver information from resolvers discovered when performing DDR
-   discovery using resolver IP address ({{Section 4 of !RFC9462}}) MUST ensure during the TLS handshake that the TLS certificate presented by
-   the resolver contains in its SubjectAltName (SAN) the domain name in the TargetName of the DDR SVCB response. If that succeeds, clients MAY choose to retrieve the resolver information using the RESINFO RR type and the QNAME set to the TargetName in the DDR SVCB response.
-
+   DNS resolver (referred to as the Authentication Domain Name (ADN) in DNR {{!RFC9463}}).
+   
+   If the Special-Use Domain Name "resolver.arpa", defined in {{!RFC9462}}, is used to 
+   discover an encrypted DNS resolver, the client can retrieve the resolver information 
+   using the RESINFO RR type and QNAME of "resolver.arpa". In this case, a client has to contend 
+   with the risk that a resolver does not support RESINFO. The resolver might 
+   pass the query upstream, and then the client can receive a positive RESINFO response either 
+   from a legitimate upstream DNS resolver or an attacker. If a client sees the RESINFO in the 
+   Answer section, it can detect that the response is not provided by the resolver 
+   and discards the response.
+   
 #  Format of the Resolver Information {#format}
 
    The resolver information uses the same format as DNS TXT records.
@@ -197,18 +194,15 @@ resolver.example.net. 7200 IN RESINFO qnamemin exterr=15,16,17
 
 #  Security Considerations
 
-DNS clients communicating with DNS resolvers discovered using DNR MUST employ one of the following measures
+DNS clients communicating with DNS resolvers discovered MUST employ one of the following measures
 to prevent DNS response forgery attacks:
 
 1. Establish an authenticated secure connection to the DNS resolver.
 2. Implement local DNSSEC validation ({{Section 10 of ?RFC8499}}) to verify the authenticity of the resolver information.
 
-DNS clients communicating with DNS resolvers discovered using DDR's discovery using resolver IP addresses (
-{{Section 4 of !RFC9462}}) MUST perform the validation described in {{retreive}} to limit the effectiveness of upstream
-attacks (because then the attacker can only redirect the client to another server with a valid TLS certificate for the original
-IP address but possibly with a different domain name).
+It's important to note that, of these measures, only condition 1 can apply to queries for 'resolver.arpa'.
 
-An encrypted resolver may return incorrect information in RESINFO. If the client cannot validate the attributes received from the resolver, which will be used for resolver selection or display to the end-user, the client should process those attributes only if the encrypted resolver has sufficient reputation according to local policy (e.g., user configuration, administrative configuration, or a built-in list of respectable resolvers). This approach limits the ability of a malicious encrypted resolver to cause harm.
+An encrypted resolver may return incorrect information in RESINFO. If the client cannot validate the attributes received from the resolver, which will be used for resolver selection or display to the end-user, the client should process those attributes only if the encrypted resolver has sufficient reputation according to local policy (e.g., user configuration, administrative configuration, or a built-in list of reputable resolvers). This approach limits the ability of a malicious encrypted resolver to cause harm with false claims.
 
 #  IANA Considerations
 
