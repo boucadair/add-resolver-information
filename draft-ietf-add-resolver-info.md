@@ -100,7 +100,7 @@ Encrypted DNS resolver:
 
    The content of the RDATA in a response to a RESINFO RR type query is defined in
    {{key-val}}.  If the resolver understands the RESINFO RR type, the
-   RRSet in the Authority section MUST have exactly one record. The RESINFO 
+   RRSet in the Authority section MUST have exactly one record. The RESINFO
    in the Authority section reflects that the RESINFO is a property of the resolver
    and is not subject to recursive resolution.
 
