@@ -233,8 +233,8 @@ Table of Contents
    2.  Implement local DNSSEC validation (Section 10 of [RFC8499]) to
        verify the authenticity of the resolver information.
 
-   It's important to note that, of these measures, only condition 1 can
-   apply to queries for 'resolver.arpa'.
+   It is important to note that, of these two measures, only the first
+   one can apply to queries for 'resolver.arpa'.
 
    An encrypted resolver may return incorrect information in RESINFO.
    If the client cannot validate the attributes received from the
