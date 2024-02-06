@@ -101,22 +101,22 @@ Encrypted DNS resolver:
    The content of the RDATA in a response to a RESINFO RR type query is defined in
    {{key-val}}.  If the resolver understands the RESINFO RR type, the
    RRSet in the Authority section MUST have exactly one record. The RESINFO 
-   in the Authority section reflects that the RESINFO is a property of the resolver 
+   in the Authority section reflects that the RESINFO is a property of the resolver
    and is not subject to recursive resolution.
 
    A DNS client can retrieve the resolver information using the RESINFO
    RR type and the QNAME of the domain name that is used to authenticate the
    DNS resolver (referred to as the Authentication Domain Name (ADN) in DNR {{!RFC9463}}).
-   
-   If the Special-Use Domain Name "resolver.arpa", defined in {{!RFC9462}}, is used to 
-   discover an encrypted DNS resolver, the client can retrieve the resolver information 
-   using the RESINFO RR type and QNAME of "resolver.arpa". In this case, a client has to contend 
-   with the risk that a resolver does not support RESINFO. The resolver might 
-   pass the query upstream, and then the client can receive a positive RESINFO response either 
-   from a legitimate upstream DNS resolver or an attacker. If a client sees the RESINFO in the 
-   Answer section, it can detect that the response is not provided by the resolver 
+
+   If the Special-Use Domain Name "resolver.arpa", defined in {{!RFC9462}}, is used to
+   discover an encrypted DNS resolver, the client can retrieve the resolver information
+   using the RESINFO RR type and QNAME of "resolver.arpa". In this case, a client has to contend
+   with the risk that a resolver does not support RESINFO. The resolver might
+   pass the query upstream, and then the client can receive a positive RESINFO response either
+   from a legitimate upstream DNS resolver or an attacker. If a client sees the RESINFO in the
+   Answer section, it can detect that the response is not provided by the resolver
    and discards the response.
-   
+
 #  Format of the Resolver Information {#format}
 
    The resolver information uses the same format as DNS TXT records.
