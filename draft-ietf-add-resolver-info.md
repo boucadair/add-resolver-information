@@ -200,7 +200,7 @@ to prevent DNS response forgery attacks:
 1. Establish an authenticated secure connection to the DNS resolver.
 2. Implement local DNSSEC validation ({{Section 10 of ?RFC8499}}) to verify the authenticity of the resolver information.
 
-It's important to note that, of these measures, only condition 1 can apply to queries for 'resolver.arpa'.
+It is important to note that, of these two measures, only the first one can apply to queries for 'resolver.arpa'.
 
 An encrypted resolver may return incorrect information in RESINFO. If the client cannot validate the attributes received from the resolver, which will be used for resolver selection or display to the end-user, the client should process those attributes only if the encrypted resolver has sufficient reputation according to local policy (e.g., user configuration, administrative configuration, or a built-in list of reputable resolvers). This approach limits the ability of a malicious encrypted resolver to cause harm with false claims.
 
