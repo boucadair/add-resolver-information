@@ -12,26 +12,26 @@
    information about themselves.  DNS clients can use the resolver
    information to identify the capabilities of DNS resolvers. How such an information is then used by DNS clients is out of the scope of the document. 
     " name="description">
-<meta content="xml2rfc 3.18.2" name="generator">
+<meta content="xml2rfc 3.19.2" name="generator">
 <meta content="Transparency" name="keyword">
 <meta content="User Experience" name="keyword">
 <meta content="DNS server selection" name="keyword">
 <meta content="draft-ietf-add-resolver-info-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.18.2
+  xml2rfc 3.19.2
     Python 3.11.6
-    ConfigArgParse 1.5.3
+    ConfigArgParse 1.7
     google-i18n-address 3.1.0
     intervaltree 3.1.0
     Jinja2 3.1.2
     lxml 4.9.3
-    platformdirs 4.0.0
+    platformdirs 4.2.0
     pycountry 22.3.5
-    PyYAML 6.0
+    PyYAML 6.0.1
     requests 2.31.0
-    setuptools 67.7.2
+    setuptools 68.2.2
     six 1.16.0
-    wcwidth 0.2.10
+    wcwidth 0.2.13
 -->
 <link href="draft-ietf-add-resolver-info.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -1030,11 +1030,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">DNS Resolver Information</td>
-<td class="right">November 2023</td>
+<td class="right">February 2024</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Reddy &amp; Boucadair</td>
-<td class="center">Expires 26 May 2024</td>
+<td class="center">Expires 10 August 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1047,12 +1047,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-add-resolver-info-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-11-23" class="published">23 November 2023</time>
+<time datetime="2024-02-07" class="published">7 February 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-05-26">26 May 2024</time></dd>
+<dd class="expires"><time datetime="2024-08-10">10 August 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1103,7 +1103,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 26 May 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 10 August 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1112,7 +1112,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
         </h2>
 <p id="section-boilerplate.2-1">
-            Copyright (c) 2023 IETF Trust and the persons identified as the
+            Copyright (c) 2024 IETF Trust and the persons identified as the
             document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.2-2">
             This document is subject to BCP 78 and the IETF Trust's Legal
@@ -1243,22 +1243,20 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
    use the RR type "RESINFO" defined in this document.<a href="#section-3-1" class="pilcrow">¶</a></p>
 <p id="section-3-2">The content of the RDATA in a response to a RESINFO RR type query is defined in
    <a href="#key-val" class="auto internal xref">Section 5</a>.  If the resolver understands the RESINFO RR type, the
-   RRSet in the Answer section <span class="bcp14">MUST</span> have exactly one record.<a href="#section-3-2" class="pilcrow">¶</a></p>
+   RRSet in the Authority section <span class="bcp14">MUST</span> have exactly one record. The RESINFO
+   in the Authority section reflects that the RESINFO is a property of the resolver
+   and is not subject to recursive resolution.<a href="#section-3-2" class="pilcrow">¶</a></p>
 <p id="section-3-3">A DNS client can retrieve the resolver information using the RESINFO
    RR type and the QNAME of the domain name that is used to authenticate the
-   DNS resolver (referred to as the Authentication Domain Name (ADN) in <span>[<a href="#RFC9463" class="cite xref">RFC9463</a>]</span>).<a href="#section-3-3" class="pilcrow">¶</a></p>
-<p id="section-3-4">When clients use the Special-Use Domain Name "resolver.arpa" with DDR to discover a designated
-   encrypted resolver based on an IP address (<span><a href="https://rfc-editor.org/rfc/rfc9462#section-4" class="relref">Section 4</a> of [<a href="#RFC9462" class="cite xref">RFC9462</a>]</span>), they need to handle RESINFO responses specially.
-   By using the DNS server's domain name from the DDR SVCB response to issue the RESINFO query,
-   a client accepts the risk that a resolver supports DDR
-   but does not support RESINFO. In this scenario, the resolver might pass the query upstream, and then the client can receive a positive RESINFO
-   response either from a legitimate upstream DNS resolver or an attacker.<a href="#section-3-4" class="pilcrow">¶</a></p>
-<p id="section-3-5">While DNSSEC can be considered as a candidate mechanism
-   to protect against the attack, it is important to note that the name was received over unencrypted
-   DNS and that the RESINFO response can be both validly DNSSEC-signed and not signed by the name that the original DDR resolution intended.
-   To reduce the scope of such an attack, clients wishing to retrieve resolver information from resolvers discovered when performing DDR
-   discovery using resolver IP address (<span><a href="https://rfc-editor.org/rfc/rfc9462#section-4" class="relref">Section 4</a> of [<a href="#RFC9462" class="cite xref">RFC9462</a>]</span>) <span class="bcp14">MUST</span> ensure during the TLS handshake that the TLS certificate presented by
-   the resolver contains in its SubjectAltName (SAN) the domain name in the TargetName of the DDR SVCB response. If that succeeds, clients <span class="bcp14">MAY</span> choose to retrieve the resolver information using the RESINFO RR type and the QNAME set to the TargetName in the DDR SVCB response.<a href="#section-3-5" class="pilcrow">¶</a></p>
+   DNS resolver (referred to as the Authentication Domain Name (ADN) in DNR <span>[<a href="#RFC9463" class="cite xref">RFC9463</a>]</span>).<a href="#section-3-3" class="pilcrow">¶</a></p>
+<p id="section-3-4">If the Special-Use Domain Name "resolver.arpa", defined in <span>[<a href="#RFC9462" class="cite xref">RFC9462</a>]</span>, is used to
+   discover an encrypted DNS resolver, the client can retrieve the resolver information
+   using the RESINFO RR type and QNAME of "resolver.arpa". In this case, a client has to contend
+   with the risk that a resolver does not support RESINFO. The resolver might
+   pass the query upstream, and then the client can receive a positive RESINFO response either
+   from a legitimate upstream DNS resolver or an attacker. If a client sees the RESINFO in the
+   Answer section, it can detect that the response is not provided by the resolver
+   and discards the response.<a href="#section-3-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="format">
@@ -1354,7 +1352,7 @@ resolver.example.net. 7200 IN RESINFO qnamemin exterr=15,16,17
       <h2 id="name-security-considerations">
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-6-1">DNS clients communicating with DNS resolvers discovered using DNR <span class="bcp14">MUST</span> employ one of the following measures
+<p id="section-6-1">DNS clients communicating with DNS resolvers discovered <span class="bcp14">MUST</span> employ one of the following measures
 to prevent DNS response forgery attacks:<a href="#section-6-1" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-6-2">
 <li id="section-6-2.1">
@@ -1364,11 +1362,8 @@ to prevent DNS response forgery attacks:<a href="#section-6-1" class="pilcrow">�
           <p id="section-6-2.2.1">Implement local DNSSEC validation (<span><a href="https://rfc-editor.org/rfc/rfc8499#section-10" class="relref">Section 10</a> of [<a href="#RFC8499" class="cite xref">RFC8499</a>]</span>) to verify the authenticity of the resolver information.<a href="#section-6-2.2.1" class="pilcrow">¶</a></p>
 </li>
       </ol>
-<p id="section-6-3">DNS clients communicating with DNS resolvers discovered using DDR's discovery using resolver IP addresses (
-<span><a href="https://rfc-editor.org/rfc/rfc9462#section-4" class="relref">Section 4</a> of [<a href="#RFC9462" class="cite xref">RFC9462</a>]</span>) <span class="bcp14">MUST</span> perform the validation described in <a href="#retreive" class="auto internal xref">Section 3</a> to limit the effectiveness of upstream
-attacks (because then the attacker can only redirect the client to another server with a valid TLS certificate for the original
-IP address but possibly with a different domain name).<a href="#section-6-3" class="pilcrow">¶</a></p>
-<p id="section-6-4">An encrypted resolver may return incorrect information in RESINFO. If the client cannot validate the attributes received from the resolver, which will be used for resolver selection or display to the end-user, the client should process those attributes only if the encrypted resolver has sufficient reputation according to local policy (e.g., user configuration, administrative configuration, or a built-in list of respectable resolvers). This approach limits the ability of a malicious encrypted resolver to cause harm.<a href="#section-6-4" class="pilcrow">¶</a></p>
+<p id="section-6-3">It is important to note that, of these two measures, only the first one can apply to queries for 'resolver.arpa'.<a href="#section-6-3" class="pilcrow">¶</a></p>
+<p id="section-6-4">An encrypted resolver may return incorrect information in RESINFO. If the client cannot validate the attributes received from the resolver, which will be used for resolver selection or display to the end-user, the client should process those attributes only if the encrypted resolver has sufficient reputation according to local policy (e.g., user configuration, administrative configuration, or a built-in list of reputable resolvers). This approach limits the ability of a malicious encrypted resolver to cause harm with false claims.<a href="#section-6-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
