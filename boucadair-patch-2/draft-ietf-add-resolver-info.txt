@@ -198,7 +198,7 @@ Table of Contents
       returned by the DoH server, or how to report a problem) for
       troubleshooting purposes.
 
-      The resolver MUST support the content-type 'text/html'.  The DNS
+      The server MUST support the content-type 'text/html'.  The DNS
       client MUST reject the URL if the scheme is not "https".  The URL
       SHOULD be treated only as diagnostic information for IT staff.  It
       is not intended for end user consumption as the URL can possibily
@@ -235,8 +235,8 @@ Table of Contents
 
    An encrypted resolver may return incorrect information in RESINFO.
    If the client cannot validate the attributes received from the
-   resolver, which will be used for resolver selection or display to the
-   end-user, the client should process those attributes only if the
+   resolver, that will be used for resolver selection or displayed to
+   the end-user, the client should process those attributes only if the
    encrypted resolver has sufficient reputation according to local
    policy (e.g., user configuration, administrative configuration, or a
    built-in list of reputable resolvers).  This approach limits the
