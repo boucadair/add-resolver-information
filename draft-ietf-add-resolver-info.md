@@ -166,7 +166,7 @@ Encrypted DNS resolver:
       returned by the DoH server, or how to report a problem) for
       troubleshooting purposes.
 
-      The server MUST support the content-type 'text/html'.  The DNS
+      The resolver information server MUST support the content-type 'text/html'.  The DNS
       client MUST reject the URL if the scheme is not "https".  The URL
       SHOULD be treated only as diagnostic information for IT staff.  It
       is not intended for end user consumption as the URL can possibily
