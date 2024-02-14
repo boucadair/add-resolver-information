@@ -164,7 +164,7 @@ Encrypted DNS resolver:
    : An URL that points to the generic unstructured resolver
       information (e.g., DoH APIs supported, possible HTTP status codes
       returned by the DoH server, or how to report a problem) for
-      troubleshooting purposes.
+      troubleshooting purposes. The server that exposes such information is called "resolver information server".
 
       The resolver information server MUST support the content-type 'text/html'.  The DNS
       client MUST reject the URL if the scheme is not "https".  The URL
