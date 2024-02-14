@@ -166,7 +166,7 @@ Encrypted DNS resolver:
       returned by the DoH server, or how to report a problem) for
       troubleshooting purposes.
 
-      The resolver MUST support the content-type 'text/html'.  The DNS
+      The server MUST support the content-type 'text/html'.  The DNS
       client MUST reject the URL if the scheme is not "https".  The URL
       SHOULD be treated only as diagnostic information for IT staff.  It
       is not intended for end user consumption as the URL can possibily
@@ -200,7 +200,7 @@ to prevent DNS response forgery attacks:
 
 It is important to note that, of these two measures, only the first one can apply to queries for 'resolver.arpa'.
 
-An encrypted resolver may return incorrect information in RESINFO. If the client cannot validate the attributes received from the resolver, which will be used for resolver selection or display to the end-user, the client should process those attributes only if the encrypted resolver has sufficient reputation according to local policy (e.g., user configuration, administrative configuration, or a built-in list of reputable resolvers). This approach limits the ability of a malicious encrypted resolver to cause harm with false claims.
+An encrypted resolver may return incorrect information in RESINFO. If the client cannot validate the attributes received from the resolver, that will be used for resolver selection or displayed to the end-user, the client should process those attributes only if the encrypted resolver has sufficient reputation according to local policy (e.g., user configuration, administrative configuration, or a built-in list of reputable resolvers). This approach limits the ability of a malicious encrypted resolver to cause harm with false claims.
 
 #  IANA Considerations
 
