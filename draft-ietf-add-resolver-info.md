@@ -169,7 +169,7 @@ Encrypted DNS resolver:
       The resolver information server MUST support the content-type 'text/html'.  The DNS
       client MUST reject the URL if the scheme is not "https".  The URL
       SHOULD be treated only as diagnostic information for IT staff.  It
-      is not intended for end user consumption as the URL can possibily
+      is not intended for end user consumption as the URL can possibly
       provide misleading information. A DNS client MAY choose to display
       the URL to the end user, if and only if the encrypted resolver has
       sufficient reputation, according to some local policy (e.g., user
