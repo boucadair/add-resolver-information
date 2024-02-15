@@ -51,27 +51,27 @@ informative:
 
    This document specifies a method for DNS resolvers to publish
    information about themselves.  DNS clients can use the resolver
-   information to identify the capabilities of DNS resolvers. How such an information is then used by DNS clients is out of the scope of the document.
+   information to identify the capabilities of DNS resolvers. How such an information is then used by DNS clients is out of the scope of this document.
 
 --- middle
 
 #  Introduction
 
-   Historically, DNS stub resolvers communicated with upstream
-   resolvers without needing to know anything about the features
-   supported by these recursive resolvers.  As more and more recursive
+   Historically, DNS clients communicated with upstream
+   recursive resolvers without needing to know anything about the features
+   supported by these resolvers. Also, more and more recursive
    resolvers expose different features that may impact delivered DNS
-   services, means to help stub resolvers to identify the capabilities of
-   resolvers are valuable.  Typically, stub resolvers can discover
+   services. It is thus valuable to support means to help DNS clients to identify the capabilities of
+   resolvers.  Typically, DNS clients can discover
    and authenticate encrypted DNS resolvers provided by a local network,
    for example, using the Discovery of Network-designated Resolvers (DNR) {{!RFC9463}} and the Discovery of Designated Resolvers (DDR)
-   {{!RFC9462}}.  However, these stub resolvers need a mechanism to
+   {{!RFC9462}}.  However, these DNS clients need a mechanism to
    retrieve information from the discovered recursive resolvers about
    their capabilities.
 
    This document fills that void by specifying a method for stub
    resolvers to retrieve such information.  To that aim, a new resource record (RR) type
-   is defined for stub resolvers to query the recursive resolvers.  The
+   is defined for DNS clients to query the recursive resolvers.  The
    information that a resolver might want to expose is defined in
    {{key-val}}.
 
@@ -82,7 +82,7 @@ informative:
 
 {::boilerplate bcp14-tagged}
 
-   This document makes use of the terms defined in {{?RFC8499}}. The following additional terms are used:
+This document makes use of the terms defined in {{?RFC8499}}. The following additional terms are used:
 
 Encrypted DNS:
 : Refers to a DNS scheme where DNS exchanges are
@@ -93,9 +93,14 @@ Encrypted DNS:
 Encrypted DNS resolver:
 : Refers to a DNS resolver that supports any encrypted DNS scheme.
 
+Reputation:
+: "The estimation in which an identifiable actor is held, especially by the
+   community or the Internet public generally" ({{Section 1 of ?RFC7070}}.
+
+
 # Retrieving Resolver Information {#retreive}
 
-   A stub resolver that wants to retrieve the resolver information may
+   A DNS client that wants to retrieve the resolver information may
    use the RR type "RESINFO" defined in this document.
 
    The content of the RDATA in a response to a RESINFO RR type query is defined in
@@ -119,10 +124,8 @@ Encrypted DNS resolver:
 
 #  Format of the Resolver Information {#format}
 
-   The resolver information uses the same format as DNS TXT records.
-   The motivation for using the same format as TXT records is to convey a
-   small amount of useful information about a DNS resolver.  As a
-   reminder, the format rules for TXT records are defined in
+   The resolver information record uses the same format as DNS TXT records.
+   As a reminder, the format rules for TXT records are defined in
    the base DNS specification ({{Section 3.3.14 of !RFC1035}}) and further
    elaborated in the DNS-based Service Discovery (DNS-SD) specification
    ({{Section 6.1 of !RFC6763}}). The recommendations to limit the TXT record size are
@@ -165,14 +168,14 @@ Encrypted DNS resolver:
    infourl:
    : An URL that points to the generic unstructured resolver
       information (e.g., DoH APIs supported, possible HTTP status codes
-      returned by the DoH server, how to report a problem) for
-      troubleshooting purposes.
+      returned by the DoH server, or how to report a problem) for
+      troubleshooting purposes. The server that exposes such information is called "resolver information server".
 
-      The server MUST support the content-type 'text/html'.  The DNS
+      The resolver information server MUST support the content-type 'text/html'.  The DNS
       client MUST reject the URL if the scheme is not "https".  The URL
       SHOULD be treated only as diagnostic information for IT staff.  It
-      is not intended for end user consumption as the URL can possibily
-      provide misleading information.  A DNS client MAY choose to display
+      is not intended for end user consumption as the URL can possibly
+      provide misleading information. A DNS client MAY choose to display
       the URL to the end user, if and only if the encrypted resolver has
       sufficient reputation, according to some local policy (e.g., user
       configuration, administrative configuration, or a built-in list of
@@ -194,7 +197,7 @@ resolver.example.net. 7200 IN RESINFO qnamemin exterr=15,16,17
 
 #  Security Considerations
 
-DNS clients communicating with DNS resolvers discovered MUST employ one of the following measures
+DNS clients communicating with discovered DNS resolvers MUST use one of the following measures
 to prevent DNS response forgery attacks:
 
 1. Establish an authenticated secure connection to the DNS resolver.
@@ -202,11 +205,11 @@ to prevent DNS response forgery attacks:
 
 It is important to note that, of these two measures, only the first one can apply to queries for 'resolver.arpa'.
 
-An encrypted resolver may return incorrect information in RESINFO. If the client cannot validate the attributes received from the resolver, which will be used for resolver selection or display to the end-user, the client should process those attributes only if the encrypted resolver has sufficient reputation according to local policy (e.g., user configuration, administrative configuration, or a built-in list of reputable resolvers). This approach limits the ability of a malicious encrypted resolver to cause harm with false claims.
+An encrypted resolver may return incorrect information in RESINFO. If the client cannot validate the attributes received from the resolver, that will be used for resolver selection or displayed to the end-user, the client should process those attributes only if the encrypted resolver has sufficient reputation according to local policy (e.g., user configuration, administrative configuration, or a built-in list of reputable resolvers). This approach limits the ability of a malicious encrypted resolver to cause harm with false claims.
 
 #  IANA Considerations
 
-> Note to the RFC Editor: Please update "RFCXXXX" occurences with the RFC number to be assigned to this document.
+> Note to the RFC Editor: Please update "RFCXXXX" occurrences with the RFC number to be assigned to this document.
 
 ##  RESINFO RR Type
 
@@ -274,3 +277,5 @@ Reference: RFCXXXX
    Special thanks to Tommy Jensen for the careful and thoughtful Shepherd review.
 
    Thanks to Johan Stenstam for the dns-dir review and Ray Bellis for the RRTYPE allocation review.
+
+   Thanks to Eric Vyncke for the AD review.
