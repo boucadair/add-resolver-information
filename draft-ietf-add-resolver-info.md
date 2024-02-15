@@ -82,7 +82,7 @@ informative:
 
 {::boilerplate bcp14-tagged}
 
- This document makes use of the terms defined in {{?RFC8499}}. The following additional terms are used:
+This document makes use of the terms defined in {{?RFC8499}}. The following additional terms are used:
 
 Encrypted DNS:
 : Refers to a DNS scheme where DNS exchanges are
@@ -92,6 +92,11 @@ Encrypted DNS:
 
 Encrypted DNS resolver:
 : Refers to a DNS resolver that supports any encrypted DNS scheme.
+
+Reputation:
+: "The estimation in which an identifiable actor is held, especially by the
+   community or the Internet public generally" ({{Section 1 of RFC7070}}.
+
 
 # Retrieving Resolver Information {#retreive}
 
