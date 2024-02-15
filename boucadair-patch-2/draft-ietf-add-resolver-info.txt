@@ -5,8 +5,8 @@
 ADD                                                             T. Reddy
 Internet-Draft                                                     Nokia
 Intended status: Standards Track                            M. Boucadair
-Expires: 17 August 2024                                           Orange
-                                                        14 February 2024
+Expires: 18 August 2024                                           Orange
+                                                        15 February 2024
 
 
                         DNS Resolver Information
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 17 August 2024.
+   This Internet-Draft will expire on 18 August 2024.
 
 Copyright Notice
 
@@ -203,7 +203,7 @@ Table of Contents
       'text/html'.  The DNS client MUST reject the URL if the scheme is
       not "https".  The URL SHOULD be treated only as diagnostic
       information for IT staff.  It is not intended for end user
-      consumption as the URL can possibily provide misleading
+      consumption as the URL can possibly provide misleading
       information.  A DNS client MAY choose to display the URL to the
       end user, if and only if the encrypted resolver has sufficient
       reputation, according to some local policy (e.g., user
