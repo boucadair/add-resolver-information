@@ -95,7 +95,7 @@ Encrypted DNS resolver:
 
 Reputation:
 : "The estimation in which an identifiable actor is held, especially by the
-   community or the Internet public generally" ({{Section 1 of RFC7070}}.
+   community or the Internet public generally" ({{Section 1 of ?RFC7070}}.
 
 
 # Retrieving Resolver Information {#retreive}
