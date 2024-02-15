@@ -123,6 +123,10 @@ Table of Contents
    Encrypted DNS resolver:  Refers to a DNS resolver that supports any
       encrypted DNS scheme.
 
+   Reputation:  "The estimation in which an identifiable actor is held,
+      especially by the community or the Internet public generally"
+      (Section 1 of [RFC7070].
+
 3.  Retrieving Resolver Information
 
    A DNS client that wants to retrieve the resolver information may use
@@ -364,6 +368,10 @@ Table of Contents
    [IANA-DNS] IANA, "Domain Name System (DNS) Parameters",
               <http://www.iana.org/assignments/dns-parameters/dns-
               parameters.xhtml#dns-parameters-4>.
+
+   [RFC7070]  Borenstein, N. and M. Kucherawy, "An Architecture for
+              Reputation Reporting", RFC 7070, DOI 10.17487/RFC7070,
+              November 2013, <https://www.rfc-editor.org/rfc/rfc7070>.
 
    [RFC7858]  Hu, Z., Zhu, L., Heidemann, J., Mankin, A., Wessels, D.,
               and P. Hoffman, "Specification for DNS over Transport
