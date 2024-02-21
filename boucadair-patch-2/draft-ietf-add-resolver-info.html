@@ -12,13 +12,13 @@
    information about themselves.  DNS clients can use the resolver
    information to identify the capabilities of DNS resolvers. How such an information is then used by DNS clients is out of the scope of this document. 
     " name="description">
-<meta content="xml2rfc 3.19.2" name="generator">
+<meta content="xml2rfc 3.19.4" name="generator">
 <meta content="Transparency" name="keyword">
 <meta content="User Experience" name="keyword">
 <meta content="DNS server selection" name="keyword">
 <meta content="draft-ietf-add-resolver-info-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.19.2
+  xml2rfc 3.19.4
     Python 3.11.6
     ConfigArgParse 1.7
     google-i18n-address 3.1.0
@@ -1034,7 +1034,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Reddy &amp; Boucadair</td>
-<td class="center">Expires 18 August 2024</td>
+<td class="center">Expires 24 August 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1047,12 +1047,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-add-resolver-info-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-02-15" class="published">15 February 2024</time>
+<time datetime="2024-02-21" class="published">21 February 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-08-18">18 August 2024</time></dd>
+<dd class="expires"><time datetime="2024-08-24">24 August 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1103,7 +1103,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 18 August 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 24 August 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1249,8 +1249,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
    use the RR type "RESINFO" defined in this document.<a href="#section-3-1" class="pilcrow">¶</a></p>
 <p id="section-3-2">The content of the RDATA in a response to a RESINFO RR type query is defined in
    <a href="#key-val" class="auto internal xref">Section 5</a>.  If the resolver understands the RESINFO RR type, the
-   RRSet in the Authority section <span class="bcp14">MUST</span> have exactly one record. The RESINFO
-   in the Authority section reflects that the RESINFO is a property of the resolver
+   RRSet in the Authority section <span class="bcp14">MUST</span> have exactly one record. RESINFO is a property of the resolver
    and is not subject to recursive resolution.<a href="#section-3-2" class="pilcrow">¶</a></p>
 <p id="section-3-3">A DNS client can retrieve the resolver information using the RESINFO
    RR type and the QNAME of the domain name that is used to authenticate the
@@ -1568,9 +1567,8 @@ Reference: RFCXXXX
    Schwartz, Tony Finch, Daniel Kahn Gillmor, Eric Rescorla, Shashank
    Jain, Florian Obser, Richard Baldry, and Martin Thomson for the discussion and
    comments.<a href="#appendix-A-2" class="pilcrow">¶</a></p>
-<p id="appendix-A-3">Thanks to Mark Andrews, Joe Abley, Paul Wouters, Tim
-   Wicinski, and Steffen Nurpmeso for the discussion on the RR
-   formatting rules.<a href="#appendix-A-3" class="pilcrow">¶</a></p>
+<p id="appendix-A-3">Thanks to Mark Andrews, Joe Abley, Paul Wouters, and Tim
+   Wicinski for the discussion on the RR formatting rules.<a href="#appendix-A-3" class="pilcrow">¶</a></p>
 <p id="appendix-A-4">Special thanks to Tommy Jensen for the careful and thoughtful Shepherd review.<a href="#appendix-A-4" class="pilcrow">¶</a></p>
 <p id="appendix-A-5">Thanks to Johan Stenstam for the dns-dir review and Ray Bellis for the RRTYPE allocation review.<a href="#appendix-A-5" class="pilcrow">¶</a></p>
 <p id="appendix-A-6">Thanks to Eric Vyncke for the AD review.<a href="#appendix-A-6" class="pilcrow">¶</a></p>
