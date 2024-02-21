@@ -118,9 +118,9 @@ Reputation:
    with the risk that a resolver does not support RESINFO. The resolver might
    pass the query upstream, and then the client can receive a positive RESINFO response either
    from a legitimate upstream DNS resolver or an attacker. The client in the DNS query MUST
-   set the Recursion Desired (RD) bit set to 0 to ensure the response is provided by the resolver. 
+   set the Recursion Desired (RD) bit set to 0 to ensure the response is provided by the resolver.
    If the resolver does not support RESINFO, it will return an authoritative name error.
-   In addition, if a client sees the RESINFO in the Answer section, it can detect that 
+   In addition, if a client sees the RESINFO in the Answer section, it can detect that
    the response is not provided by the resolver and discards the response.
 
 #  Format of the Resolver Information {#format}
