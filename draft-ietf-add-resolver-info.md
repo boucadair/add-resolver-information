@@ -117,8 +117,10 @@ Reputation:
    using the RESINFO RR type and QNAME of "resolver.arpa". In this case, a client has to contend
    with the risk that a resolver does not support RESINFO. The resolver might
    pass the query upstream, and then the client can receive a positive RESINFO response either
-   from a legitimate upstream DNS resolver or an attacker. 
-   
+   from a legitimate upstream DNS resolver or an attacker. The DNS client MUST set the Recursion
+   Desired (RD) bit of the query to 0 to ensure that the response is provided by the resolver.
+   If the resolver does not support RESINFO, it will return an authoritative name error.
+      
 #  Format of the Resolver Information {#format}
 
    The resolver information record uses the same format as DNS TXT records.
