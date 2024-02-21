@@ -120,7 +120,7 @@ Reputation:
    from a legitimate upstream DNS resolver or an attacker. The DNS client MUST set the Recursion
    Desired (RD) bit of the query to 0 to ensure that the response is provided by the resolver.
    If the resolver does not support RESINFO, it will return an authoritative name error.
-      
+
 #  Format of the Resolver Information {#format}
 
    The resolver information record uses the same format as DNS TXT records.
