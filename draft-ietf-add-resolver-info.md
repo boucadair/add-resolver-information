@@ -270,9 +270,8 @@ Reference: RFCXXXX
    Jain, Florian Obser, Richard Baldry, and Martin Thomson for the discussion and
    comments.
 
-   Thanks to Mark Andrews, Joe Abley, Paul Wouters, Tim
-   Wicinski, and Steffen Nurpmeso for the discussion on the RR
-   formatting rules.
+   Thanks to Mark Andrews, Joe Abley, Paul Wouters, and Tim
+   Wicinski for the discussion on the RR formatting rules.
 
    Special thanks to Tommy Jensen for the careful and thoughtful Shepherd review.
 
