@@ -57,17 +57,9 @@ informative:
 
 #  Introduction
 
-   Historically, DNS clients communicated with upstream
-   recursive resolvers without needing to know anything about the features
-   supported by these resolvers. Also, more and more recursive
-   resolvers expose different features that may impact delivered DNS
-   services. It is thus valuable to support means to help DNS clients to identify the capabilities of
-   resolvers.  Typically, DNS clients can discover
-   and authenticate encrypted DNS resolvers provided by a local network,
-   for example, using the Discovery of Network-designated Resolvers (DNR) {{!RFC9463}} and the Discovery of Designated Resolvers (DDR)
-   {{!RFC9462}}.  However, these DNS clients need a mechanism to
-   retrieve information from the discovered recursive resolvers about
-   their capabilities.
+   Historically, DNS clients communicated with recursive resolvers without needing to know anything about the features
+   supported by these resolvers. However, recent developments (e.g., Extended Error Reporting {{!RFC8914}} or encrypted DNS) imply that earlier assumption no longer generally applies. Typically, DNS clients can discover and authenticate encrypted DNS resolvers provided by a local network (e.g., using the Discovery of Network-designated Resolvers (DNR) {{!RFC9463}} and the Discovery of Designated Resolvers (DDR) {{!RFC9462}}), however, these DNS clients can't retrieve
+   information from the discovered recursive resolvers about their capabilities. Instead of depending on opportunistic approaches, DNS clients need a more reliable mechanism to discover the features that are supported by resolvers.
 
    This document fills that void by specifying a method for stub
    resolvers to retrieve such information.  To that aim, a new resource record (RR) type
@@ -103,7 +95,7 @@ Reputation:
    A DNS client that wants to retrieve the resolver information may
    use the RR type "RESINFO" defined in this document.
 
-   The content of the RDATA in a response to a RESINFO RR type query is defined in
+   The content of the RDATA in a response to a query for RESINFO RR QTYPE is defined in
    {{key-val}}.  If the resolver understands the RESINFO RR type, the
    RRSet in the Authority section MUST have exactly one record. RESINFO is a property of the resolver
    and is not subject to recursive resolution.
@@ -117,7 +109,7 @@ Reputation:
    using the RESINFO RR type and QNAME of "resolver.arpa". In this case, a client has to contend
    with the risk that a resolver does not support RESINFO. The resolver might
    pass the query upstream, and then the client can receive a positive RESINFO response either
-   from a legitimate upstream DNS resolver or an attacker. The DNS client MUST set the Recursion
+   from a legitimate DNS resolver or an attacker. The DNS client MUST set the Recursion
    Desired (RD) bit of the query to 0 to ensure that the response is provided by the resolver.
    If the resolver does not support RESINFO, it will return an authoritative name error.
 
@@ -274,6 +266,6 @@ Reference: RFCXXXX
 
    Special thanks to Tommy Jensen for the careful and thoughtful Shepherd review.
 
-   Thanks to Johan Stenstam for the dns-dir review and Ray Bellis for the RRTYPE allocation review.
+   Thanks to Johan Stenstam and Jim Reid for the dns-dir reviews and Ray Bellis for the RRTYPE allocation review.
 
    Thanks to Eric Vyncke for the AD review.
