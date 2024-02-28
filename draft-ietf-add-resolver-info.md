@@ -185,7 +185,7 @@ Reputation:
 
    New keys can be defined as per the procedure defined in {{key-reg}}.
 
-   {{ex-1}} shows an example of a published resolver information record:
+   {{ex-1}} shows an example of a published resolver information record.
 
 ~~~~
 resolver.example.net. 7200 IN RESINFO qnamemin exterr=15,16,17
@@ -274,6 +274,6 @@ Reference: RFCXXXX
 
    Special thanks to Tommy Jensen for the careful and thoughtful Shepherd review.
 
-   Thanks to Johan Stenstam for the dns-dir review and Ray Bellis for the RRTYPE allocation review.
+   Thanks to Johan Stenstam for the dns-dir review, Ray Bellis for the RRTYPE allocation review, and Arnt Gulbrandsen for the ART review.
 
    Thanks to Eric Vyncke for the AD review.
