@@ -5,8 +5,8 @@
 ADD                                                             T. Reddy
 Internet-Draft                                                     Nokia
 Intended status: Standards Track                            M. Boucadair
-Expires: 24 August 2024                                           Orange
-                                                        21 February 2024
+Expires: 31 August 2024                                           Orange
+                                                        28 February 2024
 
 
                         DNS Resolver Information
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 August 2024.
+   This Internet-Draft will expire on 31 August 2024.
 
 Copyright Notice
 
@@ -135,9 +135,8 @@ Table of Contents
    The content of the RDATA in a response to a RESINFO RR type query is
    defined in Section 5.  If the resolver understands the RESINFO RR
    type, the RRSet in the Authority section MUST have exactly one
-   record.  The RESINFO in the Authority section reflects that the
-   RESINFO is a property of the resolver and is not subject to recursive
-   resolution.
+   record.  RESINFO is a property of the resolver and is not subject to
+   recursive resolution.
 
    A DNS client can retrieve the resolver information using the RESINFO
    RR type and the QNAME of the domain name that is used to authenticate
@@ -151,9 +150,10 @@ Table of Contents
    risk that a resolver does not support RESINFO.  The resolver might
    pass the query upstream, and then the client can receive a positive
    RESINFO response either from a legitimate upstream DNS resolver or an
-   attacker.  If a client sees the RESINFO in the Answer section, it can
-   detect that the response is not provided by the resolver and discards
-   the response.
+   attacker.  The DNS client MUST set the Recursion Desired (RD) bit of
+   the query to 0 to ensure that the response is provided by the
+   resolver.  If the resolver does not support RESINFO, it will return
+   an authoritative name error.
 
 4.  Format of the Resolver Information
 
