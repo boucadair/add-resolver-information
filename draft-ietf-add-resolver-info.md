@@ -172,12 +172,13 @@ Reputation:
       configuration, administrative configuration, or a built-in list of
       respectable resolvers).
 
-      This is an optional attribute.  For example, a DoT server may
-      not want to host an HTTPS server.
+      This is an optional attribute.
 
    New keys can be defined as per the procedure defined in {{key-reg}}.
 
-   {{ex-1}} shows an example of a published resolver information record.
+# An Example
+
+{{ex-1}} shows an example of a published resolver information record.
 
 ~~~~
 resolver.example.net. 7200 IN RESINFO qnamemin exterr=15,16,17
@@ -185,6 +186,13 @@ resolver.example.net. 7200 IN RESINFO qnamemin exterr=15,16,17
 ~~~~
 {: #ex-1 title='An Example of Resolver Information Record' artwork-align="center"}
 
+As mentioned in {{retreive}}, a DNS client that discovers the ADN "resolver.example.net"
+of its resolver using DNR will issue a query for RESINFO RR QTYPE for that ADN
+and will learn that the resolver supports:
+
+* QNAME minimisation,
+* Blocked (15), Censored (16), and Filtered (17) EDEs, and
+* that more information can be retrieved from https://resolver.example.com/guide.
 
 #  Security Considerations
 
