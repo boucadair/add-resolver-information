@@ -94,7 +94,7 @@ Reputation:
 
    A DNS client that wants to retrieve the resolver information may
    use the RR type "RESINFO" defined in this document. The content of the RDATA in a 
-   response to a query for RESINFO RR QTYPE is defined in {{key-val}}.  
+   response to a query for RESINFO RR QTYPE is defined in {{key-val}}.
       
    A DNS client can retrieve the resolver information using the RESINFO
    RR type and the QNAME of the domain name that is used to authenticate the
@@ -105,8 +105,8 @@ Reputation:
    using the RESINFO RR type and QNAME of "resolver.arpa". In this case, a client has to contend
    with the risk that a resolver does not support RESINFO. The resolver might
    pass the query upstream, and then the client can receive a positive RESINFO response either
-   from a legitimate DNS resolver or an attacker. The DNS client MUST discard the response if the 
-   AA flag in the response is set to 0, indicating that the encrypted DNS resolver is not 
+   from a legitimate DNS resolver or an attacker. The DNS client MUST discard the response if the
+   AA flag in the response is set to 0, indicating that the encrypted DNS resolver is not
    authoritative for the response.
 
 #  Format of the Resolver Information {#format}
