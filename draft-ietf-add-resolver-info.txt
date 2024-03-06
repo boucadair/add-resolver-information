@@ -5,8 +5,8 @@
 ADD                                                             T. Reddy
 Internet-Draft                                                     Nokia
 Intended status: Standards Track                            M. Boucadair
-Expires: 1 September 2024                                         Orange
-                                                        29 February 2024
+Expires: 7 September 2024                                         Orange
+                                                            6 March 2024
 
 
                         DNS Resolver Information
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 1 September 2024.
+   This Internet-Draft will expire on 7 September 2024.
 
 Copyright Notice
 
@@ -127,17 +127,14 @@ Table of Contents
 
    Reputation:  "The estimation in which an identifiable actor is held,
       especially by the community or the Internet public generally"
-      (Section 1 of [RFC7070].
+      (Section 1 of [RFC7070]).
 
 3.  Retrieving Resolver Information
 
    A DNS client that wants to retrieve the resolver information may use
-   the RR type "RESINFO" defined in this document.
-
-   The content of the RDATA in a response to a query for RESINFO RR
-   QTYPE is defined in Section 5.  If the resolver understands the
-   RESINFO RR type, the RRSet in the Authority section MUST have exactly
-   one record.  RESINFO is a property of the resolver and is not subject
+   the RR type "RESINFO" defined in this document.  The content of the
+   RDATA in a response to a query for RESINFO RR QTYPE is defined in
+   Section 5.  RESINFO is a property of the resolver and is not subject
    to recursive resolution.
 
    A DNS client can retrieve the resolver information using the RESINFO
@@ -152,10 +149,9 @@ Table of Contents
    risk that a resolver does not support RESINFO.  The resolver might
    pass the query upstream, and then the client can receive a positive
    RESINFO response either from a legitimate DNS resolver or an
-   attacker.  The DNS client MUST set the Recursion Desired (RD) bit of
-   the query to 0 to ensure that the response is provided by the
-   resolver.  If the resolver does not support RESINFO, it will return
-   an authoritative name error.
+   attacker.  The DNS client MUST discard the response if the AA flag in
+   the response is set to 0, indicating that the encrypted DNS resolver
+   is not authoritative for the response.
 
 4.  Format of the Resolver Information
 

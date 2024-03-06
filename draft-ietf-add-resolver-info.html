@@ -12,14 +12,14 @@
    information about themselves.  DNS clients can use the resolver
    information to identify the capabilities of DNS resolvers. How such an information is then used by DNS clients is out of the scope of this document. 
     " name="description">
-<meta content="xml2rfc 3.19.4" name="generator">
+<meta content="xml2rfc 3.20.0" name="generator">
 <meta content="Transparency" name="keyword">
 <meta content="User Experience" name="keyword">
 <meta content="DNS server selection" name="keyword">
 <meta content="draft-ietf-add-resolver-info-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.19.4
-    Python 3.11.6
+  xml2rfc 3.20.0
+    Python 3.11.8
     ConfigArgParse 1.7
     google-i18n-address 3.1.0
     intervaltree 3.1.0
@@ -1030,11 +1030,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">DNS Resolver Information</td>
-<td class="right">February 2024</td>
+<td class="right">March 2024</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Reddy &amp; Boucadair</td>
-<td class="center">Expires 1 September 2024</td>
+<td class="center">Expires 7 September 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1047,12 +1047,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-add-resolver-info-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-02-29" class="published">29 February 2024</time>
+<time datetime="2024-03-06" class="published">6 March 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-09-01">1 September 2024</time></dd>
+<dd class="expires"><time datetime="2024-09-07">7 September 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1103,7 +1103,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 1 September 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 7 September 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1229,7 +1229,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <dt id="section-2-3.5">Reputation:</dt>
         <dd style="margin-left: 1.5em" id="section-2-3.6">
           <p id="section-2-3.6.1">"The estimation in which an identifiable actor is held, especially by the
- community or the Internet public generally" (<span><a href="https://rfc-editor.org/rfc/rfc7070#section-1" class="relref">Section 1</a> of [<a href="#RFC7070" class="cite xref">RFC7070</a>]</span>.<a href="#section-2-3.6.1" class="pilcrow">¶</a></p>
+ community or the Internet public generally" (<span><a href="https://rfc-editor.org/rfc/rfc7070#section-1" class="relref">Section 1</a> of [<a href="#RFC7070" class="cite xref">RFC7070</a>]</span>).<a href="#section-2-3.6.1" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
 </dl>
@@ -1241,22 +1241,19 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-retrieving-resolver-informa" class="section-name selfRef">Retrieving Resolver Information</a>
       </h2>
 <p id="section-3-1">A DNS client that wants to retrieve the resolver information may
-   use the RR type "RESINFO" defined in this document.<a href="#section-3-1" class="pilcrow">¶</a></p>
-<p id="section-3-2">The content of the RDATA in a response to a query for RESINFO RR QTYPE is defined in
-   <a href="#key-val" class="auto internal xref">Section 5</a>.  If the resolver understands the RESINFO RR type, the
-   RRSet in the Authority section <span class="bcp14">MUST</span> have exactly one record. RESINFO is a property of the resolver
-   and is not subject to recursive resolution.<a href="#section-3-2" class="pilcrow">¶</a></p>
-<p id="section-3-3">A DNS client can retrieve the resolver information using the RESINFO
+   use the RR type "RESINFO" defined in this document. The content of the RDATA in a
+   response to a query for RESINFO RR QTYPE is defined in <a href="#key-val" class="auto internal xref">Section 5</a>. RESINFO is a property of the resolver and is not subject to recursive resolution.<a href="#section-3-1" class="pilcrow">¶</a></p>
+<p id="section-3-2">A DNS client can retrieve the resolver information using the RESINFO
    RR type and the QNAME of the domain name that is used to authenticate the
-   DNS resolver (referred to as the Authentication Domain Name (ADN) in DNR <span>[<a href="#RFC9463" class="cite xref">RFC9463</a>]</span>).<a href="#section-3-3" class="pilcrow">¶</a></p>
-<p id="section-3-4">If the Special-Use Domain Name "resolver.arpa", defined in <span>[<a href="#RFC9462" class="cite xref">RFC9462</a>]</span>, is used to
+   DNS resolver (referred to as the Authentication Domain Name (ADN) in DNR <span>[<a href="#RFC9463" class="cite xref">RFC9463</a>]</span>).<a href="#section-3-2" class="pilcrow">¶</a></p>
+<p id="section-3-3">If the Special-Use Domain Name "resolver.arpa", defined in <span>[<a href="#RFC9462" class="cite xref">RFC9462</a>]</span>, is used to
    discover an encrypted DNS resolver, the client can retrieve the resolver information
    using the RESINFO RR type and QNAME of "resolver.arpa". In this case, a client has to contend
    with the risk that a resolver does not support RESINFO. The resolver might
    pass the query upstream, and then the client can receive a positive RESINFO response either
-   from a legitimate DNS resolver or an attacker. The DNS client <span class="bcp14">MUST</span> set the Recursion
-   Desired (RD) bit of the query to 0 to ensure that the response is provided by the resolver.
-   If the resolver does not support RESINFO, it will return an authoritative name error.<a href="#section-3-4" class="pilcrow">¶</a></p>
+   from a legitimate DNS resolver or an attacker. The DNS client <span class="bcp14">MUST</span> discard the response if the
+   AA flag in the response is set to 0, indicating that the encrypted DNS resolver is not
+   authoritative for the response.<a href="#section-3-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="format">
