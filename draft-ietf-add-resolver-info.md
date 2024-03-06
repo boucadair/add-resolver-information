@@ -87,18 +87,14 @@ Encrypted DNS resolver:
 
 Reputation:
 : "The estimation in which an identifiable actor is held, especially by the
-   community or the Internet public generally" ({{Section 1 of ?RFC7070}}.
+   community or the Internet public generally" ({{Section 1 of ?RFC7070}}).
 
 
 # Retrieving Resolver Information {#retreive}
 
    A DNS client that wants to retrieve the resolver information may
-   use the RR type "RESINFO" defined in this document.
-
-   The content of the RDATA in a response to a query for RESINFO RR QTYPE is defined in
-   {{key-val}}.  If the resolver understands the RESINFO RR type, the
-   RRSet in the Authority section MUST have exactly one record. RESINFO is a property of the resolver
-   and is not subject to recursive resolution.
+   use the RR type "RESINFO" defined in this document. The content of the RDATA in a
+   response to a query for RESINFO RR QTYPE is defined in {{key-val}}. RESINFO is a property of the resolver and is not subject to recursive resolution.
 
    A DNS client can retrieve the resolver information using the RESINFO
    RR type and the QNAME of the domain name that is used to authenticate the
@@ -109,9 +105,9 @@ Reputation:
    using the RESINFO RR type and QNAME of "resolver.arpa". In this case, a client has to contend
    with the risk that a resolver does not support RESINFO. The resolver might
    pass the query upstream, and then the client can receive a positive RESINFO response either
-   from a legitimate DNS resolver or an attacker. The DNS client MUST set the Recursion
-   Desired (RD) bit of the query to 0 to ensure that the response is provided by the resolver.
-   If the resolver does not support RESINFO, it will return an authoritative name error.
+   from a legitimate DNS resolver or an attacker. The DNS client MUST discard the response if the
+   AA flag in the response is set to 0, indicating that the encrypted DNS resolver is not
+   authoritative for the response.
 
 #  Format of the Resolver Information {#format}
 
