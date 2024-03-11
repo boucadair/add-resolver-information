@@ -5,8 +5,8 @@
 ADD                                                             T. Reddy
 Internet-Draft                                                     Nokia
 Intended status: Standards Track                            M. Boucadair
-Expires: 10 August 2024                                           Orange
-                                                         7 February 2024
+Expires: 12 September 2024                                        Orange
+                                                           11 March 2024
 
 
                         DNS Resolver Information
@@ -17,8 +17,8 @@ Abstract
    This document specifies a method for DNS resolvers to publish
    information about themselves.  DNS clients can use the resolver
    information to identify the capabilities of DNS resolvers.  How such
-   an information is then used by DNS clients is out of the scope of the
-   document.
+   an information is then used by DNS clients is out of the scope of
+   this document.
 
 Discussion Venues
 
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 10 August 2024.
+   This Internet-Draft will expire on 12 September 2024.
 
 Copyright Notice
 
@@ -69,34 +69,36 @@ Table of Contents
    3.  Retrieving Resolver Information
    4.  Format of the Resolver Information
    5.  Resolver Information Keys/Values
-   6.  Security Considerations
-   7.  IANA Considerations
-     7.1.  RESINFO RR Type
-     7.2.  DNS Resolver Information Key Registration
-   8.  References
-     8.1.  Normative References
-     8.2.  Informative References
+   6.  An Example
+   7.  Security Considerations
+   8.  IANA Considerations
+     8.1.  RESINFO RR Type
+     8.2.  DNS Resolver Information Key Registration
+   9.  References
+     9.1.  Normative References
+     9.2.  Informative References
    Acknowledgments
    Authors' Addresses
 
 1.  Introduction
 
-   Historically, DNS stub resolvers communicated with upstream resolvers
+   Historically, DNS clients communicated with recursive resolvers
    without needing to know anything about the features supported by
-   these recursive resolvers.  As more and more recursive resolvers
-   expose different features that may impact delivered DNS services,
-   means to help stub resolvers to identify the capabilities of
-   resolvers are valuable.  Typically, stub resolvers can discover and
-   authenticate encrypted DNS resolvers provided by a local network, for
-   example, using the Discovery of Network-designated Resolvers (DNR)
-   [RFC9463] and the Discovery of Designated Resolvers (DDR) [RFC9462].
-   However, these stub resolvers need a mechanism to retrieve
-   information from the discovered recursive resolvers about their
-   capabilities.
+   these resolvers.  However, recent developments (e.g., Extended Error
+   Reporting [RFC8914] or encrypted DNS) imply that earlier assumption
+   no longer generally applies.  Typically, DNS clients can discover and
+   authenticate encrypted DNS resolvers provided by a local network
+   (e.g., using the Discovery of Network-designated Resolvers (DNR)
+   [RFC9463] and the Discovery of Designated Resolvers (DDR) [RFC9462]),
+   however, these DNS clients can't retrieve information from the
+   discovered recursive resolvers about their capabilities.  Instead of
+   depending on opportunistic approaches, DNS clients need a more
+   reliable mechanism to discover the features that are supported by
+   resolvers.
 
    This document fills that void by specifying a method for stub
    resolvers to retrieve such information.  To that aim, a new resource
-   record (RR) type is defined for stub resolvers to query the recursive
+   record (RR) type is defined for DNS clients to query the recursive
    resolvers.  The information that a resolver might want to expose is
    defined in Section 5.
 
@@ -123,17 +125,17 @@ Table of Contents
    Encrypted DNS resolver:  Refers to a DNS resolver that supports any
       encrypted DNS scheme.
 
+   Reputation:  "The estimation in which an identifiable actor is held,
+      especially by the community or the Internet public generally"
+      (Section 1 of [RFC7070]).
+
 3.  Retrieving Resolver Information
 
-   A stub resolver that wants to retrieve the resolver information may
-   use the RR type "RESINFO" defined in this document.
-
-   The content of the RDATA in a response to a RESINFO RR type query is
-   defined in Section 5.  If the resolver understands the RESINFO RR
-   type, the RRSet in the Authority section MUST have exactly one
-   record.  The RESINFO in the Authority section reflects that the
-   RESINFO is a property of the resolver and is not subject to recursive
-   resolution.
+   A DNS client that wants to retrieve the resolver information may use
+   the RR type "RESINFO" defined in this document.  The content of the
+   RDATA in a response to a query for RESINFO RR QTYPE is defined in
+   Section 5.  RESINFO is a property of the resolver and is not subject
+   to recursive resolution.
 
    A DNS client can retrieve the resolver information using the RESINFO
    RR type and the QNAME of the domain name that is used to authenticate
@@ -146,21 +148,19 @@ Table of Contents
    of "resolver.arpa".  In this case, a client has to contend with the
    risk that a resolver does not support RESINFO.  The resolver might
    pass the query upstream, and then the client can receive a positive
-   RESINFO response either from a legitimate upstream DNS resolver or an
-   attacker.  If a client sees the RESINFO in the Answer section, it can
-   detect that the response is not provided by the resolver and discards
-   the response.
+   RESINFO response either from a legitimate DNS resolver or an
+   attacker.  The DNS client MUST discard the response if the AA flag in
+   the response is set to 0, indicating that the encrypted DNS resolver
+   is not authoritative for the response.
 
 4.  Format of the Resolver Information
 
-   The resolver information uses the same format as DNS TXT records.
-   The motivation for using the same format as TXT records is to convey
-   a small amount of useful information about a DNS resolver.  As a
-   reminder, the format rules for TXT records are defined in the base
-   DNS specification (Section 3.3.14 of [RFC1035]) and further
-   elaborated in the DNS-based Service Discovery (DNS-SD) specification
-   (Section 6.1 of [RFC6763]).  The recommendations to limit the TXT
-   record size are discussed in Section 6.1 of [RFC6763].
+   The resolver information record uses the same format as DNS TXT
+   records.  As a reminder, the format rules for TXT records are defined
+   in the base DNS specification (Section 3.3.14 of [RFC1035]) and
+   further elaborated in the DNS-based Service Discovery (DNS-SD)
+   specification (Section 6.1 of [RFC6763]).  The recommendations to
+   limit the TXT record size are discussed in Section 6.1 of [RFC6763].
 
    Similar to DNS-SD, the RESINFO RR type uses "key/value" pairs to
    convey the resolver information.  Each "key/value" pair is encoded
@@ -171,7 +171,7 @@ Table of Contents
    rules for the keys as those defined in Section 6.4 of [RFC6763] MUST
    be followed for RESINFO.
 
-   Keys MUST either be defined in the IANA registry (Section 7.2) or
+   Keys MUST either be defined in the IANA registry (Section 8.2) or
    begin with the substring "temp-" for names defined for local use
    only.
 
@@ -197,36 +197,50 @@ Table of Contents
 
    infourl:  An URL that points to the generic unstructured resolver
       information (e.g., DoH APIs supported, possible HTTP status codes
-      returned by the DoH server, how to report a problem) for
-      troubleshooting purposes.
+      returned by the DoH server, or how to report a problem) for
+      troubleshooting purposes.  The server that exposes such
+      information is called "resolver information server".
 
-      The server MUST support the content-type 'text/html'.  The DNS
-      client MUST reject the URL if the scheme is not "https".  The URL
-      SHOULD be treated only as diagnostic information for IT staff.  It
-      is not intended for end user consumption as the URL can possibily
-      provide misleading information.  A DNS client MAY choose to
-      display the URL to the end user, if and only if the encrypted
-      resolver has sufficient reputation, according to some local policy
-      (e.g., user configuration, administrative configuration, or a
-      built-in list of respectable resolvers).
+      The resolver information server MUST support the content-type
+      'text/html'.  The DNS client MUST reject the URL if the scheme is
+      not "https".  The URL SHOULD be treated only as diagnostic
+      information for IT staff.  It is not intended for end user
+      consumption as the URL can possibly provide misleading
+      information.  A DNS client MAY choose to display the URL to the
+      end user, if and only if the encrypted resolver has sufficient
+      reputation, according to some local policy (e.g., user
+      configuration, administrative configuration, or a built-in list of
+      respectable resolvers).
 
-      This is an optional attribute.  For example, a DoT server may not
-      want to host an HTTPS server.
+      This is an optional attribute.
 
-   New keys can be defined as per the procedure defined in Section 7.2.
+   New keys can be defined as per the procedure defined in Section 8.2.
 
-   Figure 1 shows an example of a published resolver information record:
+6.  An Example
+
+   Figure 1 shows an example of a published resolver information record.
 
      resolver.example.net. 7200 IN RESINFO qnamemin exterr=15,16,17
                            infourl=https://resolver.example.com/guide
 
             Figure 1: An Example of Resolver Information Record
 
-6.  Security Considerations
+   As mentioned in Section 3, a DNS client that discovers the ADN
+   "resolver.example.net" of its resolver using DNR will issue a query
+   for RESINFO RR QTYPE for that ADN and will learn that the resolver
+   supports:
 
-   DNS clients communicating with DNS resolvers discovered MUST employ
-   one of the following measures to prevent DNS response forgery
-   attacks:
+   *  QNAME minimisation,
+
+   *  Blocked (15), Censored (16), and Filtered (17) EDEs, and
+
+   *  that more information can be retrieved from
+      https://resolver.example.com/guide.
+
+7.  Security Considerations
+
+   DNS clients communicating with discovered DNS resolvers MUST use one
+   of the following measures to prevent DNS response forgery attacks:
 
    1.  Establish an authenticated secure connection to the DNS resolver.
 
@@ -238,20 +252,20 @@ Table of Contents
 
    An encrypted resolver may return incorrect information in RESINFO.
    If the client cannot validate the attributes received from the
-   resolver, which will be used for resolver selection or display to the
-   end-user, the client should process those attributes only if the
+   resolver, that will be used for resolver selection or displayed to
+   the end-user, the client should process those attributes only if the
    encrypted resolver has sufficient reputation according to local
    policy (e.g., user configuration, administrative configuration, or a
    built-in list of reputable resolvers).  This approach limits the
    ability of a malicious encrypted resolver to cause harm with false
    claims.
 
-7.  IANA Considerations
+8.  IANA Considerations
 
-      Note to the RFC Editor: Please update "RFCXXXX" occurences with
+      Note to the RFC Editor: Please update "RFCXXXX" occurrences with
       the RFC number to be assigned to this document.
 
-7.1.  RESINFO RR Type
+8.1.  RESINFO RR Type
 
    This document requests IANA to update this entry from the "Resource
    Record (RR) TYPEs" registry of the "Domain Name System (DNS)
@@ -262,7 +276,7 @@ Table of Contents
    Meaning: Resolver Information as Key/Value Pairs
    Reference: RFCXXXX
 
-7.2.  DNS Resolver Information Key Registration
+8.2.  DNS Resolver Information Key Registration
 
    This document requests IANA to create a new registry entitled "DNS
    Resolver Information Keys" under the "Domain Name System (DNS)
@@ -306,9 +320,9 @@ Table of Contents
 
                     Table 1: Initial RESINFO Registry
 
-8.  References
+9.  References
 
-8.1.  Normative References
+9.1.  Normative References
 
    [RFC1035]  Mockapetris, P., "Domain names - implementation and
               specification", STD 13, RFC 1035, DOI 10.17487/RFC1035,
@@ -353,7 +367,7 @@ Table of Contents
               RFC 9463, DOI 10.17487/RFC9463, November 2023,
               <https://www.rfc-editor.org/rfc/rfc9463>.
 
-8.2.  Informative References
+9.2.  Informative References
 
    [I-D.pp-add-resinfo]
               Sood, P. and P. E. Hoffman, "DNS Resolver Information
@@ -365,6 +379,10 @@ Table of Contents
    [IANA-DNS] IANA, "Domain Name System (DNS) Parameters",
               <http://www.iana.org/assignments/dns-parameters/dns-
               parameters.xhtml#dns-parameters-4>.
+
+   [RFC7070]  Borenstein, N. and M. Kucherawy, "An Architecture for
+              Reputation Reporting", RFC 7070, DOI 10.17487/RFC7070,
+              November 2013, <https://www.rfc-editor.org/rfc/rfc7070>.
 
    [RFC7858]  Hu, Z., Zhu, L., Heidemann, J., Mankin, A., Wessels, D.,
               and P. Hoffman, "Specification for DNS over Transport
@@ -398,14 +416,17 @@ Acknowledgments
    Jain, Florian Obser, Richard Baldry, and Martin Thomson for the
    discussion and comments.
 
-   Thanks to Mark Andrews, Joe Abley, Paul Wouters, Tim Wicinski, and
-   Steffen Nurpmeso for the discussion on the RR formatting rules.
+   Thanks to Mark Andrews, Joe Abley, Paul Wouters, and Tim Wicinski for
+   the discussion on the RR formatting rules.
 
    Special thanks to Tommy Jensen for the careful and thoughtful
    Shepherd review.
 
-   Thanks to Johan Stenstam for the dns-dir review and Ray Bellis for
-   the RRTYPE allocation review.
+   Thanks to Johan Stenstam and Jim Reid for the dns-dir reviews, Ray
+   Bellis for the RRTYPE allocation review, Arnt Gulbrandsen for the ART
+   review, and Mallory Knodel for the gen-art review.
+
+   Thanks to Eric Vyncke for the AD review.
 
 Authors' Addresses
 
