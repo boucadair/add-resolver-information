@@ -5,8 +5,8 @@
 ADD                                                             T. Reddy
 Internet-Draft                                                     Nokia
 Intended status: Standards Track                            M. Boucadair
-Expires: 7 September 2024                                         Orange
-                                                            6 March 2024
+Expires: 12 September 2024                                        Orange
+                                                           11 March 2024
 
 
                         DNS Resolver Information
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 September 2024.
+   This Internet-Draft will expire on 12 September 2024.
 
 Copyright Notice
 
@@ -423,8 +423,8 @@ Acknowledgments
    Shepherd review.
 
    Thanks to Johan Stenstam and Jim Reid for the dns-dir reviews, Ray
-   Bellis for the RRTYPE allocation review, and Arnt Gulbrandsen for the
-   ART review.
+   Bellis for the RRTYPE allocation review, Arnt Gulbrandsen for the ART
+   review, and Mallory Knodel for the gen-art review.
 
    Thanks to Eric Vyncke for the AD review.
 
