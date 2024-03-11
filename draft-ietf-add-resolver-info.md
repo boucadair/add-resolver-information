@@ -270,6 +270,7 @@ Reference: RFCXXXX
 
    Special thanks to Tommy Jensen for the careful and thoughtful Shepherd review.
 
-   Thanks to Johan Stenstam and Jim Reid for the dns-dir reviews, Ray Bellis for the RRTYPE allocation review, and Arnt Gulbrandsen for the ART review.
+   Thanks to Johan Stenstam and Jim Reid for the dns-dir reviews, Ray Bellis for the RRTYPE allocation review, Arnt Gulbrandsen for the ART review,
+   and Mallory Knodel for the gen-art review.
 
    Thanks to Eric Vyncke for the AD review.
