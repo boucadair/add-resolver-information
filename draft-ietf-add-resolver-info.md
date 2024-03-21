@@ -94,7 +94,8 @@ Reputation:
 
    A DNS client that wants to retrieve the resolver information may
    use the RR type "RESINFO" defined in this document. The content of the RDATA in a
-   response to a query for RESINFO RR QTYPE is defined in {{key-val}}. RESINFO is a property of the resolver and is not subject to recursive resolution.
+   response to a query for RESINFO RR QTYPE is defined in {{key-val}}. If the resolver understands the
+   RESINFO RR type, the RRSet MUST have exactly one record. RESINFO is a property of the resolver and is not subject to recursive resolution.
 
    A DNS client can retrieve the resolver information using the RESINFO
    RR type and the QNAME of the domain name that is used to authenticate the
