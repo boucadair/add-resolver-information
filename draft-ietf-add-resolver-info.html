@@ -1242,7 +1242,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
       </h2>
 <p id="section-3-1">A DNS client that wants to retrieve the resolver information may
    use the RR type "RESINFO" defined in this document. The content of the RDATA in a
-   response to a query for RESINFO RR QTYPE is defined in <a href="#key-val" class="auto internal xref">Section 5</a>. RESINFO is a property of the resolver and is not subject to recursive resolution.<a href="#section-3-1" class="pilcrow">¶</a></p>
+   response to a query for RESINFO RR QTYPE is defined in <a href="#key-val" class="auto internal xref">Section 5</a>. If the resolver understands the
+   RESINFO RR type, the RRSet <span class="bcp14">MUST</span> have exactly one record. RESINFO is a property of the resolver and is not subject to recursive resolution.<a href="#section-3-1" class="pilcrow">¶</a></p>
 <p id="section-3-2">A DNS client can retrieve the resolver information using the RESINFO
    RR type and the QNAME of the domain name that is used to authenticate the
    DNS resolver (referred to as the Authentication Domain Name (ADN) in DNR <span>[<a href="#RFC9463" class="cite xref">RFC9463</a>]</span>).<a href="#section-3-2" class="pilcrow">¶</a></p>
