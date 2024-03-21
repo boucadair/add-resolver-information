@@ -5,8 +5,8 @@
 ADD                                                             T. Reddy
 Internet-Draft                                                     Nokia
 Intended status: Standards Track                            M. Boucadair
-Expires: 12 September 2024                                        Orange
-                                                           11 March 2024
+Expires: 22 September 2024                                        Orange
+                                                           21 March 2024
 
 
                         DNS Resolver Information
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 September 2024.
+   This Internet-Draft will expire on 22 September 2024.
 
 Copyright Notice
 
@@ -149,9 +149,10 @@ Table of Contents
    risk that a resolver does not support RESINFO.  The resolver might
    pass the query upstream, and then the client can receive a positive
    RESINFO response either from a legitimate DNS resolver or an
-   attacker.  The DNS client MUST discard the response if the AA flag in
-   the response is set to 0, indicating that the encrypted DNS resolver
-   is not authoritative for the response.
+   attacker.  The DNS client MUST set the Recursion Desired (RD) bit of
+   the query to 0.  The DNS client MUST discard the response if the AA
+   flag in the response is set to 0, indicating that the encrypted DNS
+   resolver is not authoritative for the response.
 
 4.  Format of the Resolver Information
 
