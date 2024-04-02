@@ -5,8 +5,8 @@
 ADD                                                             T. Reddy
 Internet-Draft                                                     Nokia
 Intended status: Standards Track                            M. Boucadair
-Expires: 22 September 2024                                        Orange
-                                                           21 March 2024
+Expires: 4 October 2024                                           Orange
+                                                            2 April 2024
 
 
                         DNS Resolver Information
@@ -16,9 +16,8 @@ Abstract
 
    This document specifies a method for DNS resolvers to publish
    information about themselves.  DNS clients can use the resolver
-   information to identify the capabilities of DNS resolvers.  How such
-   an information is then used by DNS clients is out of the scope of
-   this document.
+   information to identify the capabilities of DNS resolvers.  How DNS
+   clients use such an information is beyond the scope of this document.
 
 Discussion Venues
 
@@ -46,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 22 September 2024.
+   This Internet-Draft will expire on 4 October 2024.
 
 Copyright Notice
 
@@ -135,8 +134,9 @@ Table of Contents
    the RR type "RESINFO" defined in this document.  The content of the
    RDATA in a response to a query for RESINFO RR QTYPE is defined in
    Section 5.  If the resolver understands the RESINFO RR type, the
-   RRSet MUST have exactly one record.  RESINFO is a property of the
-   resolver and is not subject to recursive resolution.
+   RRSet MUST have exactly one record.  Invalid records MUST be silently
+   ignored by DNS clients.  RESINFO is a property of the resolver and is
+   not subject to recursive resolution.
 
    A DNS client can retrieve the resolver information using the RESINFO
    RR type and the QNAME of the domain name that is used to authenticate
@@ -158,11 +158,11 @@ Table of Contents
 4.  Format of the Resolver Information
 
    The resolver information record uses the same format as DNS TXT
-   records.  As a reminder, the format rules for TXT records are defined
-   in the base DNS specification (Section 3.3.14 of [RFC1035]) and
-   further elaborated in the DNS-based Service Discovery (DNS-SD)
-   specification (Section 6.1 of [RFC6763]).  The recommendations to
-   limit the TXT record size are discussed in Section 6.1 of [RFC6763].
+   records.  The format rules for TXT records are defined in the base
+   DNS specification (Section 3.3.14 of [RFC1035]) and further
+   elaborated in the DNS-based Service Discovery (DNS-SD) specification
+   (Section 6.1 of [RFC6763]).  The recommendations to limit the TXT
+   record size are discussed in Section 6.1 of [RFC6763].
 
    Similar to DNS-SD, the RESINFO RR type uses "key/value" pairs to
    convey the resolver information.  Each "key/value" pair is encoded
@@ -173,19 +173,19 @@ Table of Contents
    rules for the keys as those defined in Section 6.4 of [RFC6763] MUST
    be followed for RESINFO.
 
-   Keys MUST either be defined in the IANA registry (Section 8.2) or
-   begin with the substring "temp-" for names defined for local use
-   only.
+   Resolver information keys MUST either be defined in the IANA registry
+   (Section 8.2) or begin with the substring "temp-" for names defined
+   for local use only.
 
 5.  Resolver Information Keys/Values
 
    The following resolver information keys are defined:
 
-   qnamemin:  If the DNS resolver supports QNAME minimisation [RFC9156]
-      to improve DNS privacy, the key is present.  Note that, as per the
-      rules for the keys defined in Section 6.4 of [RFC6763], if there
-      is no '=' in a key, then it is a boolean attribute, simply
-      identified as being present, with no value.
+   qnamemin:  The presence of this key indicates that the DNS resolver
+      supports QNAME minimisation [RFC9156] to improve DNS privacy.
+      Note that, per the rules for the keys defined in Section 6.4 of
+      [RFC6763], if there is no '=' in a key, then it is a boolean
+      attribute, simply identified as being present, with no value.
 
       This is an optional attribute.
 
@@ -204,15 +204,15 @@ Table of Contents
       information is called "resolver information server".
 
       The resolver information server MUST support the content-type
-      'text/html'.  The DNS client MUST reject the URL if the scheme is
-      not "https".  The URL SHOULD be treated only as diagnostic
-      information for IT staff.  It is not intended for end user
-      consumption as the URL can possibly provide misleading
-      information.  A DNS client MAY choose to display the URL to the
-      end user, if and only if the encrypted resolver has sufficient
-      reputation, according to some local policy (e.g., user
-      configuration, administrative configuration, or a built-in list of
-      respectable resolvers).
+      'text/html'.  The DNS client MUST reject invalid the URL if the
+      scheme is not "https".  Invalid URLs MUST be ignored.  The URL
+      SHOULD be treated only as diagnostic information for IT staff.  It
+      is not intended for end user consumption as the URL can possibly
+      provide misleading information.  A DNS client MAY choose to
+      display the URL to the end user, if and only if the encrypted
+      resolver has sufficient reputation, according to some local policy
+      (e.g., user configuration, administrative configuration, or a
+      built-in list of respectable resolvers).
 
       This is an optional attribute.
 
@@ -396,8 +396,8 @@ Table of Contents
               <https://www.rfc-editor.org/rfc/rfc8484>.
 
    [RFC8499]  Hoffman, P., Sullivan, A., and K. Fujiwara, "DNS
-              Terminology", BCP 219, RFC 8499, DOI 10.17487/RFC8499,
-              January 2019, <https://www.rfc-editor.org/rfc/rfc8499>.
+              Terminology", RFC 8499, DOI 10.17487/RFC8499, January
+              2019, <https://www.rfc-editor.org/rfc/rfc8499>.
 
    [RFC9250]  Huitema, C., Dickinson, S., and A. Mankin, "DNS over
               Dedicated QUIC Connections", RFC 9250,
@@ -429,6 +429,8 @@ Acknowledgments
    review, and Mallory Knodel for the gen-art review.
 
    Thanks to Eric Vyncke for the AD review.
+
+   Thanks to Gunter Van de Velde for the IESG review.
 
 Authors' Addresses
 
