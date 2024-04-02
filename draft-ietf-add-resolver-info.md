@@ -65,7 +65,7 @@ informative:
    resolvers to retrieve such information.  To that aim, a new resource record (RR) type
    is defined for DNS clients to query the recursive resolvers.  The
    information that a resolver might want to expose is defined in
-   {{key-val}}.
+   {{key-val}}. That information is selected because it provides benefits to the security and privacy of DNS data. Other information can be registered in the future per the guidance in {{key-reg}}.
 
    Retrieved information can be used to feed the server selection
    procedure. However, that selection procedure is out of the scope of this document.
@@ -111,6 +111,8 @@ Reputation:
    AA flag in the response is set to 0, indicating that the encrypted DNS resolver is not
    authoritative for the response.
 
+   If a group of resolvers is sharing the same ADN and/or anycast address, then these instances SHOULD expose a consistent RESINFO.
+
 #  Format of the Resolver Information {#format}
 
    The resolver information record uses the same format as DNS TXT records.
@@ -149,8 +151,8 @@ Reputation:
    : If the DNS resolver supports extended DNS errors (EDE) option
       {{!RFC8914}} to return additional information about the cause of DNS
       errors, the value of this key lists the possible extended DNS
-      error codes that can be returned by this DNS resolver.  When
-      multiple values are present, these values MUST be comma-separated.
+      error codes that can be returned by this DNS resolver. A value can be an individual EDE or a range of EDEs. Range values MUST be identified by "-".  When
+      multiple non-contiguous values are present, these values MUST be comma-separated.
 
       This is an optional attribute.
 
@@ -277,4 +279,4 @@ Reference: RFCXXXX
 
    Thanks to Eric Vyncke for the AD review.
 
-   Thanks to Gunter Van de Velde for the IESG review.
+   Thanks to Gunter Van de Velde and Erik Kline for the IESG review.
