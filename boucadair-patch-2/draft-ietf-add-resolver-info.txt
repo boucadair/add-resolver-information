@@ -230,7 +230,7 @@ Table of Contents
 
    Figure 1 shows an example of a published resolver information record.
 
-     resolver.example.net. 7200 IN RESINFO qnamemin exterr=15,16,17
+     resolver.example.net. 7200 IN RESINFO qnamemin exterr=15-17
                            infourl=https://resolver.example.com/guide
 
             Figure 1: An Example of Resolver Information Record
