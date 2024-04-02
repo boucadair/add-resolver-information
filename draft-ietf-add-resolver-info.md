@@ -51,7 +51,7 @@ informative:
 
    This document specifies a method for DNS resolvers to publish
    information about themselves.  DNS clients can use the resolver
-   information to identify the capabilities of DNS resolvers. How such an information is then used by DNS clients is out of the scope of this document.
+   information to identify the capabilities of DNS resolvers. How DNS clients use such an information is beyond the scope of this document.
 
 --- middle
 
@@ -95,7 +95,7 @@ Reputation:
    A DNS client that wants to retrieve the resolver information may
    use the RR type "RESINFO" defined in this document. The content of the RDATA in a
    response to a query for RESINFO RR QTYPE is defined in {{key-val}}. If the resolver understands the
-   RESINFO RR type, the RRSet MUST have exactly one record. RESINFO is a property of the resolver and is not subject to recursive resolution.
+   RESINFO RR type, the RRSet MUST have exactly one record. Invalid records MUST be silently ignored by DNS clients. RESINFO is a property of the resolver and is not subject to recursive resolution.
 
    A DNS client can retrieve the resolver information using the RESINFO
    RR type and the QNAME of the domain name that is used to authenticate the
@@ -114,7 +114,7 @@ Reputation:
 #  Format of the Resolver Information {#format}
 
    The resolver information record uses the same format as DNS TXT records.
-   As a reminder, the format rules for TXT records are defined in
+   The format rules for TXT records are defined in
    the base DNS specification ({{Section 3.3.14 of !RFC1035}}) and further
    elaborated in the DNS-based Service Discovery (DNS-SD) specification
    ({{Section 6.1 of !RFC6763}}). The recommendations to limit the TXT record size are
@@ -129,7 +129,7 @@ Reputation:
    rules for the keys as those defined in {{Section 6.4 of !RFC6763}} MUST
    be followed for RESINFO.
 
-   Keys MUST either be defined in the IANA registry ({{key-reg}}) or begin
+   Resolver information keys MUST either be defined in the IANA registry ({{key-reg}}) or begin
    with the substring "temp-" for names defined for local use only.
 
 #  Resolver Information Keys/Values {#key-val}
@@ -137,8 +137,8 @@ Reputation:
    The following resolver information keys are defined:
 
    qnamemin:
-   : If the DNS resolver supports QNAME minimisation {{!RFC9156}}
-      to improve DNS privacy, the key is present.  Note that, as per the
+   : The presence of this key indicates that the DNS resolver supports QNAME minimisation {{!RFC9156}}
+      to improve DNS privacy.  Note that, per the
       rules for the keys defined in {{Section 6.4 of !RFC6763}}, if there
       is no '=' in a key, then it is a boolean attribute, simply
       identified as being present, with no value.
@@ -161,7 +161,7 @@ Reputation:
       troubleshooting purposes. The server that exposes such information is called "resolver information server".
 
       The resolver information server MUST support the content-type 'text/html'.  The DNS
-      client MUST reject the URL if the scheme is not "https".  The URL
+      client MUST reject invalid the URL if the scheme is not "https". Invalid URLs MUST be ignored.  The URL
       SHOULD be treated only as diagnostic information for IT staff.  It
       is not intended for end user consumption as the URL can possibly
       provide misleading information. A DNS client MAY choose to display
@@ -276,3 +276,5 @@ Reference: RFCXXXX
    and Mallory Knodel for the gen-art review.
 
    Thanks to Eric Vyncke for the AD review.
+
+   Thanks to Gunter Van de Velde for the IESG review.
