@@ -181,7 +181,7 @@ Reputation:
 {{ex-1}} shows an example of a published resolver information record.
 
 ~~~~
-resolver.example.net. 7200 IN RESINFO qnamemin exterr=15,16,17
+resolver.example.net. 7200 IN RESINFO qnamemin exterr=15-17
                       infourl=https://resolver.example.com/guide
 ~~~~
 {: #ex-1 title='An Example of Resolver Information Record' artwork-align="center"}
