@@ -58,8 +58,8 @@ informative:
 #  Introduction
 
    Historically, DNS clients communicated with recursive resolvers without needing to know anything about the features
-   supported by these resolvers. However, recent developments (e.g., Extended Error Reporting {{!RFC8914}} or encrypted DNS) imply that earlier assumption no longer generally applies. Typically, DNS clients can discover and authenticate encrypted DNS resolvers provided by a local network (e.g., using the Discovery of Network-designated Resolvers (DNR) {{!RFC9463}} and the Discovery of Designated Resolvers (DDR) {{!RFC9462}}), however, these DNS clients can't retrieve
-   information from the discovered recursive resolvers about their capabilities. Instead of depending on opportunistic approaches, DNS clients need a more reliable mechanism to discover the features that are supported by resolvers.
+   enabled by these resolvers. However, recent developments (e.g., Extended Error Reporting {{!RFC8914}} or encrypted DNS) imply that earlier assumption no longer generally applies. Typically, DNS clients can discover and authenticate encrypted DNS resolvers provided by a local network (e.g., using the Discovery of Network-designated Resolvers (DNR) {{!RFC9463}} and the Discovery of Designated Resolvers (DDR) {{!RFC9462}}), however, these DNS clients can't retrieve
+   information from the discovered recursive resolvers about their capabilities. Instead of depending on opportunistic approaches, DNS clients need a more reliable mechanism to discover the features that are configured on these resolvers.
 
    This document fills that void by specifying a method for stub
    resolvers to retrieve such information.  To that aim, a new resource record (RR) type
@@ -252,7 +252,7 @@ Reference: RFCXXXX
 | Name   |  Description | Specification |
 |:------:|:------------|:-------------:|
 | qnamemin | The presence of the key name indicates that QNAME minimization is enabled | RFCXXXX |
-| exterr   | Lists the set of supported extended DNS errors. It must be an INFO-CODE decimal value in the "Extended DNS Error Codes" registry.  | RFCXXXX   |
+| exterr   | Lists the set of enabled extended DNS errors. It must be an INFO-CODE decimal value in the "Extended DNS Error Codes" registry.  | RFCXXXX   |
 | infourl  | Provides an URL that points to an unstructured resolver information that is used for troubleshooting | RFCXXXX     |
 {: #initial title='Initial RESINFO Registry'}
 
@@ -279,4 +279,4 @@ Reference: RFCXXXX
 
    Thanks to Eric Vyncke for the AD review.
 
-   Thanks to Gunter Van de Velde and Erik Kline for the IESG review.
+   Thanks to Gunter Van de Velde, Erik Kline, Paul Wouters, and Orie Steele for the IESG review.
