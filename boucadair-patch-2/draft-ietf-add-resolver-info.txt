@@ -82,8 +82,8 @@ Table of Contents
 1.  Introduction
 
    Historically, DNS clients communicated with recursive resolvers
-   without needing to know anything about the features supported by
-   these resolvers.  However, recent developments (e.g., Extended Error
+   without needing to know anything about the features enabled by these
+   resolvers.  However, recent developments (e.g., Extended Error
    Reporting [RFC8914] or encrypted DNS) imply that earlier assumption
    no longer generally applies.  Typically, DNS clients can discover and
    authenticate encrypted DNS resolvers provided by a local network
@@ -92,8 +92,8 @@ Table of Contents
    however, these DNS clients can't retrieve information from the
    discovered recursive resolvers about their capabilities.  Instead of
    depending on opportunistic approaches, DNS clients need a more
-   reliable mechanism to discover the features that are supported by
-   resolvers.
+   reliable mechanism to discover the features that are configured on
+   these resolvers.
 
    This document fills that void by specifying a method for stub
    resolvers to retrieve such information.  To that aim, a new resource
@@ -318,7 +318,7 @@ Table of Contents
     |          | indicates that QNAME minimization   |               |
     |          | is enabled                          |               |
     +----------+-------------------------------------+---------------+
-    |  exterr  | Lists the set of supported extended |    RFCXXXX    |
+    |  exterr  | Lists the set of enabled extended   |    RFCXXXX    |
     |          | DNS errors.  It must be an INFO-    |               |
     |          | CODE decimal value in the "Extended |               |
     |          | DNS Error Codes" registry.          |               |
@@ -438,7 +438,8 @@ Acknowledgments
 
    Thanks to Eric Vyncke for the AD review.
 
-   Thanks to Gunter Van de Velde and Erik Kline for the IESG review.
+   Thanks to Gunter Van de Velde, Erik Kline, Paul Wouters, and Orie
+   Steele for the IESG review.
 
 Authors' Addresses
 
