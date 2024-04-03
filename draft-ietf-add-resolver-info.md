@@ -65,7 +65,7 @@ informative:
    resolvers to retrieve such information.  To that aim, a new resource record (RR) type
    is defined for DNS clients to query the recursive resolvers.  The
    information that a resolver might want to expose is defined in
-   {{key-val}}. That information is selected because it provides benefits to the security and privacy of DNS data. Other information can be registered in the future per the guidance in {{key-reg}}.
+   {{key-val}}. That information is scoped to cover properties that are used to infer privacy and transparency policies of a resolver. Other information can be registered in the future per the guidance in {{key-reg}}.
 
    Retrieved information can be used to feed the server selection
    procedure. However, that selection procedure is out of the scope of this document.
