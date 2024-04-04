@@ -1309,7 +1309,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
  errors, the value of this key lists the possible extended DNS
  error codes that can be returned by this DNS resolver. A value can be an individual EDE or a range of EDEs. Range values <span class="bcp14">MUST</span> be identified by "-".  When
  multiple non-contiguous values are present, these values <span class="bcp14">MUST</span> be comma-separated.<a href="#section-5-2.4.1" class="pilcrow">¶</a></p>
-<p id="section-5-2.4.2">Returned EDEs (e.g., Blocked (15), Censored (16), and Filtered (17)) indicate whether the DNS resolver is configured to reveal the reason why a query was filtered/blocked, when such event happens. If the resolver's capabilities are updated to include new error
+<p id="section-5-2.4.2">Returned EDEs (e.g., Blocked (15), Censored (16), and Filtered (17)) indicate whether the DNS resolver is configured to reveal the reason why a query was filtered/blocked, when such event happens. If the resolver's capabilities are updated to include new similar error
  codes, the resolver can terminate the TLS session, prompting the client to initiate a new TLS connection and retrieve the resolver
  information again. This allows the client to become aware of the resolver's updated capabilities.<a href="#section-5-2.4.2" class="pilcrow">¶</a></p>
 <p id="section-5-2.4.3">This is an optional attribute.<a href="#section-5-2.4.3" class="pilcrow">¶</a></p>
