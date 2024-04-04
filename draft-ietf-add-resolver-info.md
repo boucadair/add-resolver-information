@@ -196,8 +196,8 @@ As mentioned in {{retreive}}, a DNS client that discovers the ADN "resolver.exam
 of its resolver using DNR will issue a query for RESINFO RR QTYPE for that ADN
 and will learn that the resolver:
 
-* Enables QNAME minimisation,
-* Can return Blocked (15), Censored (16), and Filtered (17) EDEs, and
+* enables QNAME minimisation,
+* can return Blocked (15), Censored (16), and Filtered (17) EDEs, and
 * that more information can be retrieved from https://resolver.example.com/guide.
 
 #  Security Considerations
