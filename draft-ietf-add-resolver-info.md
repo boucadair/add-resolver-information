@@ -278,4 +278,4 @@ Reference: RFCXXXX
 
    Thanks to Eric Vyncke for the AD review.
 
-   Thanks to Gunter Van de Velde, Erik Kline, Paul Wouters, and Orie Steele for the IESG review.
+   Thanks to Gunter Van de Velde, Erik Kline, Paul Wouters, Orie Steele, and Warren Kumari for the IESG review.
