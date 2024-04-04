@@ -233,7 +233,9 @@ Reference: RFCXXXX
    Resolver Information Keys" under the "Domain Name System (DNS) Parameters" registry group ({{IANA-DNS}}).  This new registry contains definitions of
    the keys that can be used to provide the resolver information.
 
-   The registration procedure is Specification Required ({{Section 4.6 of !RFC8126}}).
+   The registration procedure is Specification Required ({{Section 4.6 of !RFC8126}}). Designated experts should carefully
+   consider the security implications of allowing a resolver to include new keys in this registry. Additional
+   considerations are provided in {{sec-de}}.
 
    The structure of the registry is as follows:
 
@@ -260,6 +262,23 @@ Reference: RFCXXXX
 | infourl  | Provides an URL that points to an unstructured resolver information that is used for troubleshooting | RFCXXXX     |
 {: #initial title='Initial RESINFO Registry'}
 
+##  Guidelines for the Designated Experts {#sec-de}
+
+   It is suggested that multiple designated experts be appointed for
+   registry change requests.
+
+   Criteria that should be applied by the designated experts include
+   determining whether the proposed registration duplicates existing
+   entries and whether the registration description is clear and fits
+   the purpose of this registry.
+
+   Registration requests are evaluated within a three-week review period on the advice of
+   one or more designated experts.  Within the review period, the
+   designated experts will either approve or deny the registration
+   request, communicating this decision to IANA.
+   Denials should include an explanation and, if applicable, suggestions
+   as to how to make the request successful.
+
 --- back
 
 # Acknowledgments
@@ -283,4 +302,4 @@ Reference: RFCXXXX
 
    Thanks to Eric Vyncke for the AD review.
 
-   Thanks to Gunter Van de Velde, Erik Kline, Paul Wouters, Orie Steele, and Warren Kumari for the IESG review.
+   Thanks to Gunter Van de Velde, Erik Kline, Paul Wouters, Orie Steele, Warren Kumari, and Murray Kucherawy for the IESG review.
