@@ -107,12 +107,9 @@ Reputation:
    using the RESINFO RR type and QNAME of "resolver.arpa". In this case, a client has to contend
    with the risk that a resolver does not support RESINFO. The resolver might
    pass the query upstream, and then the client can receive a positive RESINFO response either
-   from a legitimate DNS resolver or an attacker.
-
-   The DNS client MUST set the Recursion Desired (RD) bit of
-   the query to 0. The DNS client MUST discard the response if the
-   AA flag in the response is set to 0, indicating that the DNS resolver is not
-   authoritative for the response.
+   from a legitimate DNS resolver or an attacker. The DNS client MUST set the Recursion Desired (RD) bit of
+   the query to 0. The DNS client MUST discard the response if the AA flag in the response is set to 0, 
+   indicating that the DNS resolver is not authoritative for the response.
 
    If a group of resolvers is sharing the same ADN and/or anycast address, then these instances SHOULD expose a consistent RESINFO.
 
@@ -159,7 +156,7 @@ Reputation:
       error codes that can be returned by this DNS resolver. A value can be an individual EDE or a range of EDEs. Range values MUST be identified by "-".  When
       multiple non-contiguous values are present, these values MUST be comma-separated.
 
-      Returned EDEs (e.g., Blocked (15), Censored (16), and Filtered (17)) indicate whether the DNS resolver is configured to reveal the reason why a query was filtered/blocked, when such event happens.
+      Returned EDEs (e.g., Blocked (15), Censored (16), and Filtered (17)) indicate whether the DNS resolver is configured to reveal the reason why a query was filtered/blocked, when such event happens. If the resolver's capabilities are updated to include new error codes, the resolver can terminate the TLS session, prompting the client to initiate a new TLS connection. This allows the client to become aware of the resolver's updated capabilities.
 
       This is an optional attribute.
 
@@ -173,12 +170,7 @@ Reputation:
       client MUST reject invalid the URL if the scheme is not "https". Invalid URLs MUST be ignored.  The URL
       SHOULD be treated only as diagnostic information for IT staff.  It
       is not intended for end user consumption as the URL can possibly
-      provide misleading information. A DNS client MAY choose to display
-      the URL to the end user, if and only if the encrypted resolver has
-      sufficient reputation, according to some local policy (e.g., user
-      configuration, administrative configuration, or a built-in list of
-      respectable resolvers).
-
+      provide misleading information. 
       This key can be used by IT staff to retrieve other useful information about the resolver and also the procedure to report problems (e.g., invalid filtering).
 
       This is an optional attribute.
