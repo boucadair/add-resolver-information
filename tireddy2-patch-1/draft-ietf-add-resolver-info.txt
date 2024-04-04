@@ -73,6 +73,7 @@ Table of Contents
    8.  IANA Considerations
      8.1.  RESINFO RR Type
      8.2.  DNS Resolver Information Key Registration
+     8.3.  Guidelines for the Designated Experts
    9.  References
      9.1.  Normative References
      9.2.  Informative References
@@ -221,9 +222,9 @@ Table of Contents
       the reason why a query was filtered/blocked, when such event
       happens.  If the resolver's capabilities are updated to include
       new error codes, the resolver can terminate the TLS session,
-      prompting the client to initiate a new TLS connection.  This
-      allows the client to become aware of the resolver's updated
-      capabilities.
+      prompting the client to initiate a new TLS connection and retrieve
+      the resolver information again.  This allows the client to become
+      aware of the resolver's updated capabilities.
 
       This is an optional attribute.
 
@@ -317,7 +318,10 @@ Table of Contents
    information.
 
    The registration procedure is Specification Required (Section 4.6 of
-   [RFC8126]).
+   [RFC8126]).  Designated experts should carefully consider the
+   security implications of allowing a resolver to include new keys in
+   this registry.  Additional considerations are provided in
+   Section 8.3.
 
    The structure of the registry is as follows:
 
@@ -351,6 +355,23 @@ Table of Contents
     +----------+-------------------------------------+---------------+
 
                     Table 1: Initial RESINFO Registry
+
+8.3.  Guidelines for the Designated Experts
+
+   It is suggested that multiple designated experts be appointed for
+   registry change requests.
+
+   Criteria that should be applied by the designated experts include
+   determining whether the proposed registration duplicates existing
+   entries and whether the registration description is clear and fits
+   the purpose of this registry.
+
+   Registration requests are evaluated within a three-week review period
+   on the advice of one or more designated experts.  Within the review
+   period, the designated experts will either approve or deny the
+   registration request, communicating this decision to IANA.  Denials
+   should include an explanation and, if applicable, suggestions as to
+   how to make the request successful.
 
 9.  References
 
@@ -461,7 +482,7 @@ Acknowledgments
    Thanks to Eric Vyncke for the AD review.
 
    Thanks to Gunter Van de Velde, Erik Kline, Paul Wouters, Orie Steele,
-   and Warren Kumari for the IESG review.
+   Warren Kumari, and Murray Kucherawy for the IESG review.
 
 Authors' Addresses
 
