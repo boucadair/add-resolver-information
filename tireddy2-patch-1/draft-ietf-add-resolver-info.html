@@ -1321,9 +1321,9 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
  information (e.g., DoH APIs supported, possible HTTP status codes
  returned by the DoH server, or how to report a problem) for
  troubleshooting purposes. The server that exposes such information is called "resolver information server".<a href="#section-5-2.6.1" class="pilcrow">¶</a></p>
-<p id="section-5-2.6.2">The resolver information server <span class="bcp14">MUST</span> support the content-type 'text/html'.  The DNS
+<p id="section-5-2.6.2">The resolver information server <span class="bcp14">MUST</span> support only the content-type 'text/html' for the resolver information. The DNS
  client <span class="bcp14">MUST</span> reject invalid the URL if the scheme is not "https". Invalid URLs <span class="bcp14">MUST</span> be ignored.  The URL
- <span class="bcp14">SHOULD</span> be treated only as diagnostic information for IT staff.  It
+ <span class="bcp14">MUST</span> be treated only as diagnostic information for IT staff.  It
  is not intended for end user consumption as the URL can possibly
  provide misleading information.<a href="#section-5-2.6.2" class="pilcrow">¶</a></p>
 <p id="section-5-2.6.3">This key can be used by IT staff to retrieve other useful information about the resolver and also the procedure to report problems (e.g., invalid filtering).<a href="#section-5-2.6.3" class="pilcrow">¶</a></p>
