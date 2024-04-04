@@ -57,18 +57,19 @@ informative:
 
 #  Introduction
 
-   Historically, DNS clients communicated with recursive resolvers without needing to know anything about the features
-   supported by these resolvers. However, recent developments (e.g., Extended Error Reporting {{!RFC8914}} or encrypted DNS) imply that earlier assumption no longer generally applies. Typically, DNS clients can discover and authenticate encrypted DNS resolvers provided by a local network (e.g., using the Discovery of Network-designated Resolvers (DNR) {{!RFC9463}} and the Discovery of Designated Resolvers (DDR) {{!RFC9462}}), however, these DNS clients can't retrieve
-   information from the discovered recursive resolvers about their capabilities. Instead of depending on opportunistic approaches, DNS clients need a more reliable mechanism to discover the features that are supported by resolvers.
+   Historically, DNS clients selected and communicated with recursive resolvers without needing to know anything about the features
+   enabled by these resolvers. However, recent developments (e.g., Extended Error Reporting {{!RFC8914}} or encrypted DNS) and practices (e.g., filtering behaviors) imply that earlier assumptions no longer generally apply. Typically, DNS clients can discover and authenticate encrypted DNS resolvers provided by a local network (e.g., using the Discovery of Network-designated Resolvers (DNR) {{!RFC9463}} and the Discovery of Designated Resolvers (DDR) {{!RFC9462}}), however, these DNS clients can't retrieve
+   information from the discovered recursive resolvers about their capabilities to feed the resolver selection process. Instead of depending on opportunistic approaches, DNS clients need a more reliable mechanism to discover the features that are configured on these resolvers.
 
    This document fills that void by specifying a method for stub
    resolvers to retrieve such information.  To that aim, a new resource record (RR) type
    is defined for DNS clients to query the recursive resolvers.  The
-   information that a resolver might want to expose is defined in
-   {{key-val}}.
+   initial information that a resolver might want to expose is defined in
+   {{key-val}}. That information is scoped to cover properties that are used to infer privacy and transparency policies of a resolver. Other information can be registered in the future per the guidance in {{key-reg}}.
 
-   Retrieved information can be used to feed the server selection
-   procedure. However, that selection procedure is out of the scope of this document.
+   Retrieved information can be used to feed the resolver selection procedure. For example, the resolver selection procedure may use the retrieved information to prioritize privacy-preserving resolvers over those that don't enable QNAME minimization {{!RFC9156}}. Another example is an endpoint can select a resolver that can report that answers are forged using the EDE code 4. However, that selection procedure is out of the scope of this document. Once a resolver is selected, this document does not interfere with DNS operations with that resolver.
+
+
 
 #  Terminology
 
@@ -106,10 +107,13 @@ Reputation:
    using the RESINFO RR type and QNAME of "resolver.arpa". In this case, a client has to contend
    with the risk that a resolver does not support RESINFO. The resolver might
    pass the query upstream, and then the client can receive a positive RESINFO response either
-   from a legitimate DNS resolver or an attacker. The DNS client MUST set the Recursion Desired (RD) bit of
-   the query to 0. The DNS client MUST discard the response if the
-   AA flag in the response is set to 0, indicating that the encrypted DNS resolver is not
-   authoritative for the response.
+   from a legitimate DNS resolver or an attacker.
+
+   The DNS client MUST set the Recursion Desired (RD) bit of
+   the query to 0. The DNS client MUST discard the response if the AA flag in the response is set to 0,
+   indicating that the DNS resolver is not authoritative for the response.
+
+   If a group of resolvers is sharing the same ADN and/or anycast address, then these instances SHOULD expose a consistent RESINFO.
 
 #  Format of the Resolver Information {#format}
 
@@ -143,14 +147,18 @@ Reputation:
       is no '=' in a key, then it is a boolean attribute, simply
       identified as being present, with no value.
 
+     The presence of this key indicates that the DNS resolver is configured to minimise the amount of privacy-sensitive data sent to an authoritative name server.
+
      This is an optional attribute.
 
    exterr:
    : If the DNS resolver supports extended DNS errors (EDE) option
       {{!RFC8914}} to return additional information about the cause of DNS
       errors, the value of this key lists the possible extended DNS
-      error codes that can be returned by this DNS resolver.  When
-      multiple values are present, these values MUST be comma-separated.
+      error codes that can be returned by this DNS resolver. A value can be an individual EDE or a range of EDEs. Range values MUST be identified by "-".  When
+      multiple non-contiguous values are present, these values MUST be comma-separated.
+
+      Returned EDEs (e.g., Blocked (15), Censored (16), and Filtered (17)) indicate whether the DNS resolver is configured to reveal the reason why a query was filtered/blocked, when such event happens. If the resolver's capabilities are updated to include new error codes, the resolver can terminate the TLS session, prompting the client to initiate a new TLS connection. This allows the client to become aware of the resolver's updated capabilities.
 
       This is an optional attribute.
 
@@ -164,11 +172,9 @@ Reputation:
       client MUST reject invalid the URL if the scheme is not "https". Invalid URLs MUST be ignored.  The URL
       SHOULD be treated only as diagnostic information for IT staff.  It
       is not intended for end user consumption as the URL can possibly
-      provide misleading information. A DNS client MAY choose to display
-      the URL to the end user, if and only if the encrypted resolver has
-      sufficient reputation, according to some local policy (e.g., user
-      configuration, administrative configuration, or a built-in list of
-      respectable resolvers).
+      provide misleading information.
+
+      This key can be used by IT staff to retrieve other useful information about the resolver and also the procedure to report problems (e.g., invalid filtering).
 
       This is an optional attribute.
 
@@ -179,7 +185,7 @@ Reputation:
 {{ex-1}} shows an example of a published resolver information record.
 
 ~~~~
-resolver.example.net. 7200 IN RESINFO qnamemin exterr=15,16,17
+resolver.example.net. 7200 IN RESINFO qnamemin exterr=15-17
                       infourl=https://resolver.example.com/guide
 ~~~~
 {: #ex-1 title='An Example of Resolver Information Record' artwork-align="center"}
@@ -250,7 +256,7 @@ Reference: RFCXXXX
 | Name   |  Description | Specification |
 |:------:|:------------|:-------------:|
 | qnamemin | The presence of the key name indicates that QNAME minimization is enabled | RFCXXXX |
-| exterr   | Lists the set of supported extended DNS errors. It must be an INFO-CODE decimal value in the "Extended DNS Error Codes" registry.  | RFCXXXX   |
+| exterr   | Lists the set of enabled extended DNS errors. It must be an INFO-CODE decimal value in the "Extended DNS Error Codes" registry.  | RFCXXXX   |
 | infourl  | Provides an URL that points to an unstructured resolver information that is used for troubleshooting | RFCXXXX     |
 {: #initial title='Initial RESINFO Registry'}
 
@@ -277,4 +283,4 @@ Reference: RFCXXXX
 
    Thanks to Eric Vyncke for the AD review.
 
-   Thanks to Gunter Van de Velde for the IESG review.
+   Thanks to Gunter Van de Velde, Erik Kline, Paul Wouters, Orie Steele, and Warren Kumari for the IESG review.
