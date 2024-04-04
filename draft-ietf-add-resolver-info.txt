@@ -261,12 +261,12 @@ Table of Contents
 
    As mentioned in Section 3, a DNS client that discovers the ADN
    "resolver.example.net" of its resolver using DNR will issue a query
-   for RESINFO RR QTYPE for that ADN and will learn that the resolver
-   supports:
+   for RESINFO RR QTYPE for that ADN and will learn that the resolver:
 
-   *  QNAME minimisation,
+   *  Enables QNAME minimisation,
 
-   *  Blocked (15), Censored (16), and Filtered (17) EDEs, and
+   *  Can return Blocked (15), Censored (16), and Filtered (17) EDEs,
+      and
 
    *  that more information can be retrieved from
       https://resolver.example.com/guide.
@@ -483,7 +483,7 @@ Acknowledgments
    Thanks to Eric Vyncke for the AD review.
 
    Thanks to Gunter Van de Velde, Erik Kline, Paul Wouters, Orie Steele,
-   Warren Kumari, Roman Danyliw and Murray Kucherawy for the IESG
+   Warren Kumari, Roman Danyliw, and Murray Kucherawy for the IESG
    review.
 
 Authors' Addresses
