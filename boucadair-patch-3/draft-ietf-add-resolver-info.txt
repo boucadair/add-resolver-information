@@ -105,11 +105,13 @@ Table of Contents
    resolver.  Other information can be registered in the future per the
    guidance in Section 8.2.
 
-   Retrieved information can be used to feed the server selection
-   procedure.  For example, the server selection procedure may use the
-   retrieved informaiton to prioritize privacy-preserving resolvers over
-   those that don't do QNAME minimization.  However, that selection
-   procedure is out of the scope of this document.
+   Retrieved information can be used to feed the resolver selection
+   procedure.  For example, the resolver selection procedure may use the
+   retrieved information to prioritize privacy-preserving resolvers over
+   those that don't enable QNAME minimization.  However, that selection
+   procedure is out of the scope of this document.  Once a resolver is
+   selected, this document does not interfere with DNS operations with
+   that resolver.
 
 2.  Terminology
 
