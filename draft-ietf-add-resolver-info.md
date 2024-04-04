@@ -158,7 +158,7 @@ Reputation:
       error codes that can be returned by this DNS resolver. A value can be an individual EDE or a range of EDEs. Range values MUST be identified by "-".  When
       multiple non-contiguous values are present, these values MUST be comma-separated.
 
-      Returned EDEs (e.g., Blocked (15), Censored (16), and Filtered (17)) indicate whether the DNS resolver is configured to reveal the reason why a query was filtered/blocked, when such event happens. If the resolver's capabilities are updated to include new error
+      Returned EDEs (e.g., Blocked (15), Censored (16), and Filtered (17)) indicate whether the DNS resolver is configured to reveal the reason why a query was filtered/blocked, when such event happens. If the resolver's capabilities are updated to include new similar error
       codes, the resolver can terminate the TLS session, prompting the client to initiate a new TLS connection and retrieve the resolver
       information again. This allows the client to become aware of the resolver's updated capabilities.
 
