@@ -158,7 +158,9 @@ Reputation:
       error codes that can be returned by this DNS resolver. A value can be an individual EDE or a range of EDEs. Range values MUST be identified by "-".  When
       multiple non-contiguous values are present, these values MUST be comma-separated.
 
-      Returned EDEs (e.g., Blocked (15), Censored (16), and Filtered (17)) indicate whether the DNS resolver is configured to reveal the reason why a query was filtered/blocked, when such event happens. If the resolver's capabilities are updated to include new error codes, the resolver can terminate the TLS session, prompting the client to initiate a new TLS connection. This allows the client to become aware of the resolver's updated capabilities.
+      Returned EDEs (e.g., Blocked (15), Censored (16), and Filtered (17)) indicate whether the DNS resolver is configured to reveal the reason why a query was filtered/blocked, when such event happens. If the resolver's capabilities are updated to include new similar error
+      codes, the resolver can terminate the TLS session, prompting the client to initiate a new TLS connection and retrieve the resolver
+      information again. This allows the client to become aware of the resolver's updated capabilities.
 
       This is an optional attribute.
 
@@ -168,9 +170,9 @@ Reputation:
       returned by the DoH server, or how to report a problem) for
       troubleshooting purposes. The server that exposes such information is called "resolver information server".
 
-      The resolver information server MUST support the content-type 'text/html'.  The DNS
+      The resolver information server MUST support only the content-type 'text/html' for the resolver information. The DNS
       client MUST reject invalid the URL if the scheme is not "https". Invalid URLs MUST be ignored.  The URL
-      SHOULD be treated only as diagnostic information for IT staff.  It
+      MUST be treated only as diagnostic information for IT staff.  It
       is not intended for end user consumption as the URL can possibly
       provide misleading information.
 
