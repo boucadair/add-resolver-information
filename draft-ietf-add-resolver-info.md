@@ -172,7 +172,8 @@ Reputation:
       client MUST reject invalid the URL if the scheme is not "https". Invalid URLs MUST be ignored.  The URL
       SHOULD be treated only as diagnostic information for IT staff.  It
       is not intended for end user consumption as the URL can possibly
-      provide misleading information. 
+      provide misleading information.
+
       This key can be used by IT staff to retrieve other useful information about the resolver and also the procedure to report problems (e.g., invalid filtering).
 
       This is an optional attribute.
