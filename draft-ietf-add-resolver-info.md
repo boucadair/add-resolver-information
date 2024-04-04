@@ -58,7 +58,7 @@ informative:
 #  Introduction
 
    Historically, DNS clients selected and communicated with recursive resolvers without needing to know anything about the features
-   enabled by these resolvers. However, recent developments (e.g., Extended Error Reporting {{!RFC8914}} or encrypted DNS) and practices (e.g., filtering behaviors) imply that earlier assumption no longer generally applies. Typically, DNS clients can discover and authenticate encrypted DNS resolvers provided by a local network (e.g., using the Discovery of Network-designated Resolvers (DNR) {{!RFC9463}} and the Discovery of Designated Resolvers (DDR) {{!RFC9462}}), however, these DNS clients can't retrieve
+   enabled by these resolvers. However, recent developments (e.g., Extended Error Reporting {{!RFC8914}} or encrypted DNS) and practices (e.g., filtering behaviors) imply that earlier assumptions no longer generally apply. Typically, DNS clients can discover and authenticate encrypted DNS resolvers provided by a local network (e.g., using the Discovery of Network-designated Resolvers (DNR) {{!RFC9463}} and the Discovery of Designated Resolvers (DDR) {{!RFC9462}}), however, these DNS clients can't retrieve
    information from the discovered recursive resolvers about their capabilities to feed the resolver selection process. Instead of depending on opportunistic approaches, DNS clients need a more reliable mechanism to discover the features that are configured on these resolvers.
 
    This document fills that void by specifying a method for stub
