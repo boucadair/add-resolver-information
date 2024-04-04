@@ -1162,6 +1162,9 @@ svg :is([fill="white"], [fill^="#fff"]) {
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.2">
                 <p id="section-toc.1-1.8.2.2.1"><a href="#section-8.2" class="auto internal xref">8.2</a>.  <a href="#name-dns-resolver-information-ke" class="internal xref">DNS Resolver Information Key Registration</a></p>
 </li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.3">
+                <p id="section-toc.1-1.8.2.3.1"><a href="#section-8.3" class="auto internal xref">8.3</a>.  <a href="#name-guidelines-for-the-designat" class="internal xref">Guidelines for the Designated Experts</a></p>
+</li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
@@ -1418,7 +1421,9 @@ Reference: RFCXXXX
 <p id="section-8.2-1">This document requests IANA to create a new registry entitled "DNS
    Resolver Information Keys" under the "Domain Name System (DNS) Parameters" registry group (<span>[<a href="#IANA-DNS" class="cite xref">IANA-DNS</a>]</span>).  This new registry contains definitions of
    the keys that can be used to provide the resolver information.<a href="#section-8.2-1" class="pilcrow">¶</a></p>
-<p id="section-8.2-2">The registration procedure is Specification Required (<span><a href="https://rfc-editor.org/rfc/rfc8126#section-4.6" class="relref">Section 4.6</a> of [<a href="#RFC8126" class="cite xref">RFC8126</a>]</span>).<a href="#section-8.2-2" class="pilcrow">¶</a></p>
+<p id="section-8.2-2">The registration procedure is Specification Required (<span><a href="https://rfc-editor.org/rfc/rfc8126#section-4.6" class="relref">Section 4.6</a> of [<a href="#RFC8126" class="cite xref">RFC8126</a>]</span>). Designated experts should carefully
+   consider the security implications of allowing a resolver to include new keys in this registry. Additional
+   considerations are provided in <a href="#sec-de" class="auto internal xref">Section 8.3</a>.<a href="#section-8.2-2" class="pilcrow">¶</a></p>
 <p id="section-8.2-3">The structure of the registry is as follows:<a href="#section-8.2-3" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-8.2-4">
           <dt id="section-8.2-4.1">Name:</dt>
@@ -1474,6 +1479,25 @@ Reference: RFCXXXX
           </tbody>
         </table>
 </div>
+</section>
+</div>
+<div id="sec-de">
+<section id="section-8.3">
+        <h3 id="name-guidelines-for-the-designat">
+<a href="#section-8.3" class="section-number selfRef">8.3. </a><a href="#name-guidelines-for-the-designat" class="section-name selfRef">Guidelines for the Designated Experts</a>
+        </h3>
+<p id="section-8.3-1">It is suggested that multiple designated experts be appointed for
+   registry change requests.<a href="#section-8.3-1" class="pilcrow">¶</a></p>
+<p id="section-8.3-2">Criteria that should be applied by the designated experts include
+   determining whether the proposed registration duplicates existing
+   entries and whether the registration description is clear and fits
+   the purpose of this registry.<a href="#section-8.3-2" class="pilcrow">¶</a></p>
+<p id="section-8.3-3">Registration requests are evaluated within a three-week review period on the advice of
+   one or more designated experts.  Within the review period, the
+   designated experts will either approve or deny the registration
+   request, communicating this decision to IANA.
+   Denials should include an explanation and, if applicable, suggestions
+   as to how to make the request successful.<a href="#section-8.3-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1586,7 +1610,7 @@ Reference: RFCXXXX
 <p id="appendix-A-5">Thanks to Johan Stenstam and Jim Reid for the dns-dir reviews, Ray Bellis for the RRTYPE allocation review, Arnt Gulbrandsen for the ART review,
    and Mallory Knodel for the gen-art review.<a href="#appendix-A-5" class="pilcrow">¶</a></p>
 <p id="appendix-A-6">Thanks to Eric Vyncke for the AD review.<a href="#appendix-A-6" class="pilcrow">¶</a></p>
-<p id="appendix-A-7">Thanks to Gunter Van de Velde, Erik Kline, Paul Wouters, Orie Steele, and Warren Kumari for the IESG review.<a href="#appendix-A-7" class="pilcrow">¶</a></p>
+<p id="appendix-A-7">Thanks to Gunter Van de Velde, Erik Kline, Paul Wouters, Orie Steele, Warren Kumari, and Murray Kucherawy for the IESG review.<a href="#appendix-A-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="authors-addresses">
