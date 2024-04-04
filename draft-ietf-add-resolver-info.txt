@@ -221,10 +221,10 @@ Table of Contents
       (17)) indicate whether the DNS resolver is configured to reveal
       the reason why a query was filtered/blocked, when such event
       happens.  If the resolver's capabilities are updated to include
-      new error codes, the resolver can terminate the TLS session,
-      prompting the client to initiate a new TLS connection.  This
-      allows the client to become aware of the resolver's updated
-      capabilities.
+      new similar error codes, the resolver can terminate the TLS
+      session, prompting the client to initiate a new TLS connection and
+      retrieve the resolver information again.  This allows the client
+      to become aware of the resolver's updated capabilities.
 
       This is an optional attribute.
 
@@ -234,12 +234,13 @@ Table of Contents
       troubleshooting purposes.  The server that exposes such
       information is called "resolver information server".
 
-      The resolver information server MUST support the content-type
-      'text/html'.  The DNS client MUST reject invalid the URL if the
-      scheme is not "https".  Invalid URLs MUST be ignored.  The URL
-      SHOULD be treated only as diagnostic information for IT staff.  It
-      is not intended for end user consumption as the URL can possibly
-      provide misleading information.
+      The resolver information server MUST support only the content-type
+      'text/html' for the resolver information.  The DNS client MUST
+      reject invalid the URL if the scheme is not "https".  Invalid URLs
+      MUST be ignored.  The URL MUST be treated only as diagnostic
+      information for IT staff.  It is not intended for end user
+      consumption as the URL can possibly provide misleading
+      information.
 
       This key can be used by IT staff to retrieve other useful
       information about the resolver and also the procedure to report
