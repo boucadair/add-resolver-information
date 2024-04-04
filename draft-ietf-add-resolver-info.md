@@ -194,10 +194,10 @@ resolver.example.net. 7200 IN RESINFO qnamemin exterr=15-17
 
 As mentioned in {{retreive}}, a DNS client that discovers the ADN "resolver.example.net"
 of its resolver using DNR will issue a query for RESINFO RR QTYPE for that ADN
-and will learn that the resolver supports:
+and will learn that the resolver:
 
-* QNAME minimisation,
-* Blocked (15), Censored (16), and Filtered (17) EDEs, and
+* Enables QNAME minimisation,
+* Can return Blocked (15), Censored (16), and Filtered (17) EDEs, and
 * that more information can be retrieved from https://resolver.example.com/guide.
 
 #  Security Considerations
@@ -304,4 +304,4 @@ Reference: RFCXXXX
 
    Thanks to Eric Vyncke for the AD review.
 
-   Thanks to Gunter Van de Velde, Erik Kline, Paul Wouters, Orie Steele, Warren Kumari, Roman Danyliw and Murray Kucherawy for the IESG review.
+   Thanks to Gunter Van de Velde, Erik Kline, Paul Wouters, Orie Steele, Warren Kumari, Roman Danyliw, and Murray Kucherawy for the IESG review.
