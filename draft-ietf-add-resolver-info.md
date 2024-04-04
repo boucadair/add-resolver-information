@@ -67,8 +67,7 @@ informative:
    information that a resolver might want to expose is defined in
    {{key-val}}. That information is scoped to cover properties that are used to infer privacy and transparency policies of a resolver. Other information can be registered in the future per the guidance in {{key-reg}}.
 
-   Retrieved information can be used to feed the server selection
-   procedure. However, that selection procedure is out of the scope of this document.
+   Retrieved information can be used to feed the server selection procedure. For example, the server selection procedure may use the retrieved informaiton to prioritize privacy-preserving resolvers over those that don't do QNAME minimization. However, that selection procedure is out of the scope of this document.
 
 #  Terminology
 
