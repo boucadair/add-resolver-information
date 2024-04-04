@@ -58,7 +58,7 @@ informative:
 #  Introduction
 
    Historically, DNS clients selected and communicated with recursive resolvers without needing to know anything about the features
-   enabled by these resolvers. However, recent developments (e.g., Extended Error Reporting {{!RFC8914}} or encrypted DNS) and practices (e.g., filtering behaviors) imply that earlier assumptions no longer generally apply. Typically, DNS clients can discover and authenticate encrypted DNS resolvers provided by a local network (e.g., using the Discovery of Network-designated Resolvers (DNR) {{!RFC9463}} and the Discovery of Designated Resolvers (DDR) {{!RFC9462}}), however, these DNS clients can't retrieve
+   enabled by these resolvers. However, recent developments (e.g., Extended DNS Errors (EDEs) reporting {{!RFC8914}} or encrypted DNS) and practices (e.g., filtering behaviors) imply that earlier assumptions no longer generally apply. Typically, DNS clients can discover and authenticate encrypted DNS resolvers provided by a local network (e.g., using the Discovery of Network-designated Resolvers (DNR) {{!RFC9463}} and the Discovery of Designated Resolvers (DDR) {{!RFC9462}}), however, these DNS clients can't retrieve
    information from the discovered recursive resolvers about their capabilities to feed the resolver selection process. Instead of depending on opportunistic approaches, DNS clients need a more reliable mechanism to discover the features that are configured on these resolvers.
 
    This document fills that void by specifying a method for stub
@@ -67,7 +67,7 @@ informative:
    initial information that a resolver might want to expose is defined in
    {{key-val}}. That information is scoped to cover properties that are used to infer privacy and transparency policies of a resolver. Other information can be registered in the future per the guidance in {{key-reg}}.
 
-   Retrieved information can be used to feed the resolver selection procedure. For example, the resolver selection procedure may use the retrieved information to prioritize privacy-preserving resolvers over those that don't enable QNAME minimization {{!RFC9156}}. Another example is an endpoint can select a resolver that can report that answers are forged using the EDE code 4. However, that selection procedure is out of the scope of this document. Once a resolver is selected, this document does not interfere with DNS operations with that resolver.
+   Retrieved information can be used to feed the resolver selection procedure. For example, the resolver selection procedure may use the retrieved information to prioritize privacy-preserving resolvers over those that don't enable QNAME minimization {{!RFC9156}}. Another example is an endpoint can select a resolver that can report that answers are forged using the Forged Answer (4) EDE code. However, that selection procedure is out of the scope of this document. Once a resolver is selected, this document does not interfere with DNS operations with that resolver.
 
 
 
