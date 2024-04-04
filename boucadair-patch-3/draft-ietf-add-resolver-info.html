@@ -1251,11 +1251,12 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
    using the RESINFO RR type and QNAME of "resolver.arpa". In this case, a client has to contend
    with the risk that a resolver does not support RESINFO. The resolver might
    pass the query upstream, and then the client can receive a positive RESINFO response either
-   from a legitimate DNS resolver or an attacker. The DNS client <span class="bcp14">MUST</span> set the Recursion Desired (RD) bit of
+   from a legitimate DNS resolver or an attacker.<a href="#section-3-3" class="pilcrow">¶</a></p>
+<p id="section-3-4">The DNS client <span class="bcp14">MUST</span> set the Recursion Desired (RD) bit of
    the query to 0. The DNS client <span class="bcp14">MUST</span> discard the response if the
-   AA flag in the response is set to 0, indicating that the encrypted DNS resolver is not
-   authoritative for the response.<a href="#section-3-3" class="pilcrow">¶</a></p>
-<p id="section-3-4">If a group of resolvers is sharing the same ADN and/or anycast address, then these instances <span class="bcp14">SHOULD</span> expose a consistent RESINFO.<a href="#section-3-4" class="pilcrow">¶</a></p>
+   AA flag in the response is set to 0, indicating that the DNS resolver is not
+   authoritative for the response.<a href="#section-3-4" class="pilcrow">¶</a></p>
+<p id="section-3-5">If a group of resolvers is sharing the same ADN and/or anycast address, then these instances <span class="bcp14">SHOULD</span> expose a consistent RESINFO.<a href="#section-3-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="format">
