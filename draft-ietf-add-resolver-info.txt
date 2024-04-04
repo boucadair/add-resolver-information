@@ -5,8 +5,8 @@
 ADD                                                             T. Reddy
 Internet-Draft                                                     Nokia
 Intended status: Standards Track                            M. Boucadair
-Expires: 4 October 2024                                           Orange
-                                                            2 April 2024
+Expires: 6 October 2024                                           Orange
+                                                            4 April 2024
 
 
                         DNS Resolver Information
@@ -45,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 October 2024.
+   This Internet-Draft will expire on 6 October 2024.
 
 Copyright Notice
 
@@ -81,29 +81,39 @@ Table of Contents
 
 1.  Introduction
 
-   Historically, DNS clients communicated with recursive resolvers
-   without needing to know anything about the features supported by
-   these resolvers.  However, recent developments (e.g., Extended Error
-   Reporting [RFC8914] or encrypted DNS) imply that earlier assumption
-   no longer generally applies.  Typically, DNS clients can discover and
+   Historically, DNS clients selected and communicated with recursive
+   resolvers without needing to know anything about the features enabled
+   by these resolvers.  However, recent developments (e.g., Extended
+   Error Reporting [RFC8914] or encrypted DNS) and practices (e.g.,
+   filtering behaviors) imply that earlier assumptions no longer
+   generally apply.  Typically, DNS clients can discover and
    authenticate encrypted DNS resolvers provided by a local network
    (e.g., using the Discovery of Network-designated Resolvers (DNR)
    [RFC9463] and the Discovery of Designated Resolvers (DDR) [RFC9462]),
    however, these DNS clients can't retrieve information from the
-   discovered recursive resolvers about their capabilities.  Instead of
-   depending on opportunistic approaches, DNS clients need a more
-   reliable mechanism to discover the features that are supported by
-   resolvers.
+   discovered recursive resolvers about their capabilities to feed the
+   resolver selection process.  Instead of depending on opportunistic
+   approaches, DNS clients need a more reliable mechanism to discover
+   the features that are configured on these resolvers.
 
    This document fills that void by specifying a method for stub
    resolvers to retrieve such information.  To that aim, a new resource
    record (RR) type is defined for DNS clients to query the recursive
-   resolvers.  The information that a resolver might want to expose is
-   defined in Section 5.
+   resolvers.  The initial information that a resolver might want to
+   expose is defined in Section 5.  That information is scoped to cover
+   properties that are used to infer privacy and transparency policies
+   of a resolver.  Other information can be registered in the future per
+   the guidance in Section 8.2.
 
-   Retrieved information can be used to feed the server selection
-   procedure.  However, that selection procedure is out of the scope of
-   this document.
+   Retrieved information can be used to feed the resolver selection
+   procedure.  For example, the resolver selection procedure may use the
+   retrieved information to prioritize privacy-preserving resolvers over
+   those that don't enable QNAME minimization [RFC9156].  Another
+   example is an endpoint can select a resolver that can report that
+   answers are forged using the EDE code 4.  However, that selection
+   procedure is out of the scope of this document.  Once a resolver is
+   selected, this document does not interfere with DNS operations with
+   that resolver.
 
 2.  Terminology
 
@@ -150,10 +160,15 @@ Table of Contents
    risk that a resolver does not support RESINFO.  The resolver might
    pass the query upstream, and then the client can receive a positive
    RESINFO response either from a legitimate DNS resolver or an
-   attacker.  The DNS client MUST set the Recursion Desired (RD) bit of
-   the query to 0.  The DNS client MUST discard the response if the AA
-   flag in the response is set to 0, indicating that the encrypted DNS
-   resolver is not authoritative for the response.
+   attacker.
+
+   The DNS client MUST set the Recursion Desired (RD) bit of the query
+   to 0.  The DNS client MUST discard the response if the AA flag in the
+   response is set to 0, indicating that the DNS resolver is not
+   authoritative for the response.
+
+   If a group of resolvers is sharing the same ADN and/or anycast
+   address, then these instances SHOULD expose a consistent RESINFO.
 
 4.  Format of the Resolver Information
 
@@ -187,13 +202,28 @@ Table of Contents
       [RFC6763], if there is no '=' in a key, then it is a boolean
       attribute, simply identified as being present, with no value.
 
+      The presence of this key indicates that the DNS resolver is
+      configured to minimise the amount of privacy-sensitive data sent
+      to an authoritative name server.
+
       This is an optional attribute.
 
    exterr:  If the DNS resolver supports extended DNS errors (EDE)
       option [RFC8914] to return additional information about the cause
       of DNS errors, the value of this key lists the possible extended
-      DNS error codes that can be returned by this DNS resolver.  When
-      multiple values are present, these values MUST be comma-separated.
+      DNS error codes that can be returned by this DNS resolver.  A
+      value can be an individual EDE or a range of EDEs.  Range values
+      MUST be identified by "-".  When multiple non-contiguous values
+      are present, these values MUST be comma-separated.
+
+      Returned EDEs (e.g., Blocked (15), Censored (16), and Filtered
+      (17)) indicate whether the DNS resolver is configured to reveal
+      the reason why a query was filtered/blocked, when such event
+      happens.  If the resolver's capabilities are updated to include
+      new error codes, the resolver can terminate the TLS session,
+      prompting the client to initiate a new TLS connection.  This
+      allows the client to become aware of the resolver's updated
+      capabilities.
 
       This is an optional attribute.
 
@@ -208,11 +238,11 @@ Table of Contents
       scheme is not "https".  Invalid URLs MUST be ignored.  The URL
       SHOULD be treated only as diagnostic information for IT staff.  It
       is not intended for end user consumption as the URL can possibly
-      provide misleading information.  A DNS client MAY choose to
-      display the URL to the end user, if and only if the encrypted
-      resolver has sufficient reputation, according to some local policy
-      (e.g., user configuration, administrative configuration, or a
-      built-in list of respectable resolvers).
+      provide misleading information.
+
+      This key can be used by IT staff to retrieve other useful
+      information about the resolver and also the procedure to report
+      problems (e.g., invalid filtering).
 
       This is an optional attribute.
 
@@ -222,7 +252,7 @@ Table of Contents
 
    Figure 1 shows an example of a published resolver information record.
 
-     resolver.example.net. 7200 IN RESINFO qnamemin exterr=15,16,17
+     resolver.example.net. 7200 IN RESINFO qnamemin exterr=15-17
                            infourl=https://resolver.example.com/guide
 
             Figure 1: An Example of Resolver Information Record
@@ -310,7 +340,7 @@ Table of Contents
     |          | indicates that QNAME minimization   |               |
     |          | is enabled                          |               |
     +----------+-------------------------------------+---------------+
-    |  exterr  | Lists the set of supported extended |    RFCXXXX    |
+    |  exterr  | Lists the set of enabled extended   |    RFCXXXX    |
     |          | DNS errors.  It must be an INFO-    |               |
     |          | CODE decimal value in the "Extended |               |
     |          | DNS Error Codes" registry.          |               |
@@ -430,7 +460,8 @@ Acknowledgments
 
    Thanks to Eric Vyncke for the AD review.
 
-   Thanks to Gunter Van de Velde for the IESG review.
+   Thanks to Gunter Van de Velde, Erik Kline, Paul Wouters, Orie Steele,
+   and Warren Kumari for the IESG review.
 
 Authors' Addresses
 
