@@ -57,9 +57,9 @@ informative:
 
 #  Introduction
 
-   Historically, DNS clients communicated with recursive resolvers without needing to know anything about the features
-   enabled by these resolvers. However, recent developments (e.g., Extended Error Reporting {{!RFC8914}} or encrypted DNS) imply that earlier assumption no longer generally applies. Typically, DNS clients can discover and authenticate encrypted DNS resolvers provided by a local network (e.g., using the Discovery of Network-designated Resolvers (DNR) {{!RFC9463}} and the Discovery of Designated Resolvers (DDR) {{!RFC9462}}), however, these DNS clients can't retrieve
-   information from the discovered recursive resolvers about their capabilities. Instead of depending on opportunistic approaches, DNS clients need a more reliable mechanism to discover the features that are configured on these resolvers.
+   Historically, DNS clients selected and communicated with recursive resolvers without needing to know anything about the features
+   enabled by these resolvers. However, recent developments (e.g., Extended Error Reporting {{!RFC8914}} or encrypted DNS) and practices (e.g., filtering behaviors) imply that earlier assumptions no longer generally apply. Typically, DNS clients can discover and authenticate encrypted DNS resolvers provided by a local network (e.g., using the Discovery of Network-designated Resolvers (DNR) {{!RFC9463}} and the Discovery of Designated Resolvers (DDR) {{!RFC9462}}), however, these DNS clients can't retrieve
+   information from the discovered recursive resolvers about their capabilities to feed the resolver selection process. Instead of depending on opportunistic approaches, DNS clients need a more reliable mechanism to discover the features that are configured on these resolvers.
 
    This document fills that void by specifying a method for stub
    resolvers to retrieve such information.  To that aim, a new resource record (RR) type
@@ -67,8 +67,9 @@ informative:
    information that a resolver might want to expose is defined in
    {{key-val}}. That information is scoped to cover properties that are used to infer privacy and transparency policies of a resolver. Other information can be registered in the future per the guidance in {{key-reg}}.
 
-   Retrieved information can be used to feed the server selection
-   procedure. However, that selection procedure is out of the scope of this document.
+   Retrieved information can be used to feed the resolver selection procedure. For example, the resolver selection procedure may use the retrieved information to prioritize privacy-preserving resolvers over those that don't enable QNAME minimization. However, that selection procedure is out of the scope of this document. Once a resolver is selected, this document does not interfere with DNS operations with that resolver.
+
+
 
 #  Terminology
 
@@ -106,9 +107,11 @@ Reputation:
    using the RESINFO RR type and QNAME of "resolver.arpa". In this case, a client has to contend
    with the risk that a resolver does not support RESINFO. The resolver might
    pass the query upstream, and then the client can receive a positive RESINFO response either
-   from a legitimate DNS resolver or an attacker. The DNS client MUST set the Recursion Desired (RD) bit of
+   from a legitimate DNS resolver or an attacker.
+
+   The DNS client MUST set the Recursion Desired (RD) bit of
    the query to 0. The DNS client MUST discard the response if the
-   AA flag in the response is set to 0, indicating that the encrypted DNS resolver is not
+   AA flag in the response is set to 0, indicating that the DNS resolver is not
    authoritative for the response.
 
    If a group of resolvers is sharing the same ADN and/or anycast address, then these instances SHOULD expose a consistent RESINFO.
@@ -279,4 +282,4 @@ Reference: RFCXXXX
 
    Thanks to Eric Vyncke for the AD review.
 
-   Thanks to Gunter Van de Velde, Erik Kline, Paul Wouters, and Orie Steele for the IESG review.
+   Thanks to Gunter Van de Velde, Erik Kline, Paul Wouters, Orie Steele, and Warren Kumari for the IESG review.
