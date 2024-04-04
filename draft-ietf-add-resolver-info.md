@@ -67,7 +67,7 @@ informative:
    initial information that a resolver might want to expose is defined in
    {{key-val}}. That information is scoped to cover properties that are used to infer privacy and transparency policies of a resolver. Other information can be registered in the future per the guidance in {{key-reg}}.
 
-   Retrieved information can be used to feed the resolver selection procedure. For example, the resolver selection procedure may use the retrieved information to prioritize privacy-preserving resolvers over those that don't enable QNAME minimization {{!RFC9156}}. However, that selection procedure is out of the scope of this document. Once a resolver is selected, this document does not interfere with DNS operations with that resolver.
+   Retrieved information can be used to feed the resolver selection procedure. For example, the resolver selection procedure may use the retrieved information to prioritize privacy-preserving resolvers over those that don't enable QNAME minimization {{!RFC9156}}. Another example is an endpoint can select a resolver that can report that answers are forged using the EDE code 4. However, that selection procedure is out of the scope of this document. Once a resolver is selected, this document does not interfere with DNS operations with that resolver.
 
 
 
