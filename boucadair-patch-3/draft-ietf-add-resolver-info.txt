@@ -5,8 +5,8 @@
 ADD                                                             T. Reddy
 Internet-Draft                                                     Nokia
 Intended status: Standards Track                            M. Boucadair
-Expires: 4 October 2024                                           Orange
-                                                            2 April 2024
+Expires: 6 October 2024                                           Orange
+                                                            4 April 2024
 
 
                         DNS Resolver Information
@@ -45,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 October 2024.
+   This Internet-Draft will expire on 6 October 2024.
 
 Copyright Notice
 
@@ -81,28 +81,29 @@ Table of Contents
 
 1.  Introduction
 
-   Historically, DNS clients communicated with recursive resolvers
-   without needing to know anything about the features enabled by these
-   resolvers.  However, recent developments (e.g., Extended Error
-   Reporting [RFC8914] or encrypted DNS) imply that earlier assumption
-   no longer generally applies.  Typically, DNS clients can discover and
+   Historically, DNS clients selected and communicated with recursive
+   resolvers without needing to know anything about the features enabled
+   by these resolvers.  However, recent developments (e.g., Extended
+   Error Reporting [RFC8914] or encrypted DNS) and practices (e.g.,
+   filtering behaviors) imply that earlier assumption no longer
+   generally applies.  Typically, DNS clients can discover and
    authenticate encrypted DNS resolvers provided by a local network
    (e.g., using the Discovery of Network-designated Resolvers (DNR)
    [RFC9463] and the Discovery of Designated Resolvers (DDR) [RFC9462]),
    however, these DNS clients can't retrieve information from the
-   discovered recursive resolvers about their capabilities.  Instead of
-   depending on opportunistic approaches, DNS clients need a more
-   reliable mechanism to discover the features that are configured on
-   these resolvers.
+   discovered recursive resolvers about their capabilities to feed the
+   resolver selection process.  Instead of depending on opportunistic
+   approaches, DNS clients need a more reliable mechanism to discover
+   the features that are configured on these resolvers.
 
    This document fills that void by specifying a method for stub
    resolvers to retrieve such information.  To that aim, a new resource
    record (RR) type is defined for DNS clients to query the recursive
    resolvers.  The information that a resolver might want to expose is
-   defined in Section 5.  That information is selected because it
-   provides benefits to the security and privacy of DNS data.  Other
-   information can be registered in the future per the guidance in
-   Section 8.2.
+   defined in Section 5.  That information is scoped to cover properties
+   that are used to infer privacy and transparency policies of a
+   resolver.  Other information can be registered in the future per the
+   guidance in Section 8.2.
 
    Retrieved information can be used to feed the server selection
    procedure.  However, that selection procedure is out of the scope of
