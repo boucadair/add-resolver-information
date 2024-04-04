@@ -64,10 +64,10 @@ informative:
    This document fills that void by specifying a method for stub
    resolvers to retrieve such information.  To that aim, a new resource record (RR) type
    is defined for DNS clients to query the recursive resolvers.  The
-   information that a resolver might want to expose is defined in
+   initial information that a resolver might want to expose is defined in
    {{key-val}}. That information is scoped to cover properties that are used to infer privacy and transparency policies of a resolver. Other information can be registered in the future per the guidance in {{key-reg}}.
 
-   Retrieved information can be used to feed the resolver selection procedure. For example, the resolver selection procedure may use the retrieved information to prioritize privacy-preserving resolvers over those that don't enable QNAME minimization. However, that selection procedure is out of the scope of this document. Once a resolver is selected, this document does not interfere with DNS operations with that resolver.
+   Retrieved information can be used to feed the resolver selection procedure. For example, the resolver selection procedure may use the retrieved information to prioritize privacy-preserving resolvers over those that don't enable QNAME minimization {{!RFC9156}}. However, that selection procedure is out of the scope of this document. Once a resolver is selected, this document does not interfere with DNS operations with that resolver.
 
 
 
@@ -148,6 +148,8 @@ Reputation:
       is no '=' in a key, then it is a boolean attribute, simply
       identified as being present, with no value.
 
+     The presence of this key indicates that the DNS resolver is configured to minimise the amount of privacy-sensitive data sent to an authoritative name server.
+
      This is an optional attribute.
 
    exterr:
@@ -156,6 +158,8 @@ Reputation:
       errors, the value of this key lists the possible extended DNS
       error codes that can be returned by this DNS resolver. A value can be an individual EDE or a range of EDEs. Range values MUST be identified by "-".  When
       multiple non-contiguous values are present, these values MUST be comma-separated.
+
+      Returned EDEs (e.g., Blocked (15), Censored (16), and Filtered (17)) indicate whether the DNS resolver is configured to reveal the reason why a query was filtered/blocked, when such event happens.
 
       This is an optional attribute.
 
@@ -174,6 +178,8 @@ Reputation:
       sufficient reputation, according to some local policy (e.g., user
       configuration, administrative configuration, or a built-in list of
       respectable resolvers).
+
+      This key can be used by IT staff to retrieve other useful information about the resolver and also the procedure to report problems (e.g., invalid filtering).
 
       This is an optional attribute.
 
