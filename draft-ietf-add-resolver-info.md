@@ -57,7 +57,7 @@ informative:
 
 #  Introduction
 
-   Historically, DNS clients communicated with upstream recursive
+   Historically, DNS clients communicated with recursive
    resolvers without needing to know anything about the features
    supported by these resolvers. However, more and more recursive resolvers expose different features that may impact delivered DNS
    services (privacy preservation, filtering, transparent behavior, etc.). DNS clients
