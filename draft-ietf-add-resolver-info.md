@@ -57,19 +57,21 @@ informative:
 
 #  Introduction
 
-   Historically, DNS clients selected and communicated with recursive resolvers without needing to know anything about the features
-   enabled by these resolvers. However, recent developments (e.g., Extended DNS Errors (EDEs) reporting {{!RFC8914}} or encrypted DNS) and practices (e.g., filtering behaviors) imply that earlier assumptions no longer generally apply. Typically, DNS clients can discover and authenticate encrypted DNS resolvers provided by a local network (e.g., using the Discovery of Network-designated Resolvers (DNR) {{!RFC9463}} and the Discovery of Designated Resolvers (DDR) {{!RFC9462}}), however, these DNS clients can't retrieve
+   Historically, DNS clients communicated with upstream recursive
+   resolvers without needing to know anything about the features
+   supported by these resolvers. However, more and more recursive resolvers expose different features that may impact delivered DNS
+   services (privacy preservation, filtering, transparent behavior, etc.). DNS clients
+   can discover and authenticate encrypted DNS resolvers provided by a
+   local network, for example, using the Discovery of Network-designated
+   Resolvers (DNR) {{!RFC9463}} and the Discovery of Designated Resolvers
+   (DDR) {{!RFC9462}}. However, these DNS clients can't retrieve
    information from the discovered recursive resolvers about their capabilities to feed the resolver selection process. Instead of depending on opportunistic approaches, DNS clients need a more reliable mechanism to discover the features that are configured on these resolvers.
 
-   This document fills that void by specifying a method for stub
-   resolvers to retrieve such information.  To that aim, a new resource record (RR) type
-   is defined for DNS clients to query the recursive resolvers.  The
-   initial information that a resolver might want to expose is defined in
-   {{key-val}}. That information is scoped to cover properties that are used to infer privacy and transparency policies of a resolver. Other information can be registered in the future per the guidance in {{key-reg}}.
+This document fills that void by specifying a mechanism that allows communication of DNS resolver
+information to DNS clients for use in resolver selection decisions. For example, the resolver selection procedure may use the retrieved resolver information to prioritize privacy-preserving resolvers over those that don't enable QNAME minimization {{!RFC9156}}. Another example is a DNS client can select a resolver that can report that answers are forged using the Forged Answer (4) Extended DNS Error (EDE) {{!RFC8914]}}. However, it is out of the scope of this document to define the selection procedure and policies. Once a resolver is selected by a DNS client, this document does not interfere with DNS operations with that resolver.
 
-   Retrieved information can be used to feed the resolver selection procedure. For example, the resolver selection procedure may use the retrieved information to prioritize privacy-preserving resolvers over those that don't enable QNAME minimization {{!RFC9156}}. Another example is an endpoint can select a resolver that can report that answers are forged using the Forged Answer (4) EDE code. However, that selection procedure is out of the scope of this document. Once a resolver is selected, this document does not interfere with DNS operations with that resolver.
-
-
+Specifically, this document defines a new resource record (RR) type for DNS clients to query the recursive resolvers. The initial information that a resolver might want to expose is defined in
+{{key-val}}. That information is scoped to cover properties that are used to infer privacy and transparency policies of a resolver. Other information can be registered in the future per the guidance in {{key-reg}}.
 
 #  Terminology
 
