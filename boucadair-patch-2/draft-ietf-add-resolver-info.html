@@ -1034,7 +1034,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Reddy &amp; Boucadair</td>
-<td class="center">Expires 6 October 2024</td>
+<td class="center">Expires 10 October 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1047,12 +1047,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-add-resolver-info-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-04-04" class="published">4 April 2024</time>
+<time datetime="2024-04-08" class="published">8 April 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-10-06">6 October 2024</time></dd>
+<dd class="expires"><time datetime="2024-10-10">10 October 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1103,7 +1103,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 6 October 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 10 October 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1193,15 +1193,19 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">Historically, DNS clients selected and communicated with recursive resolvers without needing to know anything about the features
-   enabled by these resolvers. However, recent developments (e.g., Extended Error Reporting <span>[<a href="#RFC8914" class="cite xref">RFC8914</a>]</span> or encrypted DNS) and practices (e.g., filtering behaviors) imply that earlier assumptions no longer generally apply. Typically, DNS clients can discover and authenticate encrypted DNS resolvers provided by a local network (e.g., using the Discovery of Network-designated Resolvers (DNR) <span>[<a href="#RFC9463" class="cite xref">RFC9463</a>]</span> and the Discovery of Designated Resolvers (DDR) <span>[<a href="#RFC9462" class="cite xref">RFC9462</a>]</span>), however, these DNS clients can't retrieve
+<p id="section-1-1">Historically, DNS clients communicated with recursive
+   resolvers without needing to know anything about the features
+   supported by these resolvers. However, more and more recursive resolvers expose different features that may impact delivered DNS
+   services (privacy preservation, filtering, transparent behavior, etc.). DNS clients
+   can discover and authenticate encrypted DNS resolvers provided by a
+   local network, for example, using the Discovery of Network-designated
+   Resolvers (DNR) <span>[<a href="#RFC9463" class="cite xref">RFC9463</a>]</span> and the Discovery of Designated Resolvers
+   (DDR) <span>[<a href="#RFC9462" class="cite xref">RFC9462</a>]</span>. However, these DNS clients can't retrieve
    information from the discovered recursive resolvers about their capabilities to feed the resolver selection process. Instead of depending on opportunistic approaches, DNS clients need a more reliable mechanism to discover the features that are configured on these resolvers.<a href="#section-1-1" class="pilcrow">¶</a></p>
-<p id="section-1-2">This document fills that void by specifying a method for stub
-   resolvers to retrieve such information.  To that aim, a new resource record (RR) type
-   is defined for DNS clients to query the recursive resolvers.  The
-   initial information that a resolver might want to expose is defined in
-   <a href="#key-val" class="auto internal xref">Section 5</a>. That information is scoped to cover properties that are used to infer privacy and transparency policies of a resolver. Other information can be registered in the future per the guidance in <a href="#key-reg" class="auto internal xref">Section 8.2</a>.<a href="#section-1-2" class="pilcrow">¶</a></p>
-<p id="section-1-3">Retrieved information can be used to feed the resolver selection procedure. For example, the resolver selection procedure may use the retrieved information to prioritize privacy-preserving resolvers over those that don't enable QNAME minimization <span>[<a href="#RFC9156" class="cite xref">RFC9156</a>]</span>. However, that selection procedure is out of the scope of this document. Once a resolver is selected, this document does not interfere with DNS operations with that resolver.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-2">This document fills that void by specifying a mechanism that allows communication of DNS resolver
+information to DNS clients for use in resolver selection decisions. For example, the resolver selection procedure may use the retrieved resolver information to prioritize privacy-preserving resolvers over those that don't enable QNAME minimization <span>[<a href="#RFC9156" class="cite xref">RFC9156</a>]</span>. Another example is a DNS client can select a resolver that can report that answers are forged using the Forged Answer (4) Extended DNS Error (EDE) <span>[<a href="#RFC8914" class="cite xref">RFC8914</a>]</span>. However, it is out of the scope of this document to define the selection procedure and policies. Once a resolver is selected by a DNS client, and unless explicitly mentioned, this document does not interfere with DNS operations with that resolver.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">Specifically, this document defines a new resource record (RR) type for DNS clients to query the recursive resolvers. The initial information that a resolver might want to expose is defined in
+<a href="#key-val" class="auto internal xref">Section 5</a>. That information is scoped to cover properties that are used to infer privacy and transparency policies of a resolver. Other information can be registered in the future per the guidance in <a href="#key-reg" class="auto internal xref">Section 8.2</a>. The information is not intended for end user consumption.<a href="#section-1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="terminology">
@@ -1256,9 +1260,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
    pass the query upstream, and then the client can receive a positive RESINFO response either
    from a legitimate DNS resolver or an attacker.<a href="#section-3-3" class="pilcrow">¶</a></p>
 <p id="section-3-4">The DNS client <span class="bcp14">MUST</span> set the Recursion Desired (RD) bit of
-   the query to 0. The DNS client <span class="bcp14">MUST</span> discard the response if the
-   AA flag in the response is set to 0, indicating that the DNS resolver is not
-   authoritative for the response.<a href="#section-3-4" class="pilcrow">¶</a></p>
+   the query to 0. The DNS client <span class="bcp14">MUST</span> discard the response if the AA flag in the response is set to 0,
+   indicating that the DNS resolver is not authoritative for the response.<a href="#section-3-4" class="pilcrow">¶</a></p>
 <p id="section-3-5">If a group of resolvers is sharing the same ADN and/or anycast address, then these instances <span class="bcp14">SHOULD</span> expose a consistent RESINFO.<a href="#section-3-5" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1310,7 +1313,12 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
  errors, the value of this key lists the possible extended DNS
  error codes that can be returned by this DNS resolver. A value can be an individual EDE or a range of EDEs. Range values <span class="bcp14">MUST</span> be identified by "-".  When
  multiple non-contiguous values are present, these values <span class="bcp14">MUST</span> be comma-separated.<a href="#section-5-2.4.1" class="pilcrow">¶</a></p>
-<p id="section-5-2.4.2">Returned EDEs (e.g., Blocked (15), Censored (16), and Filtered (17)) indicate whether the DNS resolver is configured to reveal the reason why a query was filtered/blocked, when such event happens.<a href="#section-5-2.4.2" class="pilcrow">¶</a></p>
+<p id="section-5-2.4.2">Returned EDEs (e.g., Blocked (15), Censored (16), and Filtered (17)) indicate whether the DNS resolver is configured to reveal the reason why a query was filtered/blocked, when such event happens. If the resolver's capabilities are updated to include new similar
+ error codes, the resolver can terminate the TLS session, prompting the client to initiate a new TLS connection and retrieve the
+ resolver information again. This allows the client to become aware of the resolver's updated capabilities. Alternatively, if the
+ client receives an EDE for a DNS request, but that EDE was not listed in  the "exterr", the client can query the resolver again to
+ learn about the updated resolver's capabilities to return new error codes. If a mismatch still exists, the client can identify that
+ the resolver information is inaccurate and discard it.<a href="#section-5-2.4.2" class="pilcrow">¶</a></p>
 <p id="section-5-2.4.3">This is an optional attribute.<a href="#section-5-2.4.3" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
@@ -1320,15 +1328,11 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
  information (e.g., DoH APIs supported, possible HTTP status codes
  returned by the DoH server, or how to report a problem) for
  troubleshooting purposes. The server that exposes such information is called "resolver information server".<a href="#section-5-2.6.1" class="pilcrow">¶</a></p>
-<p id="section-5-2.6.2">The resolver information server <span class="bcp14">MUST</span> support the content-type 'text/html'.  The DNS
+<p id="section-5-2.6.2">The resolver information server <span class="bcp14">MUST</span> support only the content-type 'text/html' for the resolver information. The DNS
  client <span class="bcp14">MUST</span> reject invalid the URL if the scheme is not "https". Invalid URLs <span class="bcp14">MUST</span> be ignored.  The URL
- <span class="bcp14">SHOULD</span> be treated only as diagnostic information for IT staff.  It
+ <span class="bcp14">MUST</span> be treated only as diagnostic information for IT staff.  It
  is not intended for end user consumption as the URL can possibly
- provide misleading information. A DNS client <span class="bcp14">MAY</span> choose to display
- the URL to the end user, if and only if the encrypted resolver has
- sufficient reputation, according to some local policy (e.g., user
- configuration, administrative configuration, or a built-in list of
- respectable resolvers).<a href="#section-5-2.6.2" class="pilcrow">¶</a></p>
+ provide misleading information.<a href="#section-5-2.6.2" class="pilcrow">¶</a></p>
 <p id="section-5-2.6.3">This key can be used by IT staff to retrieve other useful information about the resolver and also the procedure to report problems (e.g., invalid filtering).<a href="#section-5-2.6.3" class="pilcrow">¶</a></p>
 <p id="section-5-2.6.4">This is an optional attribute.<a href="#section-5-2.6.4" class="pilcrow">¶</a></p>
 </dd>
@@ -1357,13 +1361,13 @@ resolver.example.net. 7200 IN RESINFO qnamemin exterr=15-17
 </div>
 <p id="section-6-3">As mentioned in <a href="#retreive" class="auto internal xref">Section 3</a>, a DNS client that discovers the ADN "resolver.example.net"
 of its resolver using DNR will issue a query for RESINFO RR QTYPE for that ADN
-and will learn that the resolver supports:<a href="#section-6-3" class="pilcrow">¶</a></p>
+and will learn that the resolver:<a href="#section-6-3" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-6-4.1">
-          <p id="section-6-4.1.1">QNAME minimisation,<a href="#section-6-4.1.1" class="pilcrow">¶</a></p>
+          <p id="section-6-4.1.1">enables QNAME minimisation,<a href="#section-6-4.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-6-4.2">
-          <p id="section-6-4.2.1">Blocked (15), Censored (16), and Filtered (17) EDEs, and<a href="#section-6-4.2.1" class="pilcrow">¶</a></p>
+          <p id="section-6-4.2.1">can return Blocked (15), Censored (16), and Filtered (17) EDEs, and<a href="#section-6-4.2.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-6-4.3">
           <p id="section-6-4.3.1">that more information can be retrieved from https://resolver.example.com/guide.<a href="#section-6-4.3.1" class="pilcrow">¶</a></p>
@@ -1615,7 +1619,7 @@ Reference: RFCXXXX
 <p id="appendix-A-5">Thanks to Johan Stenstam and Jim Reid for the dns-dir reviews, Ray Bellis for the RRTYPE allocation review, Arnt Gulbrandsen for the ART review,
    and Mallory Knodel for the gen-art review.<a href="#appendix-A-5" class="pilcrow">¶</a></p>
 <p id="appendix-A-6">Thanks to Eric Vyncke for the AD review.<a href="#appendix-A-6" class="pilcrow">¶</a></p>
-<p id="appendix-A-7">Thanks to Gunter Van de Velde, Erik Kline, Paul Wouters, Orie Steele, Warren Kumari, and Murray Kucherawy for the IESG review.<a href="#appendix-A-7" class="pilcrow">¶</a></p>
+<p id="appendix-A-7">Thanks to Gunter Van de Velde, Erik Kline, Paul Wouters, Orie Steele, Warren Kumari, Roman Danyliw, and Murray Kucherawy for the IESG review.<a href="#appendix-A-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="authors-addresses">
