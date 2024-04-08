@@ -68,7 +68,7 @@ informative:
    information from the discovered recursive resolvers about their capabilities to feed the resolver selection process. Instead of depending on opportunistic approaches, DNS clients need a more reliable mechanism to discover the features that are configured on these resolvers.
 
 This document fills that void by specifying a mechanism that allows communication of DNS resolver
-information to DNS clients for use in resolver selection decisions. For example, the resolver selection procedure may use the retrieved resolver information to prioritize privacy-preserving resolvers over those that don't enable QNAME minimization {{!RFC9156}}. Another example is a DNS client can select a resolver that can report that answers are forged using the Forged Answer (4) Extended DNS Error (EDE) {{!RFC8914}}. However, it is out of the scope of this document to define the selection procedure and policies. Once a resolver is selected by a DNS client, this document does not interfere with DNS operations with that resolver.
+information to DNS clients for use in resolver selection decisions. For example, the resolver selection procedure may use the retrieved resolver information to prioritize privacy-preserving resolvers over those that don't enable QNAME minimization {{!RFC9156}}. Another example is a DNS client can select a resolver that can report that answers are forged using the Forged Answer (4) Extended DNS Error (EDE) {{!RFC8914}}. However, it is out of the scope of this document to define the selection procedure and policies. Once a resolver is selected by a DNS client, and unless explicitly mentioned, this document does not interfere with DNS operations with that resolver.
 
 Specifically, this document defines a new resource record (RR) type for DNS clients to query the recursive resolvers. The initial information that a resolver might want to expose is defined in
 {{key-val}}. That information is scoped to cover properties that are used to infer privacy and transparency policies of a resolver. Other information can be registered in the future per the guidance in {{key-reg}}. The information is not intended for end user consumption.
@@ -160,9 +160,12 @@ Reputation:
       error codes that can be returned by this DNS resolver. A value can be an individual EDE or a range of EDEs. Range values MUST be identified by "-".  When
       multiple non-contiguous values are present, these values MUST be comma-separated.
 
-      Returned EDEs (e.g., Blocked (15), Censored (16), and Filtered (17)) indicate whether the DNS resolver is configured to reveal the reason why a query was filtered/blocked, when such event happens. If the resolver's capabilities are updated to include new similar error
-      codes, the resolver can terminate the TLS session, prompting the client to initiate a new TLS connection and retrieve the resolver
-      information again. This allows the client to become aware of the resolver's updated capabilities.
+      Returned EDEs (e.g., Blocked (15), Censored (16), and Filtered (17)) indicate whether the DNS resolver is configured to reveal the reason why a query was filtered/blocked, when such event happens. If the resolver's capabilities are updated to include new similar
+      error codes, the resolver can terminate the TLS session, prompting the client to initiate a new TLS connection and retrieve the
+      resolver information again. This allows the client to become aware of the resolver's updated capabilities. Alternatively, if the
+      client receives an EDE for a DNS request, but that EDE was not listed in  the "exterr", the client can query the resolver again to
+      learn about the updated resolver's capabilities to return new error codes. If a mismatch still exists, the client can identify that
+      the resolver information is inaccurate and discard it.
 
       This is an optional attribute.
 
