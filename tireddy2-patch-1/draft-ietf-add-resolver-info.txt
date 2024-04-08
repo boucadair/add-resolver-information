@@ -106,8 +106,9 @@ Table of Contents
    resolver that can report that answers are forged using the Forged
    Answer (4) Extended DNS Error (EDE) [RFC8914].  However, it is out of
    the scope of this document to define the selection procedure and
-   policies.  Once a resolver is selected by a DNS client, this document
-   does not interfere with DNS operations with that resolver.
+   policies.  Once a resolver is selected by a DNS client, and unless
+   explicitly mentioned, this document does not interfere with DNS
+   operations with that resolver.
 
    Specifically, this document defines a new resource record (RR) type
    for DNS clients to query the recursive resolvers.  The initial
