@@ -70,7 +70,7 @@ informative:
 This document fills that void by specifying a mechanism that allows communication of DNS resolver
 information to DNS clients for use in resolver selection decisions. For example, the resolver selection procedure may use the retrieved
 resolver information to prioritize privacy-preserving resolvers over those that don't enable QNAME minimization {{!RFC9156}}. Another
-example is when a DNS client selects a resolver based on its filtering capability. For instance, the DNS client can choose a resolver that
+example is when a DNS client selects a resolver based on its filtering capability. For instance, a DNS client can choose a resolver that
 filters domains according to a security policy using the Blocked (15) Extended DNS Error (EDE) {{RFC8914}}. Alternatively, the client may
 have a policy not to select a resolver that forges responses using the Forged Answer (4) EDE. However, it is out of the scope of this
 document to define the selection procedure and policies. Once a resolver is selected by a DNS client, and unless explicitly mentioned, this
