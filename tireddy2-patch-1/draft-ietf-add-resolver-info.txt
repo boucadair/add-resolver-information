@@ -5,8 +5,8 @@
 ADD                                                             T. Reddy
 Internet-Draft                                                     Nokia
 Intended status: Standards Track                            M. Boucadair
-Expires: 10 October 2024                                          Orange
-                                                            8 April 2024
+Expires: 17 October 2024                                          Orange
+                                                           15 April 2024
 
 
                         DNS Resolver Information
@@ -45,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 10 October 2024.
+   This Internet-Draft will expire on 17 October 2024.
 
 Copyright Notice
 
@@ -102,13 +102,16 @@ Table of Contents
    resolver selection decisions.  For example, the resolver selection
    procedure may use the retrieved resolver information to prioritize
    privacy-preserving resolvers over those that don't enable QNAME
-   minimization [RFC9156].  Another example is a DNS client can select a
-   resolver that can report that answers are forged using the Forged
-   Answer (4) Extended DNS Error (EDE) [RFC8914].  However, it is out of
-   the scope of this document to define the selection procedure and
-   policies.  Once a resolver is selected by a DNS client, and unless
-   explicitly mentioned, this document does not interfere with DNS
-   operations with that resolver.
+   minimization [RFC9156].  Another example is when a DNS client selects
+   a resolver based on its filtering capability.  For instance, the DNS
+   client can choose a resolver that filters domains according to a
+   security policy using the Blocked (15) Extended DNS Error (EDE)
+   [RFC8914].  Alternatively, the client may have a policy not to select
+   a resolver that forges responses using the Forged Answer (4) EDE.
+   However, it is out of the scope of this document to define the
+   selection procedure and policies.  Once a resolver is selected by a
+   DNS client, and unless explicitly mentioned, this document does not
+   interfere with DNS operations with that resolver.
 
    Specifically, this document defines a new resource record (RR) type
    for DNS clients to query the recursive resolvers.  The initial
