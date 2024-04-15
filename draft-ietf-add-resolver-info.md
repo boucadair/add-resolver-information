@@ -68,7 +68,13 @@ informative:
    information from the discovered recursive resolvers about their capabilities to feed the resolver selection process. Instead of depending on opportunistic approaches, DNS clients need a more reliable mechanism to discover the features that are configured on these resolvers.
 
 This document fills that void by specifying a mechanism that allows communication of DNS resolver
-information to DNS clients for use in resolver selection decisions. For example, the resolver selection procedure may use the retrieved resolver information to prioritize privacy-preserving resolvers over those that don't enable QNAME minimization {{!RFC9156}}. Another example is a DNS client can select a resolver that can report that answers are forged using the Forged Answer (4) Extended DNS Error (EDE) {{!RFC8914}}. However, it is out of the scope of this document to define the selection procedure and policies. Once a resolver is selected by a DNS client, and unless explicitly mentioned, this document does not interfere with DNS operations with that resolver.
+information to DNS clients for use in resolver selection decisions. For example, the resolver selection procedure may use the retrieved
+resolver information to prioritize privacy-preserving resolvers over those that don't enable QNAME minimization {{!RFC9156}}. Another
+example is when a DNS client selects a resolver based on its filtering capability. For instance, a DNS client can choose a resolver that
+filters domains according to a security policy using the Blocked (15) Extended DNS Error (EDE) {{RFC8914}}. Alternatively, the client may
+have a policy not to select a resolver that forges responses using the Forged Answer (4) EDE. However, it is out of the scope of this
+document to define the selection procedure and policies. Once a resolver is selected by a DNS client, and unless explicitly mentioned, this
+document does not interfere with DNS operations with that resolver.
 
 Specifically, this document defines a new resource record (RR) type for DNS clients to query the recursive resolvers. The initial information that a resolver might want to expose is defined in
 {{key-val}}. That information is scoped to cover properties that are used to infer privacy and transparency policies of a resolver. Other information can be registered in the future per the guidance in {{key-reg}}. The information is not intended for end user consumption.
