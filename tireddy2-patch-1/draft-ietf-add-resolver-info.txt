@@ -103,7 +103,7 @@ Table of Contents
    procedure may use the retrieved resolver information to prioritize
    privacy-preserving resolvers over those that don't enable QNAME
    minimization [RFC9156].  Another example is when a DNS client selects
-   a resolver based on its filtering capability.  For instance, the DNS
+   a resolver based on its filtering capability.  For instance, a DNS
    client can choose a resolver that filters domains according to a
    security policy using the Blocked (15) Extended DNS Error (EDE)
    [RFC8914].  Alternatively, the client may have a policy not to select
