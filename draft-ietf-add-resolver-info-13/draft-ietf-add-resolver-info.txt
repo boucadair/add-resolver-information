@@ -5,8 +5,8 @@
 ADD                                                             T. Reddy
 Internet-Draft                                                     Nokia
 Intended status: Standards Track                            M. Boucadair
-Expires: 22 September 2024                                        Orange
-                                                           21 March 2024
+Expires: 28 October 2024                                          Orange
+                                                           26 April 2024
 
 
                         DNS Resolver Information
@@ -16,9 +16,8 @@ Abstract
 
    This document specifies a method for DNS resolvers to publish
    information about themselves.  DNS clients can use the resolver
-   information to identify the capabilities of DNS resolvers.  How such
-   an information is then used by DNS clients is out of the scope of
-   this document.
+   information to identify the capabilities of DNS resolvers.  How DNS
+   clients use such an information is beyond the scope of this document.
 
 Discussion Venues
 
@@ -46,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 22 September 2024.
+   This Internet-Draft will expire on 28 October 2024.
 
 Copyright Notice
 
@@ -74,6 +73,7 @@ Table of Contents
    8.  IANA Considerations
      8.1.  RESINFO RR Type
      8.2.  DNS Resolver Information Key Registration
+     8.3.  Guidelines for the Designated Experts
    9.  References
      9.1.  Normative References
      9.2.  Informative References
@@ -84,27 +84,43 @@ Table of Contents
 
    Historically, DNS clients communicated with recursive resolvers
    without needing to know anything about the features supported by
-   these resolvers.  However, recent developments (e.g., Extended Error
-   Reporting [RFC8914] or encrypted DNS) imply that earlier assumption
-   no longer generally applies.  Typically, DNS clients can discover and
-   authenticate encrypted DNS resolvers provided by a local network
-   (e.g., using the Discovery of Network-designated Resolvers (DNR)
-   [RFC9463] and the Discovery of Designated Resolvers (DDR) [RFC9462]),
-   however, these DNS clients can't retrieve information from the
-   discovered recursive resolvers about their capabilities.  Instead of
+   these resolvers.  However, more and more recursive resolvers expose
+   different features that may impact delivered DNS services (privacy
+   preservation, filtering, transparent behavior, etc.).  DNS clients
+   can discover and authenticate encrypted DNS resolvers provided by a
+   local network, for example, using the Discovery of Network-designated
+   Resolvers (DNR) [RFC9463] and the Discovery of Designated Resolvers
+   (DDR) [RFC9462].  However, these DNS clients can't retrieve
+   information from the discovered recursive resolvers about their
+   capabilities to feed the resolver selection process.  Instead of
    depending on opportunistic approaches, DNS clients need a more
-   reliable mechanism to discover the features that are supported by
-   resolvers.
+   reliable mechanism to discover the features that are configured on
+   these resolvers.
 
-   This document fills that void by specifying a method for stub
-   resolvers to retrieve such information.  To that aim, a new resource
-   record (RR) type is defined for DNS clients to query the recursive
-   resolvers.  The information that a resolver might want to expose is
-   defined in Section 5.
+   This document fills that void by specifying a mechanism that allows
+   communication of DNS resolver information to DNS clients for use in
+   resolver selection decisions.  For example, the resolver selection
+   procedure may use the retrieved resolver information to prioritize
+   privacy-preserving resolvers over those that don't enable QNAME
+   minimization [RFC9156].  Another example is when a DNS client selects
+   a resolver based on its filtering capability.  For instance, a DNS
+   client can choose a resolver that filters domains according to a
+   security policy using the Blocked (15) Extended DNS Error (EDE)
+   [RFC8914].  Alternatively, the client may have a policy not to select
+   a resolver that forges responses using the Forged Answer (4) EDE.
+   However, it is out of the scope of this document to define the
+   selection procedure and policies.  Once a resolver is selected by a
+   DNS client, and unless explicitly mentioned, this document does not
+   interfere with DNS operations with that resolver.
 
-   Retrieved information can be used to feed the server selection
-   procedure.  However, that selection procedure is out of the scope of
-   this document.
+   Specifically, this document defines a new resource record (RR) type
+   for DNS clients to query the recursive resolvers.  The initial
+   information that a resolver might want to expose is defined in
+   Section 5.  That information is scoped to cover properties that are
+   used to infer privacy and transparency policies of a resolver.  Other
+   information can be registered in the future per the guidance in
+   Section 8.2.  The information is not intended for end user
+   consumption.
 
 2.  Terminology
 
@@ -135,8 +151,9 @@ Table of Contents
    the RR type "RESINFO" defined in this document.  The content of the
    RDATA in a response to a query for RESINFO RR QTYPE is defined in
    Section 5.  If the resolver understands the RESINFO RR type, the
-   RRSet MUST have exactly one record.  RESINFO is a property of the
-   resolver and is not subject to recursive resolution.
+   RRSet MUST have exactly one record.  Invalid records MUST be silently
+   ignored by DNS clients.  RESINFO is a property of the resolver and is
+   not subject to recursive resolution.
 
    A DNS client can retrieve the resolver information using the RESINFO
    RR type and the QNAME of the domain name that is used to authenticate
@@ -150,19 +167,24 @@ Table of Contents
    risk that a resolver does not support RESINFO.  The resolver might
    pass the query upstream, and then the client can receive a positive
    RESINFO response either from a legitimate DNS resolver or an
-   attacker.  The DNS client MUST set the Recursion Desired (RD) bit of
-   the query to 0.  The DNS client MUST discard the response if the AA
-   flag in the response is set to 0, indicating that the encrypted DNS
-   resolver is not authoritative for the response.
+   attacker.
+
+   The DNS client MUST set the Recursion Desired (RD) bit of the query
+   to 0.  The DNS client MUST discard the response if the AA flag in the
+   response is set to 0, indicating that the DNS resolver is not
+   authoritative for the response.
+
+   If a group of resolvers is sharing the same ADN and/or anycast
+   address, then these instances SHOULD expose a consistent RESINFO.
 
 4.  Format of the Resolver Information
 
    The resolver information record uses the same format as DNS TXT
-   records.  As a reminder, the format rules for TXT records are defined
-   in the base DNS specification (Section 3.3.14 of [RFC1035]) and
-   further elaborated in the DNS-based Service Discovery (DNS-SD)
-   specification (Section 6.1 of [RFC6763]).  The recommendations to
-   limit the TXT record size are discussed in Section 6.1 of [RFC6763].
+   records.  The format rules for TXT records are defined in the base
+   DNS specification (Section 3.3.14 of [RFC1035]) and further
+   elaborated in the DNS-based Service Discovery (DNS-SD) specification
+   (Section 6.1 of [RFC6763]).  The recommendations to limit the TXT
+   record size are discussed in Section 6.1 of [RFC6763].
 
    Similar to DNS-SD, the RESINFO RR type uses "key/value" pairs to
    convey the resolver information.  Each "key/value" pair is encoded
@@ -173,27 +195,48 @@ Table of Contents
    rules for the keys as those defined in Section 6.4 of [RFC6763] MUST
    be followed for RESINFO.
 
-   Keys MUST either be defined in the IANA registry (Section 8.2) or
-   begin with the substring "temp-" for names defined for local use
-   only.
+   Resolver information keys MUST either be defined in the IANA registry
+   (Section 8.2) or begin with the substring "temp-" for names defined
+   for local use only.
 
 5.  Resolver Information Keys/Values
 
    The following resolver information keys are defined:
 
-   qnamemin:  If the DNS resolver supports QNAME minimisation [RFC9156]
-      to improve DNS privacy, the key is present.  Note that, as per the
-      rules for the keys defined in Section 6.4 of [RFC6763], if there
-      is no '=' in a key, then it is a boolean attribute, simply
-      identified as being present, with no value.
+   qnamemin:  The presence of this key indicates that the DNS resolver
+      supports QNAME minimisation [RFC9156] to improve DNS privacy.
+      Note that, per the rules for the keys defined in Section 6.4 of
+      [RFC6763], if there is no '=' in a key, then it is a boolean
+      attribute, simply identified as being present, with no value.
+
+      The presence of this key indicates that the DNS resolver is
+      configured to minimise the amount of privacy-sensitive data sent
+      to an authoritative name server.
 
       This is an optional attribute.
 
    exterr:  If the DNS resolver supports extended DNS errors (EDE)
       option [RFC8914] to return additional information about the cause
       of DNS errors, the value of this key lists the possible extended
-      DNS error codes that can be returned by this DNS resolver.  When
-      multiple values are present, these values MUST be comma-separated.
+      DNS error codes that can be returned by this DNS resolver.  A
+      value can be an individual EDE or a range of EDEs.  Range values
+      MUST be identified by "-".  When multiple non-contiguous values
+      are present, these values MUST be comma-separated.
+
+      Returned EDEs (e.g., Blocked (15), Censored (16), and Filtered
+      (17)) indicate whether the DNS resolver is configured to reveal
+      the reason why a query was filtered/blocked, when such event
+      happens.  If the resolver's capabilities are updated to include
+      new similar error codes, the resolver can terminate the TLS
+      session, prompting the client to initiate a new TLS connection and
+      retrieve the resolver information again.  This allows the client
+      to become aware of the resolver's updated capabilities.
+      Alternatively, if the client receives an EDE for a DNS request,
+      but that EDE was not listed in the "exterr", the client can query
+      the resolver again to learn about the updated resolver's
+      capabilities to return new error codes.  If a mismatch still
+      exists, the client can identify that the resolver information is
+      inaccurate and discard it.
 
       This is an optional attribute.
 
@@ -203,16 +246,17 @@ Table of Contents
       troubleshooting purposes.  The server that exposes such
       information is called "resolver information server".
 
-      The resolver information server MUST support the content-type
-      'text/html'.  The DNS client MUST reject the URL if the scheme is
-      not "https".  The URL SHOULD be treated only as diagnostic
+      The resolver information server MUST support only the content-type
+      'text/html' for the resolver information.  The DNS client MUST
+      reject invalid the URL if the scheme is not "https".  Invalid URLs
+      MUST be ignored.  The URL MUST be treated only as diagnostic
       information for IT staff.  It is not intended for end user
       consumption as the URL can possibly provide misleading
-      information.  A DNS client MAY choose to display the URL to the
-      end user, if and only if the encrypted resolver has sufficient
-      reputation, according to some local policy (e.g., user
-      configuration, administrative configuration, or a built-in list of
-      respectable resolvers).
+      information.
+
+      This key can be used by IT staff to retrieve other useful
+      information about the resolver and also the procedure to report
+      problems (e.g., invalid filtering).
 
       This is an optional attribute.
 
@@ -222,19 +266,19 @@ Table of Contents
 
    Figure 1 shows an example of a published resolver information record.
 
-     resolver.example.net. 7200 IN RESINFO qnamemin exterr=15,16,17
+     resolver.example.net. 7200 IN RESINFO qnamemin exterr=15-17
                            infourl=https://resolver.example.com/guide
 
             Figure 1: An Example of Resolver Information Record
 
    As mentioned in Section 3, a DNS client that discovers the ADN
    "resolver.example.net" of its resolver using DNR will issue a query
-   for RESINFO RR QTYPE for that ADN and will learn that the resolver
-   supports:
+   for RESINFO RR QTYPE for that ADN and will learn that the resolver:
 
-   *  QNAME minimisation,
+   *  enables QNAME minimisation,
 
-   *  Blocked (15), Censored (16), and Filtered (17) EDEs, and
+   *  can return Blocked (15), Censored (16), and Filtered (17) EDEs,
+      and
 
    *  that more information can be retrieved from
       https://resolver.example.com/guide.
@@ -287,7 +331,10 @@ Table of Contents
    information.
 
    The registration procedure is Specification Required (Section 4.6 of
-   [RFC8126]).
+   [RFC8126]).  Designated experts should carefully consider the
+   security implications of allowing a resolver to include new keys in
+   this registry.  Additional considerations are provided in
+   Section 8.3.
 
    The structure of the registry is as follows:
 
@@ -310,7 +357,7 @@ Table of Contents
     |          | indicates that QNAME minimization   |               |
     |          | is enabled                          |               |
     +----------+-------------------------------------+---------------+
-    |  exterr  | Lists the set of supported extended |    RFCXXXX    |
+    |  exterr  | Lists the set of enabled extended   |    RFCXXXX    |
     |          | DNS errors.  It must be an INFO-    |               |
     |          | CODE decimal value in the "Extended |               |
     |          | DNS Error Codes" registry.          |               |
@@ -321,6 +368,23 @@ Table of Contents
     +----------+-------------------------------------+---------------+
 
                     Table 1: Initial RESINFO Registry
+
+8.3.  Guidelines for the Designated Experts
+
+   It is suggested that multiple designated experts be appointed for
+   registry change requests.
+
+   Criteria that should be applied by the designated experts include
+   determining whether the proposed registration duplicates existing
+   entries and whether the registration description is clear and fits
+   the purpose of this registry.
+
+   Registration requests are evaluated within a three-week review period
+   on the advice of one or more designated experts.  Within the review
+   period, the designated experts will either approve or deny the
+   registration request, communicating this decision to IANA.  Denials
+   should include an explanation and, if applicable, suggestions as to
+   how to make the request successful.
 
 9.  References
 
@@ -396,8 +460,8 @@ Table of Contents
               <https://www.rfc-editor.org/rfc/rfc8484>.
 
    [RFC8499]  Hoffman, P., Sullivan, A., and K. Fujiwara, "DNS
-              Terminology", BCP 219, RFC 8499, DOI 10.17487/RFC8499,
-              January 2019, <https://www.rfc-editor.org/rfc/rfc8499>.
+              Terminology", RFC 8499, DOI 10.17487/RFC8499, January
+              2019, <https://www.rfc-editor.org/rfc/rfc8499>.
 
    [RFC9250]  Huitema, C., Dickinson, S., and A. Mankin, "DNS over
               Dedicated QUIC Connections", RFC 9250,
@@ -429,6 +493,10 @@ Acknowledgments
    review, and Mallory Knodel for the gen-art review.
 
    Thanks to Eric Vyncke for the AD review.
+
+   Thanks to Gunter Van de Velde, Erik Kline, Paul Wouters, Orie Steele,
+   Warren Kumari, Roman Danyliw, and Murray Kucherawy for the IESG
+   review.
 
 Authors' Addresses
 
