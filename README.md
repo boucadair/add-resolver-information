@@ -1,12 +1,15 @@
 # DNS Resolver Information
 
-This is the working area for the IETF [ADD Working Group](https://datatracker.ietf.org/wg/add/documents/) Internet-Draft, "DNS Resolver Information".
+This is the working area for the IETF [ADD Working Group](https://datatracker.ietf.org/wg/add/documents/) specification, "DNS Resolver Information".
 
 * [Editor's Copy](https://boucadair.github.io/add-resolver-information/#go.draft-ietf-add-resolver-info.html)
 * [Datatracker Page](https://datatracker.ietf.org/doc/draft-ietf-add-resolver-info)
 * [Working Group Draft](https://datatracker.ietf.org/doc/html/draft-ietf-add-resolver-info)
 * [Compare Editor's Copy to Working Group Draft](https://boucadair.github.io/add-resolver-information/#go.draft-ietf-add-resolver-info.diff)
 
+The final document is published as:
+
+* **[RFC 9606](https://datatracker.ietf.org/doc/rfc9606/)**: DNS Resolver Information
 
 ## Contributing
 
